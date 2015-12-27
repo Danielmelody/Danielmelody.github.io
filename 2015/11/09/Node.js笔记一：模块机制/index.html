@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Node.js笔记一：模块机制 | Danielhu&#39; blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.CommonJS的模块规范CommonJS
+CommonJS规范为javascript提供了模块系统，标准接口，包管理器等超集，使得javascript可以具备像Python，Ruby和Java一样具备大型应用开发的能力
+
+曾经，javascript是薄弱而不受待见的，在web1.0时代甚至被称为玩具语言，直到CommonJS和Node的出现以及后来各种前端框架和HTML5的发展，这一状况才逐">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js笔记一：模块机制">
+<meta property="og:url" content="http://yourname.com/2015/11/09/Node.js笔记一：模块机制/index.html">
+<meta property="og:site_name" content="Danielhu' blog">
+<meta property="og:description" content="1.CommonJS的模块规范CommonJS
+CommonJS规范为javascript提供了模块系统，标准接口，包管理器等超集，使得javascript可以具备像Python，Ruby和Java一样具备大型应用开发的能力
+
+曾经，javascript是薄弱而不受待见的，在web1.0时代甚至被称为玩具语言，直到CommonJS和Node的出现以及后来各种前端框架和HTML5的发展，这一状况才逐">
+<meta property="og:updated_time" content="2015-07-23T16:09:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js笔记一：模块机制">
+<meta name="twitter:description" content="1.CommonJS的模块规范CommonJS
+CommonJS规范为javascript提供了模块系统，标准接口，包管理器等超集，使得javascript可以具备像Python，Ruby和Java一样具备大型应用开发的能力
+
+曾经，javascript是薄弱而不受待见的，在web1.0时代甚至被称为玩具语言，直到CommonJS和Node的出现以及后来各种前端框架和HTML5的发展，这一状况才逐">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  
+  
+    <link rel="stylesheet" href="/scrollLoading/style.css" type="text/css">
+  
+  
+
+
+  
+    <style type="text/css">
+      .logo { background-image:url(http://ppoffice.github.io/hexo-theme-hueman/css/images/logo-header.png); }
+    </style>
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/" class="logo"></a>
+          </h1>
+          
+            <h2 class="subtitle-wrap">
+              <p class="subtitle">分享，探索和学习</p>
+            </h2>
+          
+        </div>
+        <div id="header-inner" class="nav-container">
+          <a id="main-nav-toggle" class="nav-icon"></a>
+          <div class="nav-container-inner">
+            <ul id="main-nav">
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/">主页</a></li>
+              
+                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Think/">Think</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/algorithm/">algorithm</a></li></ul>
+                  
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/about/index.html">关于</a></li>
+              
+            </ul>
+            <nav id="sub-nav">
+              <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://yourname.com"></form>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/categories/Web/">Web</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-Node.js笔记一：模块机制" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      Node.js笔记一：模块机制
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/2015/11/09/Node.js笔记一：模块机制/" class="article-date">
+  <time datetime="2015-11-09T12:49:08.000Z" itemprop="datePublished">2015-11-09</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <h3 id="1-CommonJS的模块规范">1.CommonJS的模块规范</h3><h4 id="CommonJS">CommonJS</h4><blockquote>
+<p>CommonJS规范为javascript提供了模块系统，标准接口，包管理器等超集，使得javascript可以具备像Python，Ruby和Java一样具备大型应用开发的能力</p>
+</blockquote>
+<p>曾经，javascript是薄弱而不受待见的，在web1.0时代甚至被称为玩具语言，直到CommonJS和Node的出现以及后来各种前端框架和HTML5的发展，这一状况才逐渐得到改善，CommonJS作为一个规范为Node所采用，对javascript开发大型应用的指导作用是巨大的</p>
+<p>利用CommonJS规范，开发者不仅可以写出javascript的富客户端应用，甚至能够编写服务器端的js程序(Node 就是一个很好的例子)以及其他大型程序</p>
+<p>####主要规范</p>
+<blockquote>
+<p>CommonJS对模块的定义十分简单,主要分为模块引用，模块定义和模块标识3个部分</p>
+</blockquote>
+<p>#####1.模块引用<br>模块引用的示例代码如下</p>
+<pre><code><span class="keyword">var</span> math = <span class="built_in">require</span>(<span class="string">"math"</span>);
+</code></pre><p>CommonJS规范存在 require() 方法，这个方法接受模块标示，这样可以引入一个模块的API到当前上下文当中</p>
+<p>#####2.模块定义</p>
+<p>CommonJS 提供了exports对象用于导出当前模块的<strong>方法或者变量</strong><br>exports 是 module 对象的属性，而module代表模块自身<br>被导出的方法和变量必须挂载在exports对象上</p>
+<pre><code>exports.add = function(){
+  <span class="keyword">var</span> <span class="keyword">sum</span> = 0, i = 0 <span class="keyword">args</span> = arguments, <span class="keyword">l</span> = <span class="keyword">args</span>.length;
+  <span class="keyword">while</span>(i &lt; 1){
+    <span class="keyword">sum</span> += <span class="keyword">args</span>[i++];
+  }
+  <span class="keyword">return</span> <span class="keyword">sum</span>;
+};
+</code></pre><p>在另一个文件中通过require()方法引入模块后，就能调用自定义的属性和方法了</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> math = <span class="built_in">require</span>(<span class="string">'math'</span>);</span><br><span class="line">exports.increment = <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> math.add(val,<span class="number">1</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>#####3.模块标识</p>
+<p>模块标识就是传递给require()方法的参数，他必须是符合<strong>小驼峰命名</strong>的字符串，或者以 . 和 ..开头的相对路径，或者绝对路径。可以省略后缀名.js</p>
+<p>###2.Node的模块实现</p>
+<p>在Node中，模块分为两类，一是 <strong>核心模块</strong> 一是 <strong>文件模块</strong></p>
+<ul>
+<li>核心模块是预编译好的二进制文件，Node启动时就已经被加载到内存中，所以不需要文件定位和编译执行</li>
+<li>文件模块是在运行时动态加载（解释），需要完整的路径分析，文件定位，编译执行过程，速度比核心模快慢</li>
+</ul>
+<p>我们知道浏览器会通过缓存静态脚本文件以提高性能，Node同样会对 <strong>编译和执行之后的对象</strong> 进行缓存<br>实际上，Node最先加载的是核心模块的缓存，然后是文件模块的缓存，然后编译加载核心模块未加载部分，最后去编译加载文件模块未加载部分</p>
+<p>  *未完待续…</p>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://yourname.com/2015/11/09/Node.js笔记一：模块机制/" data-id="cigs3ieup000cm53ph7eyavzo" class="article-share-link">分享到</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+      </footer>
+    </div>
+  </article>
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <p>关注我 :</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="twitter" href="/" target="_blank"><i id="icon-twitter" class="icon"></i></a></li>
+      
+        <li><a class="social-tooltip" title="facebook" href="/" target="_blank"><i id="icon-facebook" class="icon"></i></a></li>
+      
+        <li><a class="social-tooltip" title="google_plus" href="/" target="_blank"><i id="icon-google_plus" class="icon"></i></a></li>
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/Danielhu229" target="_blank"><i id="icon-github" class="icon"></i></a></li>
+      
+        <li><a class="social-tooltip" title="weibo" href="http://weibo.com/danilehu" target="_blank"><i id="icon-weibo" class="icon"></i></a></li>
+      
+        <li><a class="social-tooltip" title="rss" href="/" target="_blank"><i id="icon-rss" class="icon"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/09/你为什么要参加比赛/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <p class="article-nav-title">
+        
+          你为什么要参加比赛
+        
+      </p>
+      <i class="icon" id="icon-chevron-right"></i>
+    </a>
+  
+  
+    <a href="/2015/07/02/新的开始/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">初次见面，请多关照</p>
+      <i class="icon" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/2015/11/09/分割回文串/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/algorithm/">algorithm</a></p>
+              <p class="item-title"><a href="/2015/11/09/分割回文串/" class="title">Palindrome Partitioning(分割回文串)</a></p>
+              <p class="item-date"><time datetime="2015-11-09T12:49:08.000Z" itemprop="datePublished">2015-11-09</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/2015/11/09/你为什么要参加比赛/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/Think/">Think</a></p>
+              <p class="item-title"><a href="/2015/11/09/你为什么要参加比赛/" class="title">你为什么要参加比赛</a></p>
+              <p class="item-date"><time datetime="2015-11-09T12:49:08.000Z" itemprop="datePublished">2015-11-09</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/2015/11/09/Node.js笔记一：模块机制/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/Web/">Web</a></p>
+              <p class="item-title"><a href="/2015/11/09/Node.js笔记一：模块机制/" class="title">Node.js笔记一：模块机制</a></p>
+              <p class="item-date"><time datetime="2015-11-09T12:49:08.000Z" itemprop="datePublished">2015-11-09</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/2015/07/02/新的开始/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2015/07/02/新的开始/" class="title">初次见面，请多关照</a></p>
+              <p class="item-date"><time datetime="2015-07-01T16:10:58.000Z" itemprop="datePublished">2015-07-02</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Think/">Think</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟与思考/">感悟与思考</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/感悟与思考/" style="font-size: 10px;">感悟与思考</a>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="h">0</a>
+          </li>
+        
+          <li>
+            <a href="t">1</a>
+          </li>
+        
+          <li>
+            <a href="t">2</a>
+          </li>
+        
+          <li>
+            <a href="p">3</a>
+          </li>
+        
+          <li>
+            <a href="s">4</a>
+          </li>
+        
+          <li>
+            <a href=":">5</a>
+          </li>
+        
+          <li>
+            <a href="/">6</a>
+          </li>
+        
+          <li>
+            <a href="/">7</a>
+          </li>
+        
+          <li>
+            <a href="g">8</a>
+          </li>
+        
+          <li>
+            <a href="i">9</a>
+          </li>
+        
+          <li>
+            <a href="t">10</a>
+          </li>
+        
+          <li>
+            <a href="h">11</a>
+          </li>
+        
+          <li>
+            <a href="u">12</a>
+          </li>
+        
+          <li>
+            <a href="b">13</a>
+          </li>
+        
+          <li>
+            <a href=".">14</a>
+          </li>
+        
+          <li>
+            <a href="c">15</a>
+          </li>
+        
+          <li>
+            <a href="o">16</a>
+          </li>
+        
+          <li>
+            <a href="m">17</a>
+          </li>
+        
+          <li>
+            <a href="/">18</a>
+          </li>
+        
+          <li>
+            <a href="D">19</a>
+          </li>
+        
+          <li>
+            <a href="a">20</a>
+          </li>
+        
+          <li>
+            <a href="n">21</a>
+          </li>
+        
+          <li>
+            <a href="i">22</a>
+          </li>
+        
+          <li>
+            <a href="e">23</a>
+          </li>
+        
+          <li>
+            <a href="l">24</a>
+          </li>
+        
+          <li>
+            <a href="h">25</a>
+          </li>
+        
+          <li>
+            <a href="u">26</a>
+          </li>
+        
+          <li>
+            <a href="2">27</a>
+          </li>
+        
+          <li>
+            <a href="2">28</a>
+          </li>
+        
+          <li>
+            <a href="9">29</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon" id="icon-angle-up"></i></a>
+      <div class="credit">
+        <h1 class="logo-wrap">
+          <a href="/" class="logo"></a>
+        </h1>
+        <p>&copy; 2015 Danielhu</p>
+        <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+  <script src="/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+  <script src="/scrollLoading/main.js" type="text/javascript"></script>
+
+
+<script src="/js/html-patch.js" type="text/javascript"></script>
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
