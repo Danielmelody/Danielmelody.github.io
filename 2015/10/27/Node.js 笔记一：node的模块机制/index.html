@@ -3,19 +3,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2015/12 | Danielhu&#39;s blog</title>
+  <title>Node.js 笔记一：node的模块机制 | Danielhu&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="">
+  
 
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Danielhu's blog">
-<meta property="og:url" content="http://danielhu229.github.io/archives/2015/12/index.html">
+  <meta name="description" content="#####2.模块定义
+CommonJS 提供了exports对象用于导出当前模块的方法或者变量exports 是 module 对象的属性，而module代表模块自身被导出的方法和变量必须挂载在exports对象上
+1234567exports.add = function()&amp;#123;  var sum = 0, i = 0 args = arguments, l = args.length">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js 笔记一：node的模块机制">
+<meta property="og:url" content="http://danielhu229.github.io/2015/10/27/Node.js 笔记一：node的模块机制/index.html">
 <meta property="og:site_name" content="Danielhu's blog">
-<meta property="og:description">
+<meta property="og:description" content="#####2.模块定义
+CommonJS 提供了exports对象用于导出当前模块的方法或者变量exports 是 module 对象的属性，而module代表模块自身被导出的方法和变量必须挂载在exports对象上
+1234567exports.add = function()&amp;#123;  var sum = 0, i = 0 args = arguments, l = args.length">
+<meta property="og:updated_time" content="2015-12-27T12:03:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Danielhu's blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Node.js 笔记一：node的模块机制">
+<meta name="twitter:description" content="#####2.模块定义
+CommonJS 提供了exports对象用于导出当前模块的方法或者变量exports 是 module 对象的属性，而module代表模块自身被导出的方法和变量必须挂载在exports对象上
+1234567exports.add = function()&amp;#123;  var sum = 0, i = 0 args = arguments, l = args.length">
   
   
     <link rel="icon" href="/favicon.png">
@@ -130,53 +139,57 @@ ga('send', 'pageview');
           <section id="main">
             <div class="main-body-header">
 
-              <h1 class="header"><i class="icon fa fa-archive"></i>归档: 2015/12</h1>
+              <h1 class="header">未分类</h1>
             </div>
             <div class="main-body-content">
               
+  <article id="post-Node.js 笔记一：node的模块机制" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
   
+    <h1 class="article-title" itemprop="name">
+      Node.js 笔记一：node的模块机制
+    </h1>
   
-    
-    
+
+        </header>
       
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year"><i class="icon fa fa-calendar-o"></i>2015</a>
-        </div>
-        <div class="archives">
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"></p>
-        <p class="date"><time datetime="2015-12-27T09:09:51.000Z" itemprop="datePublished">2015-12-27</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/27/新的开始/" class="title">新的开始</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        hexo的博客也搞了不久了，可惜换电脑的时候不小心丢失了数据，想了一些办法只恢复了几篇文章，另外还是觉得hexo的博客不够灵活。可定制化也不高，除非前端比较熟练的同学才能较好地自定义自己的主题。之前有在写的一些算法心得，node.js的学习会继续写下去，不过接下来还是打算主要写一些图形学的东西，除了这个以外C/C++方面的一些东西有心情就会记载的。感觉还是喜欢写游戏一些，不过其他的技术也很感兴趣，
+      <p class="article-byline">
+        <a href="/2015/10/27/Node.js 笔记一：node的模块机制/" class="article-date">
+  <time datetime="2015-10-27T14:09:51.000Z" itemprop="datePublished">2015-10-27</time>
+</a>
       </p>
+      <div class="article-entry" itemprop="articleBody">
+        <p>#####2.模块定义</p>
+<p>CommonJS 提供了exports对象用于导出当前模块的<strong>方法或者变量</strong><br>exports 是 module 对象的属性，而module代表模块自身<br>被导出的方法和变量必须挂载在exports对象上</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">exports.add = function()&#123;</span><br><span class="line">  <span class="keyword">var</span> <span class="keyword">sum</span> = 0, i = 0 <span class="keyword">args</span> = arguments, <span class="keyword">l</span> = <span class="keyword">args</span>.length;</span><br><span class="line">  <span class="keyword">while</span>(i &lt; 1)&#123;</span><br><span class="line">    <span class="keyword">sum</span> += <span class="keyword">args</span>[i++];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">sum</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在另一个文件中通过require()方法引入模块后，就能调用自定义的属性和方法了</p>
+<figure class="highlight javascript"><br><br>|<br><br><pre><span class="line"><span class="keyword">var</span> math = <span class="built_in">require</span>(<span class="string">‘math’</span>);</span><br><span class="line">exports.increment = <span class="function"><span class="keyword">function</span> (<span class="params">val</span>)</span> {</span><br> <span class="line"><span class="keyword">return</span> math.add(val,<span class="number">1</span>);</span><br><span class="line">};</span><br></pre><br><br> |<br><br></figure>
+
+<p>#####3.模块标识</p>
+<p>模块标识就是传递给require()方法的参数，他必须是符合<strong>小驼峰命名</strong>的字符串，或者以 . 和 ..开头的相对路径，或者绝对路径。可以省略后缀名.js</p>
+<p>###2.Node的模块实现</p>
+<p>在Node中，模块分为两类，一是 <strong>核心模块</strong> 一是 <strong>文件模块</strong></p>
+<ul>
+<li>核心模块是预编译好的二进制文件，Node启动时就已经被加载到内存中，所以不需要文件定位和编译执行</li>
+<li>文件模块是在运行时动态加载（解释），需要完整的路径分析，文件定位，编译执行过程，速度比核心模快慢</li>
+</ul>
+<p>我们知道浏览器会通过缓存静态脚本文件以提高性能，Node同样会对 <strong>编译和执行之后的对象</strong> 进行缓存<br>实际上，Node最先加载的是核心模块的缓存，然后是文件模块的缓存，然后编译加载核心模块未加载部分，最后去编译加载文件模块未加载部分</p>
+<p>*未完待续…</p>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://danielhu229.github.io/2015/10/27/Node.js 笔记一：node的模块机制/" data-id="ciiofkdoy0000gl3p4mqajkje" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+        
+      </footer>
     </div>
   </article>
-
-    
-      </div>
-    
   
   
-    </div></section>
-  
-  
-
 
             </div>
           </section>
@@ -200,6 +213,29 @@ ga('send', 'pageview');
       
     </ul>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/27/新的开始/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <p class="article-nav-title">
+        
+          新的开始
+        
+      </p>
+      <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+  
+  
+    <a href="/2015/07/11/算法记录：分割回文串/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">算法记录：分割回文串</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
   
   <div class="widgets-container">
     

@@ -3,19 +3,34 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2015/12 | Danielhu&#39;s blog</title>
+  <title>算法记录：分割回文串 | Danielhu&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="">
+  
 
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Danielhu's blog">
-<meta property="og:url" content="http://danielhu229.github.io/archives/2015/12/index.html">
+  <meta name="description" content="问题描述： 给定一个字符串s，将s分割成一些子串，使每个子串都是回文串。 返回s所有可能的回文串分割方案。样例给出
+
+s = “aab”返回[ [“aa”,”b”], [“a”,”a”,”b”] ]
+###思路：注意到在判断回文串的过程中，有大量的重复计算，一个回文串的判定是根据其子串是否是回文串来判断的举个例子，有字符串“abcba”其子串”bcb“ 也是一个回文串自然想到动态规划
+###解法维">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法记录：分割回文串">
+<meta property="og:url" content="http://danielhu229.github.io/2015/07/11/算法记录：分割回文串/index.html">
 <meta property="og:site_name" content="Danielhu's blog">
-<meta property="og:description">
+<meta property="og:description" content="问题描述： 给定一个字符串s，将s分割成一些子串，使每个子串都是回文串。 返回s所有可能的回文串分割方案。样例给出
+
+s = “aab”返回[ [“aa”,”b”], [“a”,”a”,”b”] ]
+###思路：注意到在判断回文串的过程中，有大量的重复计算，一个回文串的判定是根据其子串是否是回文串来判断的举个例子，有字符串“abcba”其子串”bcb“ 也是一个回文串自然想到动态规划
+###解法维">
+<meta property="og:updated_time" content="2015-12-27T12:02:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Danielhu's blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="算法记录：分割回文串">
+<meta name="twitter:description" content="问题描述： 给定一个字符串s，将s分割成一些子串，使每个子串都是回文串。 返回s所有可能的回文串分割方案。样例给出
+
+s = “aab”返回[ [“aa”,”b”], [“a”,”a”,”b”] ]
+###思路：注意到在判断回文串的过程中，有大量的重复计算，一个回文串的判定是根据其子串是否是回文串来判断的举个例子，有字符串“abcba”其子串”bcb“ 也是一个回文串自然想到动态规划
+###解法维">
   
   
     <link rel="icon" href="/favicon.png">
@@ -130,53 +145,104 @@ ga('send', 'pageview');
           <section id="main">
             <div class="main-body-header">
 
-              <h1 class="header"><i class="icon fa fa-archive"></i>归档: 2015/12</h1>
+              <h1 class="header">未分类</h1>
             </div>
             <div class="main-body-content">
               
+  <article id="post-算法记录：分割回文串" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
   
+    <h1 class="article-title" itemprop="name">
+      算法记录：分割回文串
+    </h1>
   
-    
-    
+
+        </header>
       
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year"><i class="icon fa fa-calendar-o"></i>2015</a>
-        </div>
-        <div class="archives">
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"></p>
-        <p class="date"><time datetime="2015-12-27T09:09:51.000Z" itemprop="datePublished">2015-12-27</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/27/新的开始/" class="title">新的开始</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        hexo的博客也搞了不久了，可惜换电脑的时候不小心丢失了数据，想了一些办法只恢复了几篇文章，另外还是觉得hexo的博客不够灵活。可定制化也不高，除非前端比较熟练的同学才能较好地自定义自己的主题。之前有在写的一些算法心得，node.js的学习会继续写下去，不过接下来还是打算主要写一些图形学的东西，除了这个以外C/C++方面的一些东西有心情就会记载的。感觉还是喜欢写游戏一些，不过其他的技术也很感兴趣，
+      <p class="article-byline">
+        <a href="/2015/07/11/算法记录：分割回文串/" class="article-date">
+  <time datetime="2015-07-11T09:09:51.000Z" itemprop="datePublished">2015-07-11</time>
+</a>
       </p>
+      <div class="article-entry" itemprop="articleBody">
+        <h3 id="u95EE_u9898_u63CF_u8FF0_uFF1A__u7ED9_u5B9A_u4E00_u4E2A_u5B57_u7B26_u4E32s_uFF0C_u5C06s_u5206_u5272_u6210_u4E00_u4E9B_u5B50_u4E32_uFF0C_u4F7F_u6BCF_u4E2A_u5B50_u4E32_u90FD_u662F_u56DE_u6587_u4E32_u3002__u8FD4_u56DEs_u6240_u6709_u53EF_u80FD_u7684_u56DE_u6587_u4E32_u5206_u5272_u65B9_u6848_u3002"><a href="#u95EE_u9898_u63CF_u8FF0_uFF1A__u7ED9_u5B9A_u4E00_u4E2A_u5B57_u7B26_u4E32s_uFF0C_u5C06s_u5206_u5272_u6210_u4E00_u4E9B_u5B50_u4E32_uFF0C_u4F7F_u6BCF_u4E2A_u5B50_u4E32_u90FD_u662F_u56DE_u6587_u4E32_u3002__u8FD4_u56DEs_u6240_u6709_u53EF_u80FD_u7684_u56DE_u6587_u4E32_u5206_u5272_u65B9_u6848_u3002" class="headerlink" title="问题描述： 给定一个字符串s，将s分割成一些子串，使每个子串都是回文串。 返回s所有可能的回文串分割方案。"></a>问题描述： 给定一个字符串s，将s分割成一些子串，使每个子串都是回文串。 返回s所有可能的回文串分割方案。</h3><h4 id="u6837_u4F8B"><a href="#u6837_u4F8B" class="headerlink" title="样例"></a>样例</h4><p>给出</p>
+<blockquote>
+<p>s = “aab”<br>返回<br>[ [“aa”,”b”], [“a”,”a”,”b”] ]</p>
+<p>###思路：<br>注意到在判断回文串的过程中，有大量的重复计算，一个回文串的判定是根据其子串是否是回文串来判断的<br>举个例子，有字符串<br>“abcba”<br>其子串<br>”bcb“ 也是一个回文串<br>自然想到动态规划</p>
+<p>###解法<br>维护一个二维数组，两个下标分别代表起始位置，这样一个数组元素就惟一的表示了一个字串是否是回文串，如果对应的字符串是回文串，那么置为1，否则为 -1，初始化为 0 再利用DFS搜索，由于从数组获取了信息，因此搜索过程中发生了剪枝<br>source code language:java<br>``<br>public class solution {</p>
+</blockquote>
+<pre><code>private List&lt;List&lt;String&gt;&gt; cases;
+private int[][] map;
+private String insideStr;
+private Stack&lt;String&gt; list;
+
+public List&lt;List&lt;String&gt;&gt; partition(String s){
+    if(s==null||s.length() == 0){
+        return null;
+    }
+    map = new int[s.length()][s.length()];
+    for(int i = 0; i &lt; s.length() ;++i){
+        for(int j = 0; j&lt;s.length();++j){
+            map[i][j] = 0;
+        }
+    }
+    insideStr = s;
+    cases = new ArrayList&lt;&gt;();
+    list = new Stack&lt;&gt;();
+    findCase(0);
+    return cases;
+}
+
+public void findCase(int start){
+    if(start&gt;=insideStr.length()){
+        cases.add((Stack&lt;String&gt;)list.clone());
+        return;
+    }
+    for(int i = start;i&lt;insideStr.length();++i){
+        int j = 0;
+        boolean breakflag = false;
+        while(start+j&lt;=i-j) {
+            if (map[start+j][i-j] == 1){
+                map[start][i] = 1;
+                break;
+            }
+            if(map[start+j][i-j] == -1){
+                map[start][i] = -1;
+                breakflag = true;
+                break;
+            }
+            if(insideStr.charAt(start+j)!=insideStr.charAt(i-j)){
+                map[start+j][i-j] = -1;
+                map[start][i] = -1;
+                breakflag = true;
+                break;
+            }
+            j++;
+        }
+        if(!breakflag){
+            map[start][i] = 1;
+            list.add(insideStr.substring(start, i+1));
+            findCase(i + 1);
+            list.pop();
+        }
+    }
+}
+</code></pre><p>}<br>``</p>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://danielhu229.github.io/2015/07/11/算法记录：分割回文串/" data-id="ciiog5gv00001gl3plb5uq1cn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+        
+      </footer>
     </div>
   </article>
-
-    
-      </div>
-    
   
   
-    </div></section>
-  
-  
-
 
             </div>
           </section>
@@ -200,6 +266,23 @@ ga('send', 'pageview');
       
     </ul>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/10/27/Node.js 笔记一：node的模块机制/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <p class="article-nav-title">
+        
+          Node.js 笔记一：node的模块机制
+        
+      </p>
+      <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+  
+  
+</nav>
+
   
   <div class="widgets-container">
     
