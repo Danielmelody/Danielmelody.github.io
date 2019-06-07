@@ -69,7 +69,7 @@
 
 <meta itemprop="datePublished" content="2017-04-29T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2017-04-29T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="2604">
+<meta itemprop="wordCount" content="2628">
 
 
 
@@ -331,13 +331,20 @@
 <p>在语言层面，WebGL算是赶上了一个JavaScript技术急剧变化的潮流，这也就导致了我画了非常多时间在语言本身之上，包括不断更新项目结构以适应新的ES规范，从纯粹的JS转到TS等等。虽然我不是Web前端程序员，然而我花了很多精力保持和前端业界同样的规范。通过写这个渲染器，我深深觉得，WebGL真是有天然的技术壁垒在里面。WebGL基本等于OpenGL ES 2.0~3.0。不熟悉以及不了解图形学原理的人根本无法直接操作这些原生API，也不懂这些事什么意思。我想这也是这些渲染库存在的理由</p>
 
 <p>追赶潮流的代价是巨大的，却也是令人兴奋的。对于这个库，我最最明智的决定就是选用了<strong>TypeScript</strong>。这也是对WebGL的大程序最友好的选型决定了。TypeScript的最大助力在于类型检查和代码补全，这对于有非常多类型的WebGL接口函数来说太重要了，打个比方：</p>
-
-<pre><code class="language-TypeScript">//  some code of CanvasToy
-let gl: WebGLRenderingContext;
-gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, geometry.faces.buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(attribute.data), gl.STATIC_DRAW);
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="c1">//  some code of CanvasToy
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">gl</span>: <span class="kt">WebGLRenderingContext</span><span class="p">;</span>
+<span class="nx">gl</span><span class="p">.</span><span class="nx">bindBuffer</span><span class="p">(</span><span class="nx">gl</span><span class="p">.</span><span class="nx">ELEMENT_ARRAY_BUFFER</span><span class="p">,</span> <span class="nx">geometry</span><span class="p">.</span><span class="nx">faces</span><span class="p">.</span><span class="nx">buffer</span><span class="p">);</span>
+<span class="nx">gl</span><span class="p">.</span><span class="nx">bufferData</span><span class="p">(</span><span class="nx">gl</span><span class="p">.</span><span class="nx">ARRAY_BUFFER</span><span class="p">,</span> <span class="k">new</span> <span class="nx">Float32Array</span><span class="p">(</span><span class="nx">attribute</span><span class="p">.</span><span class="nx">data</span><span class="p">),</span> <span class="nx">gl</span><span class="p">.</span><span class="nx">STATIC_DRAW</span><span class="p">);</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>短短两行，挂载在对象gl上的函数和数值就已经这么多了，参数同样也是非常麻烦，如果没有类型检查，得一边写代码一边开着WebGL的Specification看着，生产力十分低下，许多编译期能发现的错误全部转移到运行期了</p>
 
 <p>当然，TS对于自定义类型的类型支持和标注也很有用，绝对是提高生产力的好工具。</p>
@@ -352,41 +359,68 @@ amd的define，require这些函数的应用场景，更多是在<strong>多页�
 <p>对于一个开源库来说，我们希望最终的库文件是一个单文件，也就是我们需要把所有模块打包到一个文件里。最初，TypeScript提供了internal modules，也就是namescapce，namescpace支持跨文件整合和依赖，他的依赖指定方式是在文件的首部增加一个指向性的注释</p>
 
 <p><em>Foo.ts</em></p>
-
-<pre><code class="language-TypeScript">namespace bar {
-    export class Foo {
-        ...
-    }
-}
-
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="nx">namespace</span> <span class="nx">bar</span> <span class="p">{</span>
+    <span class="kr">export</span> <span class="kr">class</span> <span class="nx">Foo</span> <span class="p">{</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p><em>Fooo.ts</em></p>
-
-<pre><code class="language-TypeScript">/// &lt;reference path=&quot;Foo&quot;/&gt;
-
-namespace bar {
-    export class Fooo extends Foo {
-        ...
-    }
-}
-
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="c1">/// &lt;reference path=&#34;Foo&#34;/&gt;
+</span><span class="c1"></span>
+<span class="nx">namespace</span> <span class="nx">bar</span> <span class="p">{</span>
+    <span class="kr">export</span> <span class="kr">class</span> <span class="nx">Fooo</span> <span class="kr">extends</span> <span class="nx">Foo</span> <span class="p">{</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>这样，TypeScript就能直接编译到一个文件，然而不幸的是，这样的模块声明方式是不被推荐的，因为现在的潮流是使用标准的ES6模块（在TypeScript中被称作externel modules）。许多库都渐渐变成了这种方式</p>
 
 <p>如果仅仅是这样，那可能并没有什么问题。但是，如果你的项目中不幸依赖了一个external module，或者这个项目本来是internal module，但由于某些开发者基于“这样更优雅的想法”，把库更新成external module，那问题就大了。。。为了使用这个external module，你必须使用import语法来导入，比如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="c1">/// &lt;reference path=&#34;Foo&#34;/&gt;
+</span><span class="c1"></span><span class="kr">import</span> <span class="o">*</span> <span class="kr">as</span> <span class="nx">SomeLib</span> <span class="nx">from</span> <span class="s2">&#34;SomeLibrary&#34;</span>
 
-<pre><code class="language-TypeScript">/// &lt;reference path=&quot;Foo&quot;/&gt;
-import * as SomeLib from &quot;SomeLibrary&quot;
-
-namespace bar {
-    export class Fooo extends Foo {
-        ...
-    }
-}
-</code></pre>
-
+<span class="nx">namespace</span> <span class="nx">bar</span> <span class="p">{</span>
+    <span class="kr">export</span> <span class="kr">class</span> <span class="nx">Fooo</span> <span class="kr">extends</span> <span class="nx">Foo</span> <span class="p">{</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>这时候编译器是会报错的，因为一旦有import，整个文件就被视为一个模块，namespace bar 是在该文件内是独立的，和Foo.ts中的bar是<strong>两个模块</strong></p>
 
 <p>这样带来的问题是灾难性的，想使用一个external module，就必须import，import之后，又把整个internal模块切割了，最后的解决办法是传染性的把所有的文件都换成import形式，namescpace被放弃使用。</p>
@@ -616,6 +650,13 @@ namespace bar {
 
 <script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
 
 

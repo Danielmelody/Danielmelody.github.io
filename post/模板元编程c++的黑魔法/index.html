@@ -69,7 +69,7 @@
 
 <meta itemprop="datePublished" content="2016-03-06T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2016-03-06T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1486">
+<meta itemprop="wordCount" content="1524">
 
 
 
@@ -335,26 +335,47 @@
 <p>如果你曾经使用过template，那你一定对泛型编程有过了解，你可能在java和c#中使用过泛型代码，但是，需要注意的是，C++的泛型和java，C#一类的泛型有着根本性的不同，C++ 的泛型有个更适合的名字，叫做<strong>编译期多态</strong>，是的，C++的泛型本质上是一种多态。</p>
 
 <p>怎么理解这个编译期多态？举个例子，假如你有一个template function  的定义如下</p>
-
-<pre><code class="language-cpp">template&lt;typename T&gt;
-const T&amp; max(const T&amp; a, const T&amp; b){
-  return a &gt; b ? a : b;
-};
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">max</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">){</span>
+  <span class="k">return</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>并且假设你是这样使用它的</p>
-
-<pre><code class="language-cpp">int main() {
-  float af = 0.f;
-  float bf = 0.3f;
-  int ai = 0;
-  int bi = 1;
-  std::cout &lt;&lt; max(af, bf) &lt;&lt; std::endl;
-  std::cout &lt;&lt; max(ai, bi) &lt;&lt; std::endl;
-  return 0;
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">float</span> <span class="n">af</span> <span class="o">=</span> <span class="mf">0.f</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">bf</span> <span class="o">=</span> <span class="mf">0.3f</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">ai</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">bi</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">max</span><span class="p">(</span><span class="n">af</span><span class="p">,</span> <span class="n">bf</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">max</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span> <span class="n">bi</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>很明显，结果是0.3和0，你使用Java做上面这些事情也会得到同样的结果。但是在编译期两者做的事情是不一样的：</p>
 
 <ul>
@@ -371,11 +392,17 @@ const T&amp; max(const T&amp; a, const T&amp; b){
 <ul>
 <li>模板的类型形参 (type parameter)</li>
 </ul>
-
-<pre><code class="language-cpp">template&lt;typename T&gt;
-template&lt;class T&gt;
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="err"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <ul>
 <li>模板的非类型形参 (non-type parameter)</li>
 </ul>
@@ -387,21 +414,33 @@ template&lt;class T&gt;
   + 成员指针</p>
 
 <p>​   因此，以下几种代码都是可以接受的</p>
-
-<pre><code class="language-cpp">template&lt;int a&gt; struct A {};
-template&lt;int* b&gt; struct B {};
-template&lt;void f(int)&gt; struct C{};
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span> <span class="n">a</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">A</span> <span class="p">{};</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*</span> <span class="n">b</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">B</span> <span class="p">{};</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">C</span><span class="p">{};</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <ul>
 <li>模板形参 (template template parameter)</li>
 </ul>
 
 <p>模板行参的意思是模板里面可以是另一个模板，如</p>
-
-<pre><code class="language-cpp">  template&lt;template&lt;typename T&gt;&gt; class X{};
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp">  <span class="k">template</span><span class="o">&lt;</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">X</span><span class="p">{};</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <h3 id="template-是图灵完备的">template 是图灵完备的</h3>
 
 <p>所谓的图灵完备指的是以下定义</p>
@@ -425,30 +464,55 @@ template&lt;void f(int)&gt; struct C{};
 <p>理解这一点并不困难，我们把 C++ template 看做是一个特殊的图灵机，它以未做template展开的C++远代码为输入，以不带template的C++源代码为输出，在这种意义下，你甚至可以认为 template是一种只运行在编译期的语言！</p>
 
 <p>我们来看一个有趣的例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span> <span class="n">i</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">sum</span> <span class="p">{</span>
+    <span class="k">enum</span> <span class="p">{</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">sum</span><span class="o">&lt;</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;::</span><span class="n">value</span>
+    <span class="p">};</span>
+<span class="p">};</span>
 
-<pre><code class="language-cpp">#include &lt;iostream&gt;
+<span class="c1">// 对i = 1特化
+</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;&gt;</span>
+<span class="k">struct</span> <span class="n">sum</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">enum</span><span class="p">{</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="p">};</span>
+<span class="p">};</span>
 
-template&lt;int i&gt;
-struct sum {
-    enum {
-        value = i + sum&lt;i-1&gt;::value
-    };
-};
-
-// 对i = 1特化
-template&lt;&gt;
-struct sum&lt;0&gt; {
-    enum{
-        value = 1
-    };
-};
-
-int main() {
-    std::cout &lt;&lt; sum&lt;20&gt;::value &lt;&lt; std::endl;
-    return 0;
-}
-</code></pre>
-
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span><span class="o">&lt;</span><span class="mi">20</span><span class="o">&gt;::</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>好，现在编译运行它，看输出了什么？</p>
 
 <p>很简单，输出了211，它是 1+2+3+…+20的结果，而这个结果是编译期计算出来的！编译器在编译的时候把所有用到的template参数展开，在展开过程中 当模板实参是 i 的时候需要事先知道 i-1 的template，因此当给的实际参数是 20 的时候就会递归式的展开到 0，这样所需要的结果就在编译期算出来了，因此这是一种牺牲编译期性能来提高运行期性能的手段</p>
@@ -670,6 +734,13 @@ int main() {
 
 <script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
 
 

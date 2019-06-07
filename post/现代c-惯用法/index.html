@@ -69,7 +69,7 @@
 
 <meta itemprop="datePublished" content="2019-02-06T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-02-06T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="4414">
+<meta itemprop="wordCount" content="4729">
 
 
 
@@ -380,14 +380,23 @@
 <h1 id="0-assertion">0. Assertion</h1>
 
 <h2 id="运行期断言">运行期断言</h2>
-
-<pre><code class="language-cpp">#ifdef NDEBUG
-#define assert(condition) ((void)0)
-#else
-#define assert(condition) /*implementation defined*/
-#endif
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#ifdef NDEBUG
+</span><span class="cp">#define assert(condition) ((void)0)
+</span><span class="cp">#else
+</span><span class="cp">#define assert(condition) </span><span class="cm">/*implementation defined*/</span><span class="cp">
+</span><span class="cp">#endif
+</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>assert 其实是在来源于C语言的头文件<cassert> 中定义的宏</p>
 
 <p>一般来说，如果condition 是false，那么assert 首先向stderr 打印错误信息，然后调用 abort (触发一个SIGABRT中断信号)来非正常结束程序</p>
@@ -396,19 +405,33 @@
 <li>assert 不是 error handling, assertion 处理的是<strong>代码的 bug</strong> 而不是程序预期的输入错误或者系统错误等</li>
 <li>想象有这样一个函数，下面哪种实现更”安全“呢？：</li>
 </ul>
-
-<pre><code class="language-cpp">void foo1(int score) {
-    if(score &gt; 0 &amp;&amp; score &lt;= 100）{
-        // internal logics
-    }    
-}
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">foo1</span><span class="p">(</span><span class="kt">int</span> <span class="n">score</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">score</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="err">）</span><span class="p">{</span>
+        <span class="c1">// internal logics
+</span><span class="c1"></span>    <span class="p">}</span>    
+<span class="p">}</span>
        
-void foo2(int score) {
-    // require bar between 1 and 100
-    assert(score &gt; 0 &amp;&amp; score &lt;= 100 &amp;&amp; &quot;score must between 1 and  100！&quot;);
-}
-</code></pre>
-
+<span class="kt">void</span> <span class="nf">foo2</span><span class="p">(</span><span class="kt">int</span> <span class="n">score</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// require bar between 1 and 100
+</span><span class="c1"></span>    <span class="n">assert</span><span class="p">(</span><span class="n">score</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="mi">100</span> <span class="o">&amp;&amp;</span> <span class="s">&#34;score must between 1 and  100！&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <ul>
 <li><p>foo1看起来是安全的，因为程序没有崩溃，很完美，可惜没有对异常输入做任何处理，因此来自调用方的逻辑错误就被隐藏了</p></li>
 
@@ -445,27 +468,49 @@ void foo2(int score) {
 <p>static_assert 十分强大，附带的自定义信息会直接被当成编译错误输出，但由于是编译期断言，因此限制也很大。他的输入只能是bool_constexpr类型。因此要用好static assert，需要程序员分辨出代码哪些部分是<strong>编译期</strong>即可确定的部分。</p>
 
 <p>下面的代码可以限制 Vector 的 dimension 始终大于 1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">ElemType</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="o">&gt;</span>
+<span class="k">class</span><span class="err"> </span><span class="nc">Vector</span> <span class="p">{</span>
+    <span class="k">static_assert</span><span class="p">(</span><span class="n">N</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#34;1D Vector is not allowed, use scalar types&#34;</span><span class="p">);</span>
+    <span class="n">ElemType</span> <span class="n">elem_</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="p">};</span>
 
-<pre><code class="language-cpp">template&lt;typename ElemType, int N&gt;
-class Vector {
-    static_assert(N &gt; 1, &quot;1D Vector is not allowed, use scalar types&quot;);
-    ElemType elem_[N];
-};
-
-Vector&lt;int, 1&gt; vec1;// compilation error
-Vector&lt;int, 2&gt; vec2;
-</code></pre>
-
+<span class="n">Vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;</span> <span class="n">vec1</span><span class="p">;</span><span class="c1">// compilation error
+</span><span class="c1"></span><span class="n">Vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">vec2</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>另外，利用 static_assert + type_traits 也能实现语义约束，比如我们想写一个检查无符号加法溢出的函数，并希望调用方不传递有符号类型，那么我们可以：</p>
-
-<pre><code class="language-cpp">template&lt;typename T&gt;
-bool check_overflow_add_unsigned(T a, T b) {
-    static_assert(std::is_unsigned&lt;T&gt;::value, &quot;T must be unsigned types!&quot;);
-    ...
-    ...
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">bool</span> <span class="n">check_overflow_add_unsigned</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">static_assert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_unsigned</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">,</span> <span class="s">&#34;T must be unsigned types!&#34;</span><span class="p">);</span>
+    <span class="p">...</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>由于自 C++ 11 开始，鼓励大家多用编译期计算，把一些 constant 的数据和代码段尽量挪到编译期，因此可能很多类型成为 literal type （比如上面的 Vector ）。这些类既能在运行期运行，又能在编译期预计算，因此，只要是涉及 literal type 的函数/类/对象  就应尽可能的用 static_assert</p>
 
 <h1 id="1-marcos">1. Marcos</h1>
@@ -479,37 +524,65 @@ bool check_overflow_add_unsigned(T a, T b) {
 <p>开发中，我们常用下面几种宏的写法</p>
 
 <h4 id="单行宏">单行宏</h4>
-
-<pre><code class="language-cpp">#define a 1
-#define b (a + 1)
-#define c a * b
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define a 1
+</span><span class="cp">#define b (a + 1)
+</span><span class="cp">#define c a * b
+</span></code></pre></td></tr></table>
+</div>
+</div>
 <h4 id="多行宏">多行宏</h4>
-
-<pre><code class="language-cpp">#define Vec \
-static int x; \
-static int y;
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define Vec \
+</span><span class="cp"></span><span class="k">static</span> <span class="kt">int</span> <span class="n">x</span><span class="p">;</span> \
+<span class="k">static</span> <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>多行宏会在在使用处被替换为多行内容</p>
 
 <h2 id="宏参数">宏参数</h2>
-
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#define DUPLICATE(index, times) for(int index = 0; index &lt; times; ++index)
-
-int main(void) 
-{ 
-    DUPLICATE(i, 100) 
-    {
-     std::cout &lt;&lt; i &lt;&lt; std::endl;   
-    }
-    return 0; 
-} 
-
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#define DUPLICATE(index, times) for(int index = 0; index &lt; times; ++index)
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> 
+<span class="p">{</span> 
+    <span class="n">DUPLICATE</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> 
+    <span class="p">{</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>   
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> 
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="和-操作符-预处理器"># 和 ## 操作符 (预处理器)</h2>
 
 <p><strong>Stringizing operator (#)</strong></p>
@@ -517,29 +590,51 @@ int main(void)
 <p>在类函数的宏中 # + 形参名可以在宏替换中 直接把参数字面量换成字符串</p>
 
 <p>例：</p>
-
-<pre><code class="language-cpp">#define DEFINE_AND_PRINT(type, varname) \
-type varname; \
-std::cout &lt;&lt; &quot;declare &quot; &lt;&lt; #type &lt;&lt; &quot; &quot; &lt;&lt; #varname &lt;&lt; std::endl;
-
-int main(int argc, char const *argv[])
-{
-    DEFINE_AND_PRINT(int, bar); // declare int bar
-    return 0;
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define DEFINE_AND_PRINT(type, varname) \
+</span><span class="cp"></span><span class="n">type</span> <span class="n">varname</span><span class="p">;</span> \
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;declare &#34;</span> <span class="o">&lt;&lt;</span> <span class="cp">#type &lt;&lt; &#34; &#34; &lt;&lt; #varname &lt;&lt; std::endl;
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">DEFINE_AND_PRINT</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="n">bar</span><span class="p">);</span> <span class="c1">// declare int bar
+</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p><strong>Token-Pasting Operator（##）</strong></p>
 
 <p>## 直接把前后的字符合并成一个token，可以用来自动生成出一些新的token（类名，函数名，变量名等）</p>
-
-<pre><code class="language-cpp">#define CREATE_3_VARS(name) name##1, name##2, name##3
-int CREATE_3_VARS(myInts);
-myInts1 = 13;
-myInts2 = 19;
-myInts3 = 77;
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define CREATE_3_VARS(name) name##1, name##2, name##3
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">CREATE_3_VARS</span><span class="p">(</span><span class="n">myInts</span><span class="p">);</span>
+<span class="n">myInts1</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
+<span class="n">myInts2</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
+<span class="n">myInts3</span> <span class="o">=</span> <span class="mi">77</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="其他注意">其他注意</h2>
 
 <ul>
@@ -550,102 +645,199 @@ myInts3 = 77;
 <h1 id="2-meyer-s-singleton">2. Meyer&rsquo;s Singleton</h1>
 
 <p>我们怎样在C#中实现单例？</p>
-
-<pre><code class="language-C#">public sealed class Singleton
-    {
-        static Singleton instance = null;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
  
-        public void Show()
-        {
-            Console.WriteLine(  &quot;instance function&quot;);
-        }
-        private Singleton()
-        {
-        }
+        <span class="k">public</span> <span class="k">void</span> <span class="n">Show</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span>  <span class="s">&#34;instance function&#34;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">private</span> <span class="n">Singleton</span><span class="p">()</span>
+        <span class="p">{</span>
+        <span class="p">}</span>
  
-        public static Singleton Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new Singleton();
-                }
-                return instance;
-            }
-        }
-    }
-</code></pre>
-
+        <span class="k">public</span> <span class="k">static</span> <span class="n">Singleton</span> <span class="n">Instance</span>
+        <span class="p">{</span>
+            <span class="k">get</span>
+            <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">instance</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">instance</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="线程安全">线程安全</h2>
-
-<pre><code class="language-C#">public sealed class Singleton
-    {
-        static Singleton instance = null;
-        private static readonly object padlock = new object();
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+        <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="kt">object</span> <span class="n">padlock</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>
  
-        private Singleton()
-        {
-        }
+        <span class="k">private</span> <span class="n">Singleton</span><span class="p">()</span>
+        <span class="p">{</span>
+        <span class="p">}</span>
  
-        public static Singleton Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                    {
-                        instance = new Singleton();
-                    }
-                }
+        <span class="k">public</span> <span class="k">static</span> <span class="n">Singleton</span> <span class="n">Instance</span>
+        <span class="p">{</span>
+            <span class="k">get</span>
+            <span class="p">{</span>
+                <span class="k">lock</span> <span class="p">(</span><span class="n">padlock</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">instance</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="n">instance</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="p">();</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
  
-                return instance;
-            }
-        }
-    }
-</code></pre>
-
+                <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="double-check">Double-Check</h2>
-
-<pre><code class="language-c#"> public sealed class Singleton
-    {
-        static Singleton instance = null;
-        private static readonly object padlock = new object();
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"> <span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+        <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="kt">object</span> <span class="n">padlock</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>
  
-        private Singleton()
-        {
-        }
+        <span class="k">private</span> <span class="n">Singleton</span><span class="p">()</span>
+        <span class="p">{</span>
+        <span class="p">}</span>
  
-        public static Singleton Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (padlock)
-                    {
-                        if (instance == null)
-                        {
-                            instance = new Singleton();
-                        }
-                    }
-                }
-                return instance;
-            }
-        }
-    }
-</code></pre>
-
+        <span class="k">public</span> <span class="k">static</span> <span class="n">Singleton</span> <span class="n">Instance</span>
+        <span class="p">{</span>
+            <span class="k">get</span>
+            <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">instance</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">lock</span> <span class="p">(</span><span class="n">padlock</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">instance</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+                        <span class="p">{</span>
+                            <span class="n">instance</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="p">();</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="meyers-singleton-in-c">Meyers&rsquo; Singleton in C++</h2>
-
-<pre><code class="language-cpp">static Singleton&amp; instance()
-{
-     static Singleton s;
-     return s;
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">static</span> <span class="n">Singleton</span><span class="o">&amp;</span> <span class="n">instance</span><span class="p">()</span>
+<span class="p">{</span>
+     <span class="k">static</span> <span class="n">Singleton</span> <span class="n">s</span><span class="p">;</span>
+     <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>（Scott Meyers 是Effective C++系列的作者）</p>
 
 <p>相对于C#的单例实现，Meyers提供了一种相当简洁的书写方式</p>
@@ -653,8 +845,53 @@ myInts3 = 77;
 <p>Meyers 单例利用了C++11 的 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2660.htm">Dynamic Initialization and Destruction with Concurrency</a>[2] 特性，该特性要求编译器对于每一个静态对象都绑定一个哨兵变量（guard variable)用来做线程相关的操作，保证 static local variable 在并发条件下只执行一次Lazy Initialization。</p>
 
 <p>以clang 为例，Meyers 单例生成的汇编代码如下：</p>
-
-<pre><code>Singleton::instance():               # @Singleton::instance()
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">Singleton::instance():               # @Singleton::instance()
         push    rbp
         mov     rbp, rsp
         sub     rsp, 16
@@ -695,9 +932,9 @@ Singleton::instance()::singleton:
         .zero   4
 
 guard variable for Singleton::instance()::singleton:
-        .quad   0                       # 0x0
-</code></pre>
-
+        .quad   0                       # 0x0</pre></td></tr></table>
+</div>
+</div>
 <h1 id="3-sfinae-subtitition-failure-is-not-an-error-3">3.SFINAE(<em>subtitition failure is not an error</em>) [3]</h1>
 
 <h2 id="类型-sfinae">类型 SFINAE</h2>
@@ -718,148 +955,273 @@ guard variable for Singleton::instance()::singleton:
 </ul>
 
 <p>所谓默认模板参数很好理解，和函数的默认参数一样，例子如下：</p>
-
-<pre><code class="language-cpp">template&lt;typename T, typename U = int&gt; // int is the default template parameter for argument U
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span> <span class="o">=</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="c1">// int is the default template parameter for argument U
+</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>当不指定 U 时，U默认为int</p>
 
 <p>由于替换的次序不同，在替换默认模板参数的时候，实际上可以利用已经替换过的参数来替换默认参数</p>
-
-<pre><code class="language-cpp">template&lt;typename T, typename U = typename T::internal_type&gt; 
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">internal_type</span><span class="o">&gt;</span> 
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>而替换失败(subtitition failure) 指的是上述的替换产生了问题，比如传递给类型参数A的类型可能没有一个叫internal_type的嵌套类型，</p>
 
 <p>然而，要使编译器产生compilation error，还需要尝试有没有别的函数模板能替换成功，这个过程可能发生多次subtitition failure。</p>
 
 <p>有人说那我改一下默认参数是不是能产生subtitition failure is not an error呢？很遗憾不行。只有default template parameter 不同的template是有歧义的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">struct</span> <span class="n">A</span> <span class="p">{</span>
+  <span class="k">using</span> <span class="n">internal_type</span> <span class="o">=</span> <span class="kt">int</span><span class="p">;</span>
+<span class="p">};</span>
 
-<pre><code class="language-cpp">#include &lt;iostream&gt;
+<span class="k">struct</span> <span class="n">B</span> <span class="p">{};</span>
 
-struct A {
-  using internal_type = int;
-};
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">internal_type</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;T has internal_type&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
 
-struct B {};
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;T has no internal_typ&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
 
-template &lt;typename T, typename U = typename T::internal_type&gt; void foo() {
-  std::cout &lt;&lt; &quot;T has internal_type&quot; &lt;&lt; std::endl;
-}
-
-template &lt;typename T&gt; void foo() {
-  std::cout &lt;&lt; &quot;T has no internal_typ&quot; &lt;&lt; std::endl;
-}
-
-int main(int argc, char const *argv[]) {
-  foo&lt;A&gt;(); // call to 'foo' is ambiguous
-  foo&lt;B&gt;();
-  return 0;
-}
-
-</code></pre>
-
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="n">foo</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span><span class="p">();</span> <span class="c1">// call to &#39;foo&#39; is ambiguous
+</span><span class="c1"></span>  <span class="n">foo</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>那么到底如何产生 subtitition failure is not an error呢？</p>
 
 <h2 id="a-simple-and-explicit-example">A simple and explicit Example</h2>
 
 <p>Example from <a href="https://en.wikipedia.org/wiki/Substitution_failure_is_not_an_error">wikipedia</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="n">Test</span> <span class="p">{</span>
+    <span class="k">typedef</span> <span class="kt">int</span> <span class="n">foo</span><span class="p">;</span>
+<span class="p">};</span>
 
-<pre><code class="language-cpp">struct Test {
-    typedef int foo;
-};
-
-template &lt;typename T&gt; 
-void f(typename T::foo) {} // Definition #1
-
-template &lt;typename T&gt; 
-void f(T) {}               // Definition #2
-
-int main() {
-    f&lt;Test&gt;(10); // Call #1.
-    f&lt;int&gt;(10);  // Call #2. Without error (even though there is no int::foo) thanks to SFINAE.
-}
-</code></pre>
-
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> 
+<span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">foo</span><span class="p">)</span> <span class="p">{}</span> <span class="c1">// Definition #1
+</span><span class="c1"></span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> 
+<span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="p">{}</span>               <span class="c1">// Definition #2
+</span><span class="c1"></span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">f</span><span class="o">&lt;</span><span class="n">Test</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// Call #1.
+</span><span class="c1"></span>    <span class="n">f</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>  <span class="c1">// Call #2. Without error (even though there is no int::foo) thanks to SFINAE.
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="typedef-detector">Typedef detector</h2>
 
 <p>这是 SFINAE 的一个应用，用来检查类参数有没有 T 有在类内部 typedef internal_type 类型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">struct</span> <span class="n">A</span> <span class="p">{</span>
+  <span class="k">using</span> <span class="n">internal_type</span> <span class="o">=</span> <span class="kt">int</span><span class="p">;</span>
+<span class="p">};</span>
 
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-struct A {
-  using internal_type = int;
-};
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">decltype</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">internal_type</span><span class="o">&gt;</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="p">())</span>
+<span class="n">foo</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// compare to the varadic version below, this one is more specifc
+</span><span class="c1"></span>  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;T has internal_type&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
 
-template &lt;typename T&gt;
-decltype(std::declval&lt;typename T::internal_type&gt;(), std::declval&lt;void&gt;())
-foo(const T &amp;) { // compare to the varadic version below, this one is more specifc
-  std::cout &lt;&lt; &quot;T has internal_type&quot; &lt;&lt; std::endl;
-}
+<span class="kt">void</span> <span class="n">foo</span><span class="p">(...)</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;T has no internal_type&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
 
-void foo(...) { std::cout &lt;&lt; &quot;T has no internal_type&quot; &lt;&lt; std::endl; }
-
-// template &lt;typename T&gt; void foo() { foo(int()); }
-
-int main(int argc, char const *argv[]) {
-  A a;
-  foo(a);      //   subtitition suceeded for the first time
-  foo(1);      //   subtitition failed, but succeeded for the second time
-  foo(&quot;test&quot;); //   subtitition failed, but succeeded for the second time
-  return 0;
-}
-</code></pre>
-
+<span class="c1">// template &lt;typename T&gt; void foo() { foo(int()); }
+</span><span class="c1"></span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="n">A</span> <span class="n">a</span><span class="p">;</span>
+  <span class="n">foo</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>      <span class="c1">//   subtitition suceeded for the first time
+</span><span class="c1"></span>  <span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>      <span class="c1">//   subtitition failed, but succeeded for the second time
+</span><span class="c1"></span>  <span class="n">foo</span><span class="p">(</span><span class="s">&#34;test&#34;</span><span class="p">);</span> <span class="c1">//   subtitition failed, but succeeded for the second time
+</span><span class="c1"></span>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>我们看到foo有两个重载版本，为了告诉编译器我期望 T 有嵌套 internal_type 类型，我们使用了 decltype + 逗号表达式 + declval。decltype(std::declval<typename T::internal_type>(), std::declval<void>()) 的真正类型是 void，但对T::internal_type进行了求值，因此编译器知道这里 T 是 more specific 的</p>
 
 <h2 id="member-functor-detector">member functor detector</h2>
 
 <p>更有用的例子是判断类型有没有包含某个名字的成员函数，这一点对template programming 中的duck typing 很重要</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;type_traits&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span><span class="err"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">Stringlizable</span>
+<span class="p">{</span>
+    <span class="c1">// We test if the type has serialize using decltype and declval.
+</span><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">C</span><span class="o">&gt;</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="k">decltype</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="n">C</span><span class="o">&gt;</span><span class="p">().</span><span class="n">serielize</span><span class="p">(),</span> <span class="kt">bool</span><span class="p">())</span>
+    <span class="n">test</span><span class="p">(</span><span class="kt">int</span> <span class="cm">/* unused */</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// We can return values, thanks to constexpr instead of playing with sizeof.
+</span><span class="c1"></span>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
 
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;string&gt;
-#include &lt;type_traits&gt;
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">C</span><span class="o">&gt;</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">test</span><span class="p">(...)</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="p">}</span>
 
-template &lt;class T&gt;
-struct Stringlizable
-{
-    // We test if the type has serialize using decltype and declval.
-    template &lt;typename C&gt;
-    static constexpr decltype(std::declval&lt;C&gt;().serielize(), bool())
-    test(int /* unused */)
-    {
-        // We can return values, thanks to constexpr instead of playing with sizeof.
-        return true;
-    }
+    <span class="c1">// int is used to give the precedence!
+</span><span class="c1"></span>    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">value</span> <span class="o">=</span> <span class="n">test</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">int</span><span class="p">());</span>
+<span class="p">};</span>
 
-    template &lt;typename C&gt;
-    static constexpr bool test(...) { return false; }
+<span class="k">struct</span> <span class="n">A</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">data</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">to_string</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="p">};</span>
+<span class="p">};</span>
 
-    // int is used to give the precedence!
-    static constexpr bool value = test&lt;T&gt;(int());
-};
+<span class="k">struct</span> <span class="n">B</span>
+<span class="p">{</span>
+<span class="p">};</span>
 
-struct A
-{
-    int data;
-    std::string to_string() { return std::to_string(data); };
-};
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">Serielize</span><span class="p">(</span><span class="n">T</span> <span class="n">obj</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">obj</span><span class="p">.</span><span class="n">to_string</span><span class="p">();</span> <span class="p">}</span>
 
-struct B
-{
-};
-
-template &lt;typename T&gt;
-std::string Serielize(T obj) { return obj.to_string(); }
-
-int main(int argc, char const *argv[])
-{
-    A a;
-    B b;
-    std::cout &lt;&lt; Serielize(a) &lt;&lt; std::endl;
-    return 0;
-}
-</code></pre>
-
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">A</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">B</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">Serielize</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="表达式-sfinae-略">表达式 SFINAE （略）</h2>
 
 <h1 id="4-type-traits">4. Type Traits</h1>
@@ -877,31 +1239,55 @@ int main(int argc, char const *argv[])
 <p><a href="https://en.cppreference.com/w/cpp/header/type_traits">cppreference</a> [4]中列出了这些接口，它们是以 helper class 来实现的</p>
 
 <p>一个简单的例子是上文提到的 match unsigned 类型的泛型函数：</p>
-
-<pre><code class="language-cpp">template&lt;typename T&gt;
-bool check_overflow_add_unsigned(T a, T b) {
-    static_assert(std::is_unsigned&lt;T&gt;::value, &quot;T must be unsigned types!&quot;);
-    ...
-    ...
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">bool</span> <span class="n">check_overflow_add_unsigned</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">static_assert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_unsigned</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">,</span> <span class="s">&#34;T must be unsigned types!&#34;</span><span class="p">);</span>
+    <span class="p">...</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>现在我们终于可以尝试解释一下这个 std::is_unsigned<T>::value 是个什么东西了</p>
 
 <p>cppreference 中给出的可能实现如下：</p>
-
-<pre><code class="language-cpp">namespace detail {
-template&lt;typename T,bool = std::is_arithmetic&lt;T&gt;::value&gt;
-struct is_unsigned : std::integral_constant&lt;bool, T(0) &lt; T(-1)&gt; {};
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">namespace</span> <span class="n">detail</span> <span class="p">{</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span><span class="kt">bool</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">is_arithmetic</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="nl">is_unsigned</span> <span class="p">:</span> <span class="n">std</span><span class="o">::</span><span class="n">integral_constant</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="n">T</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span> <span class="p">{};</span>
  
-template&lt;typename T&gt;
-struct is_unsigned&lt;T,false&gt; : std::false_type {};
-} // namespace detail
- 
-template&lt;typename T&gt;
-struct is_unsigned : detail::is_unsigned&lt;T&gt;::type {};
-</code></pre>
-
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">is_unsigned</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="nb">false</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">false_type</span> <span class="p">{};</span>
+<span class="p">}</span> <span class="c1">// namespace detail
+</span><span class="c1"></span> 
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="nl">is_unsigned</span> <span class="p">:</span> <span class="n">detail</span><span class="o">::</span><span class="n">is_unsigned</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span> <span class="p">{};</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>首先，is_unsigned 是一个struct，其有一个static constexpr bool member 叫 value，value 继承自 std::integral_constant<bool, T(0) < T(-1)>  或者 false_type，是一个编译期计算的量。</p>
 
 <p>我们从上面的代码中可以再次发现了 SFNIAE 的存在，编译器首先替换继承自 std::integral_constant 的版本，如果这个替换是invalid 的（可能是无法显式 从 -1 构造，或者编译期构造出来的 -1 &gt; 0），那么将考虑更加generic 的版本，这个版本 的 is_unsigned 继承自 false_type ，这样value 就继承到了constexpr false</p>
@@ -921,35 +1307,63 @@ struct is_unsigned : detail::is_unsigned&lt;T&gt;::type {};
 <p>最典型的例子其实来自于 C++ STL</p>
 
 <p>RAII 在 STL 中被大量使用。文件流是一个很好的例子。销毁文件流对象，也会同步关闭文件，而不需要手动关闭文件描述符</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;mutex&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt; </span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdexcept&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">write_to_file</span> <span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// mutex to protect file access (shared across threads)
+</span><span class="c1"></span>    <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">mutex</span> <span class="n">mutex</span><span class="p">;</span>
 
-<pre><code class="language-cpp">
-#include &lt;mutex&gt;
-#include &lt;iostream&gt;
-#include &lt;string&gt; 
-#include &lt;fstream&gt;
-#include &lt;stdexcept&gt;
+    <span class="c1">// lock mutex before accessing file
+</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span> <span class="n">lock</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
 
-void write_to_file (const std::string &amp; message) {
-    // mutex to protect file access (shared across threads)
-    static std::mutex mutex;
-
-    // lock mutex before accessing file
-    std::lock_guard&lt;std::mutex&gt; lock(mutex);
-
-    // try to open file
-    std::ofstream file(&quot;example.txt&quot;);
-    if (!file.is_open())
-        throw std::runtime_error(&quot;unable to open file&quot;);
+    <span class="c1">// try to open file
+</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="n">file</span><span class="p">(</span><span class="s">&#34;example.txt&#34;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">file</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span>
+        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">&#34;unable to open file&#34;</span><span class="p">);</span>
     
-    // write message to file
-    file &lt;&lt; message &lt;&lt; std::endl;
+    <span class="c1">// write message to file
+</span><span class="c1"></span>    <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">message</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
     
-    // file will be closed 1st when leaving scope (regardless of exception)
-    // mutex will be unlocked 2nd (from lock destructor) when leaving
-    // scope (regardless of exception)
-}
-</code></pre>
-
+    <span class="c1">// file will be closed 1st when leaving scope (regardless of exception)
+</span><span class="c1"></span>    <span class="c1">// mutex will be unlocked 2nd (from lock destructor) when leaving
+</span><span class="c1"></span>    <span class="c1">// scope (regardless of exception)
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
     </div>
 
     
@@ -1160,6 +1574,13 @@ void write_to_file (const std::string &amp; message) {
 
 <script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
 
 

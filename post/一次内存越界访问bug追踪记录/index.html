@@ -69,7 +69,7 @@
 
 <meta itemprop="datePublished" content="2018-01-30T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-01-30T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1234">
+<meta itemprop="wordCount" content="1278">
 
 
 
@@ -329,67 +329,122 @@
 <p>这个工作相当烦，因为怀疑的点太多了！就在我快要抓狂的时候我默念一遍又一遍错误信息，突然灵光一闪：</p>
 
 <p>每一次crash都有错误信息如下：</p>
-
-<pre><code class="language-shell">malloc: *** error for object 0x1001012f8: incorrect checksum for freed object
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">malloc: *** error <span class="k">for</span> object 0x1001012f8: incorrect checksum <span class="k">for</span> freed object
         - object was probably modified after being freed.
-        *** set a breakpoint in malloc_error_break to debug
-</code></pre>
-
+        *** <span class="nb">set</span> a breakpoint in malloc_error_break to debug</code></pre></td></tr></table>
+</div>
+</div>
 <p>这里说已经释放的对象的校验和错误，也就是说已释放的对象可能已经被修改</p>
 
 <p>那么什么时候才能修改到已经释放的对象？答案是野指针或者内存越界</p>
 
 <p>想到这其实思路已经差不多出来了，首先我很确信程序中没有野指针，那么就只剩下内存越界了，检查几段数组操作的代码，发现是在操作Mesh的一段代码出了问题</p>
-
-<pre><code class="language-cpp">// 这个函数的功能很简单，利用三角形顶点数据重新计算sharp surface的法线数据
-void Mesh::generateSharpNormals() {
-  normals.resize(positions.size());
-  std::vector&lt;glm::vec3&gt; flat_positions;
-  std::vector&lt;glm::vec3&gt; flat_normals;
-  std::vector&lt;unsigned int&gt; flat_indices;
-  for (unsigned int i = 0; i &lt; indices.size() / 3; ++i) {
-    // 这里直接把i当做index去访问顶点数组，因此导致越界
-    glm::vec3 u = positions[i * 3] - positions[i * 3 + 1];
-    glm::vec3 v = positions[i * 3 + 1] - positions[i * 3 + 2];
-    glm::vec3 normal = glm::normalize(glm::cross(v, u));
-    for (unsigned int j = 0; j &lt; 3; ++j) {
-      flat_normals.push_back(normal);
-      flat_positions.push_back(positions[i * 3 + j]);
-      flat_indices.push_back(3 * i + j);
-    }
-  }
-  positions = flat_positions;
-  normals = flat_normals;
-  indices = flat_indices;
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// 这个函数的功能很简单，利用三角形顶点数据重新计算sharp surface的法线数据
+</span><span class="c1"></span><span class="kt">void</span> <span class="n">Mesh</span><span class="o">::</span><span class="n">generateSharpNormals</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">normals</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">positions</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="o">&gt;</span> <span class="n">flat_positions</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="o">&gt;</span> <span class="n">flat_normals</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">flat_indices</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">indices</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">/</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 这里直接把i当做index去访问顶点数组，因此导致越界
+</span><span class="c1"></span>    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">u</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">positions</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">v</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">positions</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">normal</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">normalize</span><span class="p">(</span><span class="n">glm</span><span class="o">::</span><span class="n">cross</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">));</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">flat_normals</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">normal</span><span class="p">);</span>
+      <span class="n">flat_positions</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">j</span><span class="p">]);</span>
+      <span class="n">flat_indices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">positions</span> <span class="o">=</span> <span class="n">flat_positions</span><span class="p">;</span>
+  <span class="n">normals</span> <span class="o">=</span> <span class="n">flat_normals</span><span class="p">;</span>
+  <span class="n">indices</span> <span class="o">=</span> <span class="n">flat_indices</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>这段代码越界访问了堆区内存（访问的是vector内部的c array），导致后续的new校验失败，也就是说可能引起毫不相关代码的crash（但也不是完全不相关，被crash的代码应该紧接着这个越界操作不久，时间上局部性比较大）非常干扰程序员的判断</p>
 
 <p>下面是正确的代码</p>
-
-<pre><code class="language-cpp">void Mesh::generateSharpNormals() {
-  normals.resize(positions.size());
-  std::vector&lt;glm::vec3&gt; flat_positions;
-  std::vector&lt;glm::vec3&gt; flat_normals;
-  std::vector&lt;unsigned int&gt; flat_indices;
-  for (unsigned int i = 0; i &lt; indices.size() / 3; ++i) {
-    glm::vec3 u = positions[indices[i * 3]] - positions[indices[i * 3 + 1]];
-    glm::vec3 v = positions[indices[i * 3 + 1]] - positions[indices[i * 3 + 2]];
-    glm::vec3 normal = glm::normalize(glm::cross(v, u));
-    for (unsigned int j = 0; j &lt; 3; ++j) {
-      // 这里扩充了整个VBO
-      flat_normals.push_back(normal);
-      flat_positions.push_back(positions[indices[i * 3 + j]]);
-      flat_indices.push_back(3 * i + j);
-    }
-  }
-  positions = flat_positions;
-  normals = flat_normals;
-  indices = flat_indices;
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">Mesh</span><span class="o">::</span><span class="n">generateSharpNormals</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">normals</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">positions</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="o">&gt;</span> <span class="n">flat_positions</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">glm</span><span class="o">::</span><span class="n">vec3</span><span class="o">&gt;</span> <span class="n">flat_normals</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">flat_indices</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">indices</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">/</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">u</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span><span class="p">]]</span> <span class="o">-</span> <span class="n">positions</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]];</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">v</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">-</span> <span class="n">positions</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]];</span>
+    <span class="n">glm</span><span class="o">::</span><span class="n">vec3</span> <span class="n">normal</span> <span class="o">=</span> <span class="n">glm</span><span class="o">::</span><span class="n">normalize</span><span class="p">(</span><span class="n">glm</span><span class="o">::</span><span class="n">cross</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">));</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// 这里扩充了整个VBO
+</span><span class="c1"></span>      <span class="n">flat_normals</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">normal</span><span class="p">);</span>
+      <span class="n">flat_positions</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">j</span><span class="p">]]);</span>
+      <span class="n">flat_indices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">positions</span> <span class="o">=</span> <span class="n">flat_positions</span><span class="p">;</span>
+  <span class="n">normals</span> <span class="o">=</span> <span class="n">flat_normals</span><span class="p">;</span>
+  <span class="n">indices</span> <span class="o">=</span> <span class="n">flat_indices</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>这真的是非常低级的一个错误，不仅导致了程序崩溃，也会导致法线数据混乱。</p>
 
 <p>需要注意的是，msvc 的debug mode会在vector的operator[] 检查越界，然而如果在mac使用的是libc++却不会</p>
@@ -609,6 +664,13 @@ void Mesh::generateSharpNormals() {
 
 <script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
 
 
