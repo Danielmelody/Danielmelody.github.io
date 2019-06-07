@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Mining on Daniel&#39;s mind paradise</title>
+    <link>http://localhost:1313/tags/data-mining/</link>
+    <description>Recent content in Data Mining on Daniel&#39;s mind paradise</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 28 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/data-mining/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读</title>
+      <link>http://localhost:1313/post/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/</link>
+      <pubDate>Sat, 28 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/</guid>
+      <description>最近学校智能数据处理的作业要求阅读KDD2017，正好可以了解一点机器学习/数据挖掘的东西，简单选了一篇比较有社会影响的文章，发现读起来居然</description>
+    </item>
+    
+  </channel>
+</rss>

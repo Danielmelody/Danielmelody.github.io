@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>现代C&#43;&#43;惯用法 - Daniel&#39;s mind paradise</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="Daniel" />
+  <meta name="description" content="现在是 9102 年了，再来总结 C&#43;&#43; 的惯用法似乎有点落伍，但是 C&#43;&#43; 的强大依然毋庸置疑。最近我也把目光投向 rust，C&#43;&#43; 不管怎么演进，历史包袱还是太沉重了" />
+
+  <meta name="keywords" content="Hugo, theme, jane" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/%E7%8E%B0%E4%BB%A3c-%E6%83%AF%E7%94%A8%E6%B3%95/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.ec807d8b802a40889537c26e014f733206312ea440d42e1f0dabed80918de1ac.css" integrity="sha256-7IB9i4AqQIiVN8JuAU9zMgYxLqRA1C4fDavtgJGN4aw=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="现代C&#43;&#43;惯用法" />
+<meta property="og:description" content="现在是 9102 年了，再来总结 C&#43;&#43; 的惯用法似乎有点落伍，但是 C&#43;&#43; 的强大依然毋庸置疑。最近我也把目光投向 rust，C&#43;&#43; 不管怎么演进，历史包袱还是太沉重了" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/%E7%8E%B0%E4%BB%A3c-%E6%83%AF%E7%94%A8%E6%B3%95/" />
+<meta property="article:published_time" content="2019-02-06T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-02-06T00:00:00&#43;00:00"/>
+
+<meta itemprop="name" content="现代C&#43;&#43;惯用法">
+<meta itemprop="description" content="现在是 9102 年了，再来总结 C&#43;&#43; 的惯用法似乎有点落伍，但是 C&#43;&#43; 的强大依然毋庸置疑。最近我也把目光投向 rust，C&#43;&#43; 不管怎么演进，历史包袱还是太沉重了">
+
+
+<meta itemprop="datePublished" content="2019-02-06T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-02-06T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="4414">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="现代C&#43;&#43;惯用法"/>
+<meta name="twitter:description" content="现在是 9102 年了，再来总结 C&#43;&#43; 的惯用法似乎有点落伍，但是 C&#43;&#43; 的强大依然毋庸置疑。最近我也把目光投向 rust，C&#43;&#43; 不管怎么演进，历史包袱还是太沉重了"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Daniel's mind paradise</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/about/">Danielhu</a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      Daniel's mind paradise
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://localhost:1313/about/">Danielhu</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">现代C&#43;&#43;惯用法</h1>
+      
+      <div class="post-meta">
+        <time datetime="2019-02-06" class="post-time">
+          2019-02-06
+        </time>
+        
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#内容大纲">内容大纲</a></li>
+</ul></li>
+<li><a href="#0-assertion">0. Assertion</a>
+<ul>
+<li><a href="#运行期断言">运行期断言</a></li>
+<li><a href="#让错误尽早发现-fail-fast-1">让错误尽早发现(Fail Fast[1])</a></li>
+<li><a href="#assert-优点">assert 优点</a></li>
+<li><a href="#缺点">缺点</a></li>
+<li><a href="#编译期断言">编译期断言</a></li>
+</ul></li>
+<li><a href="#1-marcos">1. Marcos</a>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#单行宏">单行宏</a></li>
+<li><a href="#多行宏">多行宏</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#宏参数">宏参数</a></li>
+<li><a href="#和-操作符-预处理器"># 和 ## 操作符 (预处理器)</a></li>
+<li><a href="#其他注意">其他注意</a></li>
+</ul></li>
+<li><a href="#2-meyer-s-singleton">2. Meyer&rsquo;s Singleton</a>
+<ul>
+<li><a href="#线程安全">线程安全</a></li>
+<li><a href="#double-check">Double-Check</a></li>
+<li><a href="#meyers-singleton-in-c">Meyers&rsquo; Singleton in C++</a></li>
+</ul></li>
+<li><a href="#3-sfinae-subtitition-failure-is-not-an-error-3">3.SFINAE(<em>subtitition failure is not an error</em>) [3]</a>
+<ul>
+<li><a href="#类型-sfinae">类型 SFINAE</a></li>
+<li><a href="#subtitition-failure">Subtitition Failure</a></li>
+<li><a href="#a-simple-and-explicit-example">A simple and explicit Example</a></li>
+<li><a href="#typedef-detector">Typedef detector</a></li>
+<li><a href="#member-functor-detector">member functor detector</a></li>
+<li><a href="#表达式-sfinae-略">表达式 SFINAE （略）</a></li>
+</ul></li>
+<li><a href="#4-type-traits">4. Type Traits</a></li>
+<li><a href="#5-raii-resource-acquisition-is-initialization-5">5. RAII(<em>Resource acquisition is initialization</em>)[5]</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p>现在是 9102 年了，再来总结 C++ 的惯用法似乎有点落伍，但是 C++ 的强大依然毋庸置疑。最近我也把目光投向 rust，C++ 不管怎么演进，历史包袱还是太沉重了。而且，rust 的设计其实也参考了很多C++的思想（如 RAII）所以在 C++ 中继续深入也是有价值的</p>
+
+<h2 id="内容大纲">内容大纲</h2>
+
+<ol>
+<li>Assertion</li>
+<li>Marcos</li>
+<li>SFINAE</li>
+<li>Meyers Singleton</li>
+<li>RAII</li>
+<li>Type Trait</li>
+</ol>
+
+<h1 id="0-assertion">0. Assertion</h1>
+
+<h2 id="运行期断言">运行期断言</h2>
+
+<pre><code class="language-cpp">#ifdef NDEBUG
+#define assert(condition) ((void)0)
+#else
+#define assert(condition) /*implementation defined*/
+#endif
+</code></pre>
+
+<p>assert 其实是在来源于C语言的头文件<cassert> 中定义的宏</p>
+
+<p>一般来说，如果condition 是false，那么assert 首先向stderr 打印错误信息，然后调用 abort (触发一个SIGABRT中断信号)来非正常结束程序</p>
+
+<ul>
+<li>assert 不是 error handling, assertion 处理的是<strong>代码的 bug</strong> 而不是程序预期的输入错误或者系统错误等</li>
+<li>想象有这样一个函数，下面哪种实现更”安全“呢？：</li>
+</ul>
+
+<pre><code class="language-cpp">void foo1(int score) {
+    if(score &gt; 0 &amp;&amp; score &lt;= 100）{
+        // internal logics
+    }    
+}
+       
+void foo2(int score) {
+    // require bar between 1 and 100
+    assert(score &gt; 0 &amp;&amp; score &lt;= 100 &amp;&amp; &quot;score must between 1 and  100！&quot;);
+}
+</code></pre>
+
+<ul>
+<li><p>foo1看起来是安全的，因为程序没有崩溃，很完美，可惜没有对异常输入做任何处理，因此来自调用方的逻辑错误就被隐藏了</p></li>
+
+<li><p>在这里，assert 和 if 都提供了一个内置的validate检查，在执行真正的逻辑之前，模块的开发者可以视为自己对外部调用做了一个“假设”，这样就把异常处理的责任转移到调用端，开发者只需要关注自己的逻辑闭环。不同的是，assert能发现外部调用的错误</p></li>
+</ul>
+
+<h2 id="让错误尽早发现-fail-fast-1">让错误尽早发现(Fail Fast[1])</h2>
+
+<ul>
+<li>一个 fail fast 的系统通常倾向于直接报告错误给上层逻辑。</li>
+<li>此类设计通常会在操作中的多个点检查系统的状态，因此可以及早检测到故障。</li>
+</ul>
+
+<h2 id="assert-优点">assert 优点</h2>
+
+<ul>
+<li>帮助程序员做好模块化</li>
+<li>在内部逻辑执行之前提供可行性检查</li>
+<li>造成程序的 fast fail</li>
+<li>在 release 模式下会被 compiled out, 不影响性能</li>
+</ul>
+
+<h2 id="缺点">缺点</h2>
+
+<ul>
+<li>只在 debug 模式下工作，如果在 assert 中写有副作用的逻辑，会造成 release 版本的严重错误</li>
+<li>使得程序的内在逻辑对外部部分可见</li>
+</ul>
+
+<h2 id="编译期断言">编译期断言</h2>
+
+<p>编译期断言对应 static_assert，是 C++ 11 提供的让错误更早发现的机制。</p>
+
+<p>static_assert 十分强大，附带的自定义信息会直接被当成编译错误输出，但由于是编译期断言，因此限制也很大。他的输入只能是bool_constexpr类型。因此要用好static assert，需要程序员分辨出代码哪些部分是<strong>编译期</strong>即可确定的部分。</p>
+
+<p>下面的代码可以限制 Vector 的 dimension 始终大于 1</p>
+
+<pre><code class="language-cpp">template&lt;typename ElemType, int N&gt;
+class Vector {
+    static_assert(N &gt; 1, &quot;1D Vector is not allowed, use scalar types&quot;);
+    ElemType elem_[N];
+};
+
+Vector&lt;int, 1&gt; vec1;// compilation error
+Vector&lt;int, 2&gt; vec2;
+</code></pre>
+
+<p>另外，利用 static_assert + type_traits 也能实现语义约束，比如我们想写一个检查无符号加法溢出的函数，并希望调用方不传递有符号类型，那么我们可以：</p>
+
+<pre><code class="language-cpp">template&lt;typename T&gt;
+bool check_overflow_add_unsigned(T a, T b) {
+    static_assert(std::is_unsigned&lt;T&gt;::value, &quot;T must be unsigned types!&quot;);
+    ...
+    ...
+}
+</code></pre>
+
+<p>由于自 C++ 11 开始，鼓励大家多用编译期计算，把一些 constant 的数据和代码段尽量挪到编译期，因此可能很多类型成为 literal type （比如上面的 Vector ）。这些类既能在运行期运行，又能在编译期预计算，因此，只要是涉及 literal type 的函数/类/对象  就应尽可能的用 static_assert</p>
+
+<h1 id="1-marcos">1. Marcos</h1>
+
+<p>这里说的宏是指 replacing text macros，是由预处理器支持的文本替换功能，同样支持带参数的文本替换</p>
+
+<p>宏是许多编程语言都支持的功能，C/C++ 中的宏是较为简单的文本替换，而在 rust 和 lisp 等语言中，宏会直接展开AST，因此更为强大，既有类型系统支持，又能做到zero cost abstraction</p>
+
+<p>尽管如此，在C/C++中 使用宏很多时候能大大简化代码，在一些情况下能代替C/C++中比较啰嗦的逻辑。例如当我们想在每个类的定义插入特定的信息用来做反射，以及当我们想做一个循环展开以便更好的利用SIMD的性能，宏都能给我们提供这样的能力，但有时候也会给开发者带来困惑，尤其多层嵌套的宏在可读性和维护性上比较差。但目前，宏在C/C++ 中的地位仍然是不可取代的</p>
+
+<p>开发中，我们常用下面几种宏的写法</p>
+
+<h4 id="单行宏">单行宏</h4>
+
+<pre><code class="language-cpp">#define a 1
+#define b (a + 1)
+#define c a * b
+</code></pre>
+
+<h4 id="多行宏">多行宏</h4>
+
+<pre><code class="language-cpp">#define Vec \
+static int x; \
+static int y;
+</code></pre>
+
+<p>多行宏会在在使用处被替换为多行内容</p>
+
+<h2 id="宏参数">宏参数</h2>
+
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#define DUPLICATE(index, times) for(int index = 0; index &lt; times; ++index)
+
+int main(void) 
+{ 
+    DUPLICATE(i, 100) 
+    {
+     std::cout &lt;&lt; i &lt;&lt; std::endl;   
+    }
+    return 0; 
+} 
+
+</code></pre>
+
+<h2 id="和-操作符-预处理器"># 和 ## 操作符 (预处理器)</h2>
+
+<p><strong>Stringizing operator (#)</strong></p>
+
+<p>在类函数的宏中 # + 形参名可以在宏替换中 直接把参数字面量换成字符串</p>
+
+<p>例：</p>
+
+<pre><code class="language-cpp">#define DEFINE_AND_PRINT(type, varname) \
+type varname; \
+std::cout &lt;&lt; &quot;declare &quot; &lt;&lt; #type &lt;&lt; &quot; &quot; &lt;&lt; #varname &lt;&lt; std::endl;
+
+int main(int argc, char const *argv[])
+{
+    DEFINE_AND_PRINT(int, bar); // declare int bar
+    return 0;
+}
+</code></pre>
+
+<p><strong>Token-Pasting Operator（##）</strong></p>
+
+<p>## 直接把前后的字符合并成一个token，可以用来自动生成出一些新的token（类名，函数名，变量名等）</p>
+
+<pre><code class="language-cpp">#define CREATE_3_VARS(name) name##1, name##2, name##3
+int CREATE_3_VARS(myInts);
+myInts1 = 13;
+myInts2 = 19;
+myInts3 = 77;
+</code></pre>
+
+<h2 id="其他注意">其他注意</h2>
+
+<ul>
+<li>由于宏本质上是预处理器对代码做的文本替换，因此一般需要一到两个括号包裹来指定优先级。</li>
+<li>注意宏替换发生在整个编译器起作用之前，即早于所谓的词法分析之前</li>
+</ul>
+
+<h1 id="2-meyer-s-singleton">2. Meyer&rsquo;s Singleton</h1>
+
+<p>我们怎样在C#中实现单例？</p>
+
+<pre><code class="language-C#">public sealed class Singleton
+    {
+        static Singleton instance = null;
+ 
+        public void Show()
+        {
+            Console.WriteLine(  &quot;instance function&quot;);
+        }
+        private Singleton()
+        {
+        }
+ 
+        public static Singleton Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Singleton();
+                }
+                return instance;
+            }
+        }
+    }
+</code></pre>
+
+<h2 id="线程安全">线程安全</h2>
+
+<pre><code class="language-C#">public sealed class Singleton
+    {
+        static Singleton instance = null;
+        private static readonly object padlock = new object();
+ 
+        private Singleton()
+        {
+        }
+ 
+        public static Singleton Instance
+        {
+            get
+            {
+                lock (padlock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new Singleton();
+                    }
+                }
+ 
+                return instance;
+            }
+        }
+    }
+</code></pre>
+
+<h2 id="double-check">Double-Check</h2>
+
+<pre><code class="language-c#"> public sealed class Singleton
+    {
+        static Singleton instance = null;
+        private static readonly object padlock = new object();
+ 
+        private Singleton()
+        {
+        }
+ 
+        public static Singleton Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (padlock)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new Singleton();
+                        }
+                    }
+                }
+                return instance;
+            }
+        }
+    }
+</code></pre>
+
+<h2 id="meyers-singleton-in-c">Meyers&rsquo; Singleton in C++</h2>
+
+<pre><code class="language-cpp">static Singleton&amp; instance()
+{
+     static Singleton s;
+     return s;
+}
+</code></pre>
+
+<p>（Scott Meyers 是Effective C++系列的作者）</p>
+
+<p>相对于C#的单例实现，Meyers提供了一种相当简洁的书写方式</p>
+
+<p>Meyers 单例利用了C++11 的 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2660.htm">Dynamic Initialization and Destruction with Concurrency</a>[2] 特性，该特性要求编译器对于每一个静态对象都绑定一个哨兵变量（guard variable)用来做线程相关的操作，保证 static local variable 在并发条件下只执行一次Lazy Initialization。</p>
+
+<p>以clang 为例，Meyers 单例生成的汇编代码如下：</p>
+
+<pre><code>Singleton::instance():               # @Singleton::instance()
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        cmp     byte ptr [guard variable for Singleton::instance()::singleton], 0
+        jne     .LBB1_4
+        movabs  rdi, offset guard variable for Singleton::instance()::singleton
+        call    __cxa_guard_acquire
+        cmp     eax, 0
+        je      .LBB1_4
+        mov     eax, offset Singleton::instance()::singleton
+        mov     edi, eax
+        call    Singleton::Singleton() [base object constructor]
+        jmp     .LBB1_3
+.LBB1_3:
+        movabs  rdi, offset guard variable for Singleton::instance()::singleton
+        call    __cxa_guard_release
+.LBB1_4:
+        movabs  rax, offset Singleton::instance()::singleton
+        add     rsp, 16
+        pop     rbp
+        ret
+        mov     ecx, edx
+        mov     qword ptr [rbp - 8], rax
+        mov     dword ptr [rbp - 12], ecx
+        movabs  rdi, offset guard variable for Singleton::instance()::singleton
+        call    __cxa_guard_abort
+        mov     rdi, qword ptr [rbp - 8]
+        call    _Unwind_Resume
+Singleton::Singleton() [base object constructor]:                      # @Singleton::Singleton() [base object constructor]
+        push    rbp
+        mov     rbp, rsp
+        mov     qword ptr [rbp - 8], rdi
+        mov     rdi, qword ptr [rbp - 8]
+        mov     dword ptr [rdi], 0
+        pop     rbp
+        ret
+Singleton::instance()::singleton:
+        .zero   4
+
+guard variable for Singleton::instance()::singleton:
+        .quad   0                       # 0x0
+</code></pre>
+
+<h1 id="3-sfinae-subtitition-failure-is-not-an-error-3">3.SFINAE(<em>subtitition failure is not an error</em>) [3]</h1>
+
+<h2 id="类型-sfinae">类型 SFINAE</h2>
+
+<p><em>注意：如果有条件使用 static_assert 或者 concepts，尽量不要使用 SFINAE</em></p>
+
+<p>我们经常要根据模板类型参数的不同来展开不同的代码，这这个工作有时候能利用特化完成，但也有特化无法完成的时候，比如我们想实现overload function template，就像普通函数的重载一样，这时候就需要SFINAE的帮助</p>
+
+<p>SFNIAE 是C++模板技术的衍生，属于模板元编程的一部分</p>
+
+<h2 id="subtitition-failure">Subtitition Failure</h2>
+
+<p>在C++ 中，模板参数的subtitition（替换） 发生在模板展开的过程中。参数替换有两步：</p>
+
+<ul>
+<li>首先发生显式指定的替换</li>
+<li>其次发生类型推断的替换，以及默认模板参数的替换</li>
+</ul>
+
+<p>所谓默认模板参数很好理解，和函数的默认参数一样，例子如下：</p>
+
+<pre><code class="language-cpp">template&lt;typename T, typename U = int&gt; // int is the default template parameter for argument U
+</code></pre>
+
+<p>当不指定 U 时，U默认为int</p>
+
+<p>由于替换的次序不同，在替换默认模板参数的时候，实际上可以利用已经替换过的参数来替换默认参数</p>
+
+<pre><code class="language-cpp">template&lt;typename T, typename U = typename T::internal_type&gt; 
+</code></pre>
+
+<p>而替换失败(subtitition failure) 指的是上述的替换产生了问题，比如传递给类型参数A的类型可能没有一个叫internal_type的嵌套类型，</p>
+
+<p>然而，要使编译器产生compilation error，还需要尝试有没有别的函数模板能替换成功，这个过程可能发生多次subtitition failure。</p>
+
+<p>有人说那我改一下默认参数是不是能产生subtitition failure is not an error呢？很遗憾不行。只有default template parameter 不同的template是有歧义的</p>
+
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+struct A {
+  using internal_type = int;
+};
+
+struct B {};
+
+template &lt;typename T, typename U = typename T::internal_type&gt; void foo() {
+  std::cout &lt;&lt; &quot;T has internal_type&quot; &lt;&lt; std::endl;
+}
+
+template &lt;typename T&gt; void foo() {
+  std::cout &lt;&lt; &quot;T has no internal_typ&quot; &lt;&lt; std::endl;
+}
+
+int main(int argc, char const *argv[]) {
+  foo&lt;A&gt;(); // call to 'foo' is ambiguous
+  foo&lt;B&gt;();
+  return 0;
+}
+
+</code></pre>
+
+<p>那么到底如何产生 subtitition failure is not an error呢？</p>
+
+<h2 id="a-simple-and-explicit-example">A simple and explicit Example</h2>
+
+<p>Example from <a href="https://en.wikipedia.org/wiki/Substitution_failure_is_not_an_error">wikipedia</a></p>
+
+<pre><code class="language-cpp">struct Test {
+    typedef int foo;
+};
+
+template &lt;typename T&gt; 
+void f(typename T::foo) {} // Definition #1
+
+template &lt;typename T&gt; 
+void f(T) {}               // Definition #2
+
+int main() {
+    f&lt;Test&gt;(10); // Call #1.
+    f&lt;int&gt;(10);  // Call #2. Without error (even though there is no int::foo) thanks to SFINAE.
+}
+</code></pre>
+
+<h2 id="typedef-detector">Typedef detector</h2>
+
+<p>这是 SFINAE 的一个应用，用来检查类参数有没有 T 有在类内部 typedef internal_type 类型</p>
+
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+struct A {
+  using internal_type = int;
+};
+
+template &lt;typename T&gt;
+decltype(std::declval&lt;typename T::internal_type&gt;(), std::declval&lt;void&gt;())
+foo(const T &amp;) { // compare to the varadic version below, this one is more specifc
+  std::cout &lt;&lt; &quot;T has internal_type&quot; &lt;&lt; std::endl;
+}
+
+void foo(...) { std::cout &lt;&lt; &quot;T has no internal_type&quot; &lt;&lt; std::endl; }
+
+// template &lt;typename T&gt; void foo() { foo(int()); }
+
+int main(int argc, char const *argv[]) {
+  A a;
+  foo(a);      //   subtitition suceeded for the first time
+  foo(1);      //   subtitition failed, but succeeded for the second time
+  foo(&quot;test&quot;); //   subtitition failed, but succeeded for the second time
+  return 0;
+}
+</code></pre>
+
+<p>我们看到foo有两个重载版本，为了告诉编译器我期望 T 有嵌套 internal_type 类型，我们使用了 decltype + 逗号表达式 + declval。decltype(std::declval<typename T::internal_type>(), std::declval<void>()) 的真正类型是 void，但对T::internal_type进行了求值，因此编译器知道这里 T 是 more specific 的</p>
+
+<h2 id="member-functor-detector">member functor detector</h2>
+
+<p>更有用的例子是判断类型有没有包含某个名字的成员函数，这一点对template programming 中的duck typing 很重要</p>
+
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;type_traits&gt;
+
+template &lt;class T&gt;
+struct Stringlizable
+{
+    // We test if the type has serialize using decltype and declval.
+    template &lt;typename C&gt;
+    static constexpr decltype(std::declval&lt;C&gt;().serielize(), bool())
+    test(int /* unused */)
+    {
+        // We can return values, thanks to constexpr instead of playing with sizeof.
+        return true;
+    }
+
+    template &lt;typename C&gt;
+    static constexpr bool test(...) { return false; }
+
+    // int is used to give the precedence!
+    static constexpr bool value = test&lt;T&gt;(int());
+};
+
+struct A
+{
+    int data;
+    std::string to_string() { return std::to_string(data); };
+};
+
+struct B
+{
+};
+
+template &lt;typename T&gt;
+std::string Serielize(T obj) { return obj.to_string(); }
+
+int main(int argc, char const *argv[])
+{
+    A a;
+    B b;
+    std::cout &lt;&lt; Serielize(a) &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre>
+
+<h2 id="表达式-sfinae-略">表达式 SFINAE （略）</h2>
+
+<h1 id="4-type-traits">4. Type Traits</h1>
+
+<p>终于来到了 type traits。</p>
+
+<p>上文中曾提到，static_assert 以及 SFINAE 和 type_traits 结合可以在编译器做一些类型约束的事情，，那么这个type_traits到底是什么呢</p>
+
+<p>要理解Type Traits，我们首先要理解C++的类型系统</p>
+
+<p>C++是一门静态类型语言，其类型系统十分强大，由三个部分组成：基本类型，RTTI， Type Traits</p>
+
+<p>Type traits 定义了一套编译期的，基于模板的用来查询或修改类型属性的接口</p>
+
+<p><a href="https://en.cppreference.com/w/cpp/header/type_traits">cppreference</a> [4]中列出了这些接口，它们是以 helper class 来实现的</p>
+
+<p>一个简单的例子是上文提到的 match unsigned 类型的泛型函数：</p>
+
+<pre><code class="language-cpp">template&lt;typename T&gt;
+bool check_overflow_add_unsigned(T a, T b) {
+    static_assert(std::is_unsigned&lt;T&gt;::value, &quot;T must be unsigned types!&quot;);
+    ...
+    ...
+}
+</code></pre>
+
+<p>现在我们终于可以尝试解释一下这个 std::is_unsigned<T>::value 是个什么东西了</p>
+
+<p>cppreference 中给出的可能实现如下：</p>
+
+<pre><code class="language-cpp">namespace detail {
+template&lt;typename T,bool = std::is_arithmetic&lt;T&gt;::value&gt;
+struct is_unsigned : std::integral_constant&lt;bool, T(0) &lt; T(-1)&gt; {};
+ 
+template&lt;typename T&gt;
+struct is_unsigned&lt;T,false&gt; : std::false_type {};
+} // namespace detail
+ 
+template&lt;typename T&gt;
+struct is_unsigned : detail::is_unsigned&lt;T&gt;::type {};
+</code></pre>
+
+<p>首先，is_unsigned 是一个struct，其有一个static constexpr bool member 叫 value，value 继承自 std::integral_constant<bool, T(0) < T(-1)>  或者 false_type，是一个编译期计算的量。</p>
+
+<p>我们从上面的代码中可以再次发现了 SFNIAE 的存在，编译器首先替换继承自 std::integral_constant 的版本，如果这个替换是invalid 的（可能是无法显式 从 -1 构造，或者编译期构造出来的 -1 &gt; 0），那么将考虑更加generic 的版本，这个版本 的 is_unsigned 继承自 false_type ，这样value 就继承到了constexpr false</p>
+
+<p>除了 is_unsigned， <a href="https://en.cppreference.com/w/cpp/header/type_traits">cppreference</a> 中还有非常多的helper_class， 能帮助我们写出更加 generic 的代码</p>
+
+<p>（注意，尝试特化<type_traits> 中的template是未定义行为）</p>
+
+<h1 id="5-raii-resource-acquisition-is-initialization-5">5. RAII(<em>Resource acquisition is initialization</em>)[5]</h1>
+
+<p>RAII 可能是C++在某种程度上优于其他基于GC的语言最主要的原因</p>
+
+<p>简单来说，C++提供了确定性析构过程，尤其对于栈对象，异常，多返回分支语句，多线程环境C++都能保证在栈上分配的对象一定会被清理，而清理之前一定会调用对象的析构函数。</p>
+
+<p>同时，我们通常会在栈上创建很多临时资源，如网络连接，文件描述符，申请堆内存等。这些临时资源是需要被清理的。手动去清理他们通常会考虑不周全，通过和临时对象的析构绑定，我们可以确保资源被释放。</p>
+
+<p>最典型的例子其实来自于 C++ STL</p>
+
+<p>RAII 在 STL 中被大量使用。文件流是一个很好的例子。销毁文件流对象，也会同步关闭文件，而不需要手动关闭文件描述符</p>
+
+<pre><code class="language-cpp">
+#include &lt;mutex&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt; 
+#include &lt;fstream&gt;
+#include &lt;stdexcept&gt;
+
+void write_to_file (const std::string &amp; message) {
+    // mutex to protect file access (shared across threads)
+    static std::mutex mutex;
+
+    // lock mutex before accessing file
+    std::lock_guard&lt;std::mutex&gt; lock(mutex);
+
+    // try to open file
+    std::ofstream file(&quot;example.txt&quot;);
+    if (!file.is_open())
+        throw std::runtime_error(&quot;unable to open file&quot;);
+    
+    // write message to file
+    file &lt;&lt; message &lt;&lt; std::endl;
+    
+    // file will be closed 1st when leaving scope (regardless of exception)
+    // mutex will be unlocked 2nd (from lock destructor) when leaving
+    // scope (regardless of exception)
+}
+</code></pre>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Daniel</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-02-06</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/i-ve-paid-my-dues-time-after-time/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">I&#39;ve paid my dues, time after time.</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/%E9%81%93%E9%95%BF%E7%9A%842018/">
+            <span class="next-text nav-default">道长的2018</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:yimingdz@@gmail.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="http://github.com/Danielhu229" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://www.zhihu.com/people/dao-chang-22-44" rel="me noopener" class="iconfont"
+      title="zhihu"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M351.791182 562.469462l192.945407 0c0-45.367257-21.3871-71.939449-21.3871-71.939449L355.897709 490.530013c3.977591-82.182744 7.541767-187.659007 8.816806-226.835262l159.282726 0c0 0-0.86367-67.402109-18.578124-67.402109s-279.979646 0-279.979646 0 16.850783-88.141456 39.318494-127.053698c0 0-83.60514-4.510734-112.121614 106.962104S81.344656 355.077018 76.80834 367.390461c-4.536316 12.313443 24.62791 5.832845 36.941354 0 12.313443-5.832845 68.050885-25.924439 84.252893-103.69571l86.570681 0c1.165546 49.28652 4.596691 200.335724 3.515057 226.835262L109.86113 490.530013c-25.275663 18.147312-33.701566 71.939449-33.701566 71.939449L279.868105 562.469462c-8.497535 56.255235-23.417339 128.763642-44.275389 167.210279-33.05279 60.921511-50.55235 116.65793-169.802314 212.576513 0 0-19.442818 14.257725 40.829917 9.073656 60.273758-5.185093 117.305683-20.739347 156.840094-99.807147 20.553105-41.107233 41.805128-93.250824 58.386782-146.138358l-0.055259 0.185218 167.855986 193.263655c0 0 22.035876-51.847855 5.832845-108.880803L371.045711 650.610918l-42.1244 31.157627-0.045025 0.151449c11.69946-41.020252 20.11206-81.5749 22.726607-116.858498C351.665315 564.212152 351.72876 563.345412 351.791182 562.469462z"></path>
+  <path d="M584.918753 182.033893l0 668.840094 70.318532 0 28.807093 80.512708 121.875768-80.512708 153.600307 0L959.520453 182.033893 584.918753 182.033893zM887.150192 778.934538l-79.837326 0-99.578949 65.782216-23.537066-65.782216-24.855084 0L659.341766 256.673847l227.807403 0L887.149169 778.934538z"></path>
+</svg>
+
+    </a>
+
+
+<a href="http://localhost:1313/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2015 -
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        Daniel
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
