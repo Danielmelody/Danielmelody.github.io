@@ -2,111 +2,111 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Daniel&#39;s mind paradise</title>
-    <link>http://localhost:1313/post/</link>
+    <link>https://hustdanielhu.com/post/</link>
     <description>Recent content in Posts on Daniel&#39;s mind paradise</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 09 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hustdanielhu.com/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>I&#39;ve paid my dues, time after time.</title>
-      <link>http://localhost:1313/post/i-ve-paid-my-dues-time-after-time/</link>
+      <link>https://hustdanielhu.com/post/i-ve-paid-my-dues-time-after-time/</link>
       <pubDate>Tue, 09 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/i-ve-paid-my-dues-time-after-time/</guid>
+      <guid>https://hustdanielhu.com/post/i-ve-paid-my-dues-time-after-time/</guid>
       <description>在如此长远的一辈子的尺度上看，我是如此幸运。 不是所有 bug 都有机会暴露，不是所有人都能做单元测试 为什么男生一个人就会过的邋遢呢？我自觉收拾的很好</description>
     </item>
     
     <item>
       <title>现代C&#43;&#43;惯用法</title>
-      <link>http://localhost:1313/post/%E7%8E%B0%E4%BB%A3c-%E6%83%AF%E7%94%A8%E6%B3%95/</link>
+      <link>https://hustdanielhu.com/post/%E7%8E%B0%E4%BB%A3c-%E6%83%AF%E7%94%A8%E6%B3%95/</link>
       <pubDate>Wed, 06 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E7%8E%B0%E4%BB%A3c-%E6%83%AF%E7%94%A8%E6%B3%95/</guid>
+      <guid>https://hustdanielhu.com/post/%E7%8E%B0%E4%BB%A3c-%E6%83%AF%E7%94%A8%E6%B3%95/</guid>
       <description>现在是 9102 年了，再来总结 C++ 的惯用法似乎有点落伍，但是 C++ 的强大依然毋庸置疑。最近我也把目光投向 rust，C++ 不管怎么演进，历史包袱还是太沉重了</description>
     </item>
     
     <item>
       <title>道长的2018</title>
-      <link>http://localhost:1313/post/%E9%81%93%E9%95%BF%E7%9A%842018/</link>
+      <link>https://hustdanielhu.com/post/%E9%81%93%E9%95%BF%E7%9A%842018/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E9%81%93%E9%95%BF%E7%9A%842018/</guid>
+      <guid>https://hustdanielhu.com/post/%E9%81%93%E9%95%BF%E7%9A%842018/</guid>
       <description>第一篇个人年终总结，主要目的是调整一下心态 2018 这一年过的太匆忙了 上半年，在万老师那里写毕设，学生生涯快结束的时候，不想留下遗憾，那就试试搞搞学</description>
     </item>
     
     <item>
       <title>一次内存越界访问bug追踪记录</title>
-      <link>http://localhost:1313/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/</link>
+      <link>https://hustdanielhu.com/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/</guid>
+      <guid>https://hustdanielhu.com/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/</guid>
       <description>最近写毕业设计，想把结果简单的用OpenGL表现一下，结果程序总是莫名其妙的随机crash，在debug模式下，这一次crash在glfw的</description>
     </item>
     
     <item>
       <title>KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读</title>
-      <link>http://localhost:1313/post/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/</link>
+      <link>https://hustdanielhu.com/post/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/</link>
       <pubDate>Sat, 28 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/</guid>
+      <guid>https://hustdanielhu.com/post/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/</guid>
       <description>最近学校智能数据处理的作业要求阅读KDD2017，正好可以了解一点机器学习/数据挖掘的东西，简单选了一篇比较有社会影响的文章，发现读起来居然</description>
     </item>
     
     <item>
       <title>实时渲染中的软阴影技术</title>
-      <link>http://localhost:1313/post/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E4%B8%AD%E7%9A%84%E8%BD%AF%E9%98%B4%E5%BD%B1%E6%8A%80%E6%9C%AF/</link>
+      <link>https://hustdanielhu.com/post/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E4%B8%AD%E7%9A%84%E8%BD%AF%E9%98%B4%E5%BD%B1%E6%8A%80%E6%9C%AF/</link>
       <pubDate>Thu, 11 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E4%B8%AD%E7%9A%84%E8%BD%AF%E9%98%B4%E5%BD%B1%E6%8A%80%E6%9C%AF/</guid>
+      <guid>https://hustdanielhu.com/post/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E4%B8%AD%E7%9A%84%E8%BD%AF%E9%98%B4%E5%BD%B1%E6%8A%80%E6%9C%AF/</guid>
       <description>本文描述的是基于Shadow Mapping的软阴影技术，读者应该对Shadow Mapping 有基本的理解。 关于阴影走样 Shadow Mapping 有一个严重的问题就是阴影走样（</description>
     </item>
     
     <item>
       <title>WebGL渲染引擎技术选型总结</title>
-      <link>http://localhost:1313/post/webgl%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E6%80%BB%E7%BB%93/</link>
+      <link>https://hustdanielhu.com/post/webgl%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E6%80%BB%E7%BB%93/</link>
       <pubDate>Sat, 29 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/webgl%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E6%80%BB%E7%BB%93/</guid>
+      <guid>https://hustdanielhu.com/post/webgl%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E6%80%BB%E7%BB%93/</guid>
       <description>经过一年断断续续的踩坑，我的webgl渲染器已经到了攻坚阶段（很惭愧，离成熟还有不少距离）目前的主要工作集中在延迟渲染，阴影走样和PBS材质</description>
     </item>
     
     <item>
       <title>谈谈单元测试</title>
-      <link>http://localhost:1313/post/%E8%B0%88%E8%B0%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
+      <link>https://hustdanielhu.com/post/%E8%B0%88%E8%B0%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
       <pubDate>Wed, 09 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E8%B0%88%E8%B0%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</guid>
+      <guid>https://hustdanielhu.com/post/%E8%B0%88%E8%B0%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</guid>
       <description>是什么？ 很多人写了几年代码，可能连一行单元测试都没有写过。单元测试是什么？是针对程序模块（软件设计的最小单位）来进行正确性检验的测试工作 就我</description>
     </item>
     
     <item>
       <title>模板元编程：C&#43;&#43;的黑魔法</title>
-      <link>http://localhost:1313/post/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8Bc&#43;&#43;%E7%9A%84%E9%BB%91%E9%AD%94%E6%B3%95/</link>
+      <link>https://hustdanielhu.com/post/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8Bc&#43;&#43;%E7%9A%84%E9%BB%91%E9%AD%94%E6%B3%95/</link>
       <pubDate>Sun, 06 Mar 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8Bc&#43;&#43;%E7%9A%84%E9%BB%91%E9%AD%94%E6%B3%95/</guid>
+      <guid>https://hustdanielhu.com/post/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8Bc&#43;&#43;%E7%9A%84%E9%BB%91%E9%AD%94%E6%B3%95/</guid>
       <description>关于模板与泛型 如果你曾经使用过template，那你一定对泛型编程有过了解，你可能在java和c#中使用过泛型代码，但是，需要注意的是，C+</description>
     </item>
     
     <item>
       <title>新的开始</title>
-      <link>http://localhost:1313/post/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</link>
+      <link>https://hustdanielhu.com/post/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</link>
       <pubDate>Sun, 27 Dec 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</guid>
+      <guid>https://hustdanielhu.com/post/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</guid>
       <description>hexo的博客也搞了不久了，可惜换电脑的时候不小心丢失了数据，想了一些办法只恢复了几篇文章，另外还是觉得hexo的博客不够灵活。可定制化也不</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://localhost:1313/post/%E7%9D%80%E8%89%B2%E5%99%A8%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E4%B8%80%E7%AE%80%E4%BB%8B/</link>
+      <link>https://hustdanielhu.com/post/%E7%9D%80%E8%89%B2%E5%99%A8%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E4%B8%80%E7%AE%80%E4%BB%8B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E7%9D%80%E8%89%B2%E5%99%A8%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E4%B8%80%E7%AE%80%E4%BB%8B/</guid>
+      <guid>https://hustdanielhu.com/post/%E7%9D%80%E8%89%B2%E5%99%A8%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E4%B8%80%E7%AE%80%E4%BB%8B/</guid>
       <description>title: WebGL 着色器编程实践（一）简介 date: 2015-12-28
 tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技术，有别于过往需加装浏览器插件，通过WebGL的技术，只需要编写网页代码即可实现3D图像的展示。
  是HTML5特性之一 是硬件加速的 基于 OpenGL ES 2.0 的 javascript binding  支持情况： 桌面浏览器  Mozilla Firefox─从4.0开始支持默认激活。 Google Chrome─从9.0开始支持默认激活。 Internet Explorer─从11开始支持[2]。较旧的版本可以安装第三方插件来支持，如IEWebGL.[3] Safari─在Mac OS X Snow Leopard上的Safari 5.1、OS X Mountain Lion, Mac OS X Lion上的Safari6.0或较新版本开始支持WebGL，默认情况下禁用。 Opera（需自行激活）  移动浏览器：  Firefox OS Firefox for mobile Google Chrome Opera Mobile Tizen Ubuntu Touch WebOS iOS  着色器 着色器是跑在GPU上的小程序，了解着色器（shader）之前，先要了解现代显卡的渲染流程
@@ -115,10 +115,10 @@ tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技�
     
     <item>
       <title>算法记录：分割回文串</title>
-      <link>http://localhost:1313/post/%E7%AE%97%E6%B3%95%E8%AE%B0%E5%BD%95%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/</link>
+      <link>https://hustdanielhu.com/post/%E7%AE%97%E6%B3%95%E8%AE%B0%E5%BD%95%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E7%AE%97%E6%B3%95%E8%AE%B0%E5%BD%95%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/</guid>
+      <guid>https://hustdanielhu.com/post/%E7%AE%97%E6%B3%95%E8%AE%B0%E5%BD%95%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/</guid>
       <description>问题描述： 给定一个字符串s，将s分割成一些子串，使每个子串都是回文串。 返回s所有可能的回文串分割方案。 样例 给出 s = “aab” 返回 [ [&amp;quot;aa&amp;quot;,&amp;quot;b&amp;quot;], [&amp;quot;a&amp;quot;,&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;] ] 思路</description>
     </item>
     

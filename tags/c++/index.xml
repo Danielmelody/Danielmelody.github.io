@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C&#43;&#43; on Daniel&#39;s mind paradise</title>
-    <link>http://localhost:1313/tags/c&#43;&#43;/</link>
+    <link>https://hustdanielhu.com/tags/c&#43;&#43;/</link>
     <description>Recent content in C&#43;&#43; on Daniel&#39;s mind paradise</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 30 Jan 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hustdanielhu.com/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>一次内存越界访问bug追踪记录</title>
-      <link>http://localhost:1313/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/</link>
+      <link>https://hustdanielhu.com/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/</guid>
+      <guid>https://hustdanielhu.com/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/</guid>
       <description>最近写毕业设计，想把结果简单的用OpenGL表现一下，结果程序总是莫名其妙的随机crash，在debug模式下，这一次crash在glfw的</description>
     </item>
     
     <item>
       <title>模板元编程：C&#43;&#43;的黑魔法</title>
-      <link>http://localhost:1313/post/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8Bc&#43;&#43;%E7%9A%84%E9%BB%91%E9%AD%94%E6%B3%95/</link>
+      <link>https://hustdanielhu.com/post/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8Bc&#43;&#43;%E7%9A%84%E9%BB%91%E9%AD%94%E6%B3%95/</link>
       <pubDate>Sun, 06 Mar 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8Bc&#43;&#43;%E7%9A%84%E9%BB%91%E9%AD%94%E6%B3%95/</guid>
+      <guid>https://hustdanielhu.com/post/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8Bc&#43;&#43;%E7%9A%84%E9%BB%91%E9%AD%94%E6%B3%95/</guid>
       <description>关于模板与泛型 如果你曾经使用过template，那你一定对泛型编程有过了解，你可能在java和c#中使用过泛型代码，但是，需要注意的是，C+</description>
     </item>
     

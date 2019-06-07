@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>架构 on Daniel&#39;s mind paradise</title>
-    <link>http://localhost:1313/tags/%E6%9E%B6%E6%9E%84/</link>
+    <link>https://hustdanielhu.com/tags/%E6%9E%B6%E6%9E%84/</link>
     <description>Recent content in 架构 on Daniel&#39;s mind paradise</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 09 Nov 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hustdanielhu.com/tags/%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>谈谈单元测试</title>
-      <link>http://localhost:1313/post/%E8%B0%88%E8%B0%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
+      <link>https://hustdanielhu.com/post/%E8%B0%88%E8%B0%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
       <pubDate>Wed, 09 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E8%B0%88%E8%B0%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</guid>
+      <guid>https://hustdanielhu.com/post/%E8%B0%88%E8%B0%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</guid>
       <description>是什么？ 很多人写了几年代码，可能连一行单元测试都没有写过。单元测试是什么？是针对程序模块（软件设计的最小单位）来进行正确性检验的测试工作 就我</description>
     </item>
     

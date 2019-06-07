@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Daniel&#39;s mind paradise</title>
-    <link>http://localhost:1313/</link>
+    <link>https://hustdanielhu.com/</link>
     <description>Recent content on Daniel&#39;s mind paradise</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 09 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://hustdanielhu.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Danielhu</title>
-      <link>http://localhost:1313/about/</link>
+      <link>https://hustdanielhu.com/about/</link>
       <pubDate>Sun, 18 Feb 2018 22:05:02 +0000</pubDate>
       
-      <guid>http://localhost:1313/about/</guid>
+      <guid>https://hustdanielhu.com/about/</guid>
       
         <description>&lt;p&gt;Hi，I &amp;rsquo;m Daniel, A Game developer &amp;amp; graphics researcher now working in Tencent.&lt;/p&gt;
 
@@ -36,10 +36,10 @@ A compiler-front-end parser generator&lt;/li&gt;
     
     <item>
       <title>I&#39;ve paid my dues, time after time.</title>
-      <link>http://localhost:1313/post/i-ve-paid-my-dues-time-after-time/</link>
+      <link>https://hustdanielhu.com/post/i-ve-paid-my-dues-time-after-time/</link>
       <pubDate>Tue, 09 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/i-ve-paid-my-dues-time-after-time/</guid>
+      <guid>https://hustdanielhu.com/post/i-ve-paid-my-dues-time-after-time/</guid>
       
         <description>&lt;p&gt;在如此长远的一辈子的尺度上看，我是如此幸运。&lt;/p&gt;
 
@@ -56,10 +56,10 @@ A compiler-front-end parser generator&lt;/li&gt;
     
     <item>
       <title>现代C&#43;&#43;惯用法</title>
-      <link>http://localhost:1313/post/%E7%8E%B0%E4%BB%A3c-%E6%83%AF%E7%94%A8%E6%B3%95/</link>
+      <link>https://hustdanielhu.com/post/%E7%8E%B0%E4%BB%A3c-%E6%83%AF%E7%94%A8%E6%B3%95/</link>
       <pubDate>Wed, 06 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E7%8E%B0%E4%BB%A3c-%E6%83%AF%E7%94%A8%E6%B3%95/</guid>
+      <guid>https://hustdanielhu.com/post/%E7%8E%B0%E4%BB%A3c-%E6%83%AF%E7%94%A8%E6%B3%95/</guid>
       
         <description>
 
@@ -654,10 +654,10 @@ void write_to_file (const std::string &amp;amp; message) {
     
     <item>
       <title>道长的2018</title>
-      <link>http://localhost:1313/post/%E9%81%93%E9%95%BF%E7%9A%842018/</link>
+      <link>https://hustdanielhu.com/post/%E9%81%93%E9%95%BF%E7%9A%842018/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E9%81%93%E9%95%BF%E7%9A%842018/</guid>
+      <guid>https://hustdanielhu.com/post/%E9%81%93%E9%95%BF%E7%9A%842018/</guid>
       
         <description>
 
@@ -740,10 +740,10 @@ void write_to_file (const std::string &amp;amp; message) {
     
     <item>
       <title>一次内存越界访问bug追踪记录</title>
-      <link>http://localhost:1313/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/</link>
+      <link>https://hustdanielhu.com/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Tue, 30 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/</guid>
+      <guid>https://hustdanielhu.com/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/</guid>
       
         <description>&lt;p&gt;最近写毕业设计，想把结果简单的用OpenGL表现一下，结果程序总是莫名其妙的随机crash，在debug模式下，这一次crash在glfw的函数内部，下一次就crash在自己的代码里，再下一次又能好好运行（三次载入的是同一个版本的程序）。&lt;/p&gt;
 
@@ -830,10 +830,10 @@ void Mesh::generateSharpNormals() {
     
     <item>
       <title>KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读</title>
-      <link>http://localhost:1313/post/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/</link>
+      <link>https://hustdanielhu.com/post/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/</link>
       <pubDate>Sat, 28 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/</guid>
+      <guid>https://hustdanielhu.com/post/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/</guid>
       
         <description>
 
@@ -999,19 +999,19 @@ $$
 
 &lt;p&gt;下面两张图图给出了骑行长度和骑行时间的大致分布状况，显然，大部分骑行距离集中在相对较近的路程附近（70%的骑行短于2km），骑行时间也集中于短时。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/kdd17mobike/1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hustdanielhu.com/images/kdd17mobike/1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;下图给出了开始骑行的时间在一天之间的分布，可以看到在早/晚上下班的“冲刺阶段”是最多人选择使用共享单车的时候&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/kdd17mobike/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hustdanielhu.com/images/kdd17mobike/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;下图反应的则是路段的轨迹数量的分布，这是一个半对数坐标(semi-log)图，其中纵坐标为轨迹数量的对数。大部分路段的骑行轨迹数量小于100，而小部分的路段超过2000，这就证明合理的自行车道规划非常重要&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/kdd17mobike/3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hustdanielhu.com/images/kdd17mobike/3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;最后是骑行轨迹的空间热点分布图，结合地图来看，大多数骑行从住宅区开始，但在早上8-10点，更多的骑行起点在地铁站&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/kdd17mobike/4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hustdanielhu.com/images/kdd17mobike/4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;根据实验进行效益评估&#34;&gt;根据实验进行效益评估&lt;/h4&gt;
 
@@ -1023,7 +1023,7 @@ k
 $$
 下图给出了这个实验中对不同的k使用hierarchical spatial clustering 和 top-k 对总体效益的比较。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/kdd17mobike/5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hustdanielhu.com/images/kdd17mobike/5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;图中显示在
 $$
@@ -1037,7 +1037,7 @@ B
 $$
 下图也给出了不同预算在top-k和hierarchical spatial clustering两种策略下对效益的影响。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/kdd17mobike/6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hustdanielhu.com/images/kdd17mobike/6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;观察发现大的预算下后者更优，当预算较小时反而前者更优，这则是因为当预算较小时把非常有限的轨道铺设在自行车骑行最为频繁的路段可能是更好的策略&lt;/p&gt;
 
@@ -1047,7 +1047,7 @@ $$
 $$
 以下图为例，这个值越大，选择的路段集合就越纵深，越小集合就越分散越短小。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/kdd17mobike/7.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hustdanielhu.com/images/kdd17mobike/7.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
 
@@ -1060,10 +1060,10 @@ $$
     
     <item>
       <title>实时渲染中的软阴影技术</title>
-      <link>http://localhost:1313/post/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E4%B8%AD%E7%9A%84%E8%BD%AF%E9%98%B4%E5%BD%B1%E6%8A%80%E6%9C%AF/</link>
+      <link>https://hustdanielhu.com/post/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E4%B8%AD%E7%9A%84%E8%BD%AF%E9%98%B4%E5%BD%B1%E6%8A%80%E6%9C%AF/</link>
       <pubDate>Thu, 11 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E4%B8%AD%E7%9A%84%E8%BD%AF%E9%98%B4%E5%BD%B1%E6%8A%80%E6%9C%AF/</guid>
+      <guid>https://hustdanielhu.com/post/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E4%B8%AD%E7%9A%84%E8%BD%AF%E9%98%B4%E5%BD%B1%E6%8A%80%E6%9C%AF/</guid>
       
         <description>
 
@@ -1072,7 +1072,7 @@ $$
 &lt;h3 id=&#34;关于阴影走样&#34;&gt;关于阴影走样&lt;/h3&gt;
 
 &lt;p&gt;Shadow Mapping 有一个严重的问题就是阴影走样（Aliasing），这一点在我的渲染器CanvasToy上也非常明显
-&lt;img src=&#34;http://localhost:1313/images/yyfzy/1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hustdanielhu.com/images/yyfzy/1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;图中阴影边缘明显的锯齿就是阴影走样&lt;/p&gt;
 
@@ -1165,26 +1165,26 @@ c_k = \pi(2k-1)
 $$&lt;/p&gt;
 
 &lt;p&gt;当M取不同的值的时候，\(f(d, z)\)的曲线如下：
-&lt;img src=&#34;http://localhost:1313/images/yyfzy/3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hustdanielhu.com/images/yyfzy/3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;考虑到效率和实现效果，M应该取大于4的值，&lt;/p&gt;
 
 &lt;p&gt;当d=z的时候，\(f(d, z)\)取值0.5，这显然是不对的，因为当d=z，我们应该得到一个完全无遮挡的表面，所以应对原始的函数取一点偏移, 使d=z时\(f(d, z)\)取值1，得到的函数图像如下：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/yyfzy/4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hustdanielhu.com/images/yyfzy/4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;我们也可以对\(f(d, z)\)做一下变形，通过简单的\(f(d, z) \rightarrow 2f(d, z)\)，并裁剪超过1的部分，
 这样也能得到可以接受的图像&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/yyfzy/5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hustdanielhu.com/images/yyfzy/5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;csm存在的问题&#34;&gt;CSM存在的问题&lt;/h4&gt;
 
 &lt;p&gt;观察CSM的图像，在d=z的两边曲线都出现了抖动，反应在渲染结果上就是物体在和光源连线上的忽明忽暗
-&lt;img src=&#34;http://localhost:1313/images/yyfzy/6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hustdanielhu.com/images/yyfzy/6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;抖动和漏光对CSM来说就像双刃剑的两面，要么抖动多一点，要么漏光多一点，
-&lt;img src=&#34;http://localhost:1313/images/yyfzy/7.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hustdanielhu.com/images/yyfzy/7.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;效率和存储-1&#34;&gt;效率和存储&lt;/h4&gt;
 
@@ -1245,7 +1245,7 @@ $$&lt;/p&gt;
 
 &lt;p&gt;显然这个表达式是单边有效的，对于d&amp;lt;z的情况，$$ e^{-cd}e^z $$ 将会爆炸式增长，我们暂时先假定\(d&amp;lt;z\)时\(f(d, z)=1\)
 得到ESM的图像表示：
-&lt;img src=&#34;http://localhost:1313/images/yyfzy/esmcurve.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hustdanielhu.com/images/yyfzy/esmcurve.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;有了这个表达式，我们就有可能实现pre-filtering，从而提高性能。
 下面的式子证明了经过ESM处理之后filtering和pre-filtering是等价的&lt;/p&gt;
@@ -1267,11 +1267,11 @@ C的上限受到浮点数精度的影响。32位float对应的c的经验最佳�
 
 &lt;p&gt;下面这个图很好的反应了由shadow map精度带来的问题&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/yyfzy/8.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hustdanielhu.com/images/yyfzy/8.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;观察图中的边缘，发现有过亮的现象产生，我们用一张图可以清晰明了的解释&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/yyfzy/esm.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hustdanielhu.com/images/yyfzy/esm.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;对于阴影纹理，存储和采样点都在纹素中心，当我们计算d(x)-z(p)时就会出现小于0的情况。于是我们得到一个全白的结果，而正确结果应该是有50%的阴影&lt;/p&gt;
 
@@ -1313,7 +1313,7 @@ PCSS解决了前述算法软阴影的一致性问题。原本的滤波算法不�
 
 &lt;p&gt;PCSS 通过一个和光源位置相关的相似三角形来控制软阴影的&lt;strong&gt;采样搜索范围&lt;/strong&gt;。下面这个图展示了PCSS如何根据光源，遮挡物，和阴影投射目标三者确定搜索范围&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/yyfzy/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hustdanielhu.com/images/yyfzy/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;PCSS首先假定光源是一个区域光(area light)，这看起来好像很不可思议，但其实这才是我们最常见的光源。
 传统的点光源，聚光灯和平行光，其实都不过是某种模拟，比如点光源模拟小灯泡，聚光灯模拟手电筒，平行光模拟太阳，其实严格来说这些都是区域光，软阴影形成的很大一个原因就是区域光的存在。
@@ -1351,16 +1351,16 @@ PCSS解决了前述算法软阴影的一致性问题。原本的滤波算法不�
     
     <item>
       <title>WebGL渲染引擎技术选型总结</title>
-      <link>http://localhost:1313/post/webgl%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E6%80%BB%E7%BB%93/</link>
+      <link>https://hustdanielhu.com/post/webgl%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E6%80%BB%E7%BB%93/</link>
       <pubDate>Sat, 29 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/webgl%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E6%80%BB%E7%BB%93/</guid>
+      <guid>https://hustdanielhu.com/post/webgl%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E6%80%BB%E7%BB%93/</guid>
       
         <description>&lt;p&gt;经过一年断断续续的踩坑，我的webgl渲染器已经到了攻坚阶段（很惭愧，离成熟还有不少距离）目前的主要工作集中在&lt;strong&gt;延迟渲染，阴影走样和PBS材质&lt;/strong&gt;的构建阶段，先放几张截图&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/3.png&#34; alt=&#34;&#34; /&gt;
-&lt;img src=&#34;http://localhost:1313/images/1.png&#34; alt=&#34;&#34; /&gt;
-&lt;img src=&#34;http://localhost:1313/images/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hustdanielhu.com/images/3.png&#34; alt=&#34;&#34; /&gt;
+&lt;img src=&#34;https://hustdanielhu.com/images/1.png&#34; alt=&#34;&#34; /&gt;
+&lt;img src=&#34;https://hustdanielhu.com/images/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;网站在这里：&lt;a href=&#34;http://canvastoy.com/&#34;&gt;canvas-toy&lt;/a&gt;&lt;/p&gt;
 
@@ -1448,10 +1448,10 @@ namespace bar {
     
     <item>
       <title>谈谈单元测试</title>
-      <link>http://localhost:1313/post/%E8%B0%88%E8%B0%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
+      <link>https://hustdanielhu.com/post/%E8%B0%88%E8%B0%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
       <pubDate>Wed, 09 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E8%B0%88%E8%B0%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</guid>
+      <guid>https://hustdanielhu.com/post/%E8%B0%88%E8%B0%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</guid>
       
         <description>
 
@@ -1558,10 +1558,10 @@ namespace bar {
     
     <item>
       <title>模板元编程：C&#43;&#43;的黑魔法</title>
-      <link>http://localhost:1313/post/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8Bc&#43;&#43;%E7%9A%84%E9%BB%91%E9%AD%94%E6%B3%95/</link>
+      <link>https://hustdanielhu.com/post/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8Bc&#43;&#43;%E7%9A%84%E9%BB%91%E9%AD%94%E6%B3%95/</link>
       <pubDate>Sun, 06 Mar 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8Bc&#43;&#43;%E7%9A%84%E9%BB%91%E9%AD%94%E6%B3%95/</guid>
+      <guid>https://hustdanielhu.com/post/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8Bc&#43;&#43;%E7%9A%84%E9%BB%91%E9%AD%94%E6%B3%95/</guid>
       
         <description>
 
@@ -1697,10 +1697,10 @@ int main() {
     
     <item>
       <title>新的开始</title>
-      <link>http://localhost:1313/post/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</link>
+      <link>https://hustdanielhu.com/post/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</link>
       <pubDate>Sun, 27 Dec 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</guid>
+      <guid>https://hustdanielhu.com/post/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</guid>
       
         <description>&lt;p&gt;hexo的博客也搞了不久了，可惜换电脑的时候不小心丢失了数据，想了一些办法只恢复了几篇文章，另外还是觉得hexo的博客不够灵活。可定制化也不高，除非前端比较熟练的同学才能较好地自定义自己的主题。
 之前有在写的一些算法心得，node.js的学习会继续写下去，不过接下来还是打算主要写一些图形学的东西，除了这个以外C/C++方面的一些东西有心情就会记载的。感觉还是喜欢写游戏一些，不过其他的技术也很感兴趣，技能树开的略宽了一点&amp;hellip;&lt;/p&gt;
@@ -1712,10 +1712,10 @@ int main() {
     
     <item>
       <title></title>
-      <link>http://localhost:1313/post/%E7%9D%80%E8%89%B2%E5%99%A8%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E4%B8%80%E7%AE%80%E4%BB%8B/</link>
+      <link>https://hustdanielhu.com/post/%E7%9D%80%E8%89%B2%E5%99%A8%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E4%B8%80%E7%AE%80%E4%BB%8B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E7%9D%80%E8%89%B2%E5%99%A8%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E4%B8%80%E7%AE%80%E4%BB%8B/</guid>
+      <guid>https://hustdanielhu.com/post/%E7%9D%80%E8%89%B2%E5%99%A8%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E4%B8%80%E7%AE%80%E4%BB%8B/</guid>
       
         <description>
 
@@ -1833,10 +1833,10 @@ GLSL的着色器代码分成2个部分：Vertex Shader（顶点着色器）和Fr
     
     <item>
       <title>算法记录：分割回文串</title>
-      <link>http://localhost:1313/post/%E7%AE%97%E6%B3%95%E8%AE%B0%E5%BD%95%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/</link>
+      <link>https://hustdanielhu.com/post/%E7%AE%97%E6%B3%95%E8%AE%B0%E5%BD%95%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E7%AE%97%E6%B3%95%E8%AE%B0%E5%BD%95%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/</guid>
+      <guid>https://hustdanielhu.com/post/%E7%AE%97%E6%B3%95%E8%AE%B0%E5%BD%95%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/</guid>
       
         <description>
 
