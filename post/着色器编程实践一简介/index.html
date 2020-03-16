@@ -23,10 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Daniel" />
-  <meta name="description" content="title: WebGL 着色器编程实践（一）简介 date: 2015-12-28
-tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技术，有别于过往需加装浏览器插件，通过WebGL的技术，只需要编写网页代码即可实现3D图像的展示。
- 是HTML5特性之一 是硬件加速的 基于 OpenGL ES 2.0 的 javascript binding  支持情况： 桌面浏览器  Mozilla Firefox─从4.0开始支持默认激活。 Google Chrome─从9.0开始支持默认激活。 Internet Explorer─从11开始支持[2]。较旧的版本可以安装第三方插件来支持，如IEWebGL.[3] Safari─在Mac OS X Snow Leopard上的Safari 5.1、OS X Mountain Lion, Mac OS X Lion上的Safari6.0或较新版本开始支持WebGL，默认情况下禁用。 Opera（需自行激活）  移动浏览器：  Firefox OS Firefox for mobile Google Chrome Opera Mobile Tizen Ubuntu Touch WebOS iOS  着色器 着色器是跑在GPU上的小程序，了解着色器（shader）之前，先要了解现代显卡的渲染流程
-渲染流程：  顶点转换  model view projection  几何体组装 光栅化 片元处理  深度测试，混合操作，雾，剪切测试和模板测试  输出到帧缓冲区  固定功能管线： 可配置，只能给固定的几个接口传递参数" />
+  <meta name="description" content="title: WebGL 着色器编程实践（一）简介 date: 2015-12-28 tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技术，有别于过往需加装浏览器" />
 
 
 
@@ -34,10 +31,12 @@ tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技�
 
 
 
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.67.1" />
 
 
 <link rel="canonical" href="https://hustdanielhu.com/post/%E7%9D%80%E8%89%B2%E5%99%A8%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E4%B8%80%E7%AE%80%E4%BB%8B/" />
+
+
 
 
 
@@ -53,40 +52,27 @@ tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技�
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.ec807d8b802a40889537c26e014f733206312ea440d42e1f0dabed80918de1ac.css" integrity="sha256-7IB9i4AqQIiVN8JuAU9zMgYxLqRA1C4fDavtgJGN4aw=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa3d941d1d0e0ddc985804227feabffea55c89883eb0af34e0532a7ae9135151.css" integrity="sha256-&#43;j2UHR0ODdyYWAQif&#43;q//qVciYg&#43;sK804FMqeukTUVE=" media="screen" crossorigin="anonymous">
 
 
 
 
 
 <meta property="og:title" content="" />
-<meta property="og:description" content="title: WebGL 着色器编程实践（一）简介 date: 2015-12-28
-tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技术，有别于过往需加装浏览器插件，通过WebGL的技术，只需要编写网页代码即可实现3D图像的展示。
- 是HTML5特性之一 是硬件加速的 基于 OpenGL ES 2.0 的 javascript binding  支持情况： 桌面浏览器  Mozilla Firefox─从4.0开始支持默认激活。 Google Chrome─从9.0开始支持默认激活。 Internet Explorer─从11开始支持[2]。较旧的版本可以安装第三方插件来支持，如IEWebGL.[3] Safari─在Mac OS X Snow Leopard上的Safari 5.1、OS X Mountain Lion, Mac OS X Lion上的Safari6.0或较新版本开始支持WebGL，默认情况下禁用。 Opera（需自行激活）  移动浏览器：  Firefox OS Firefox for mobile Google Chrome Opera Mobile Tizen Ubuntu Touch WebOS iOS  着色器 着色器是跑在GPU上的小程序，了解着色器（shader）之前，先要了解现代显卡的渲染流程
-渲染流程：  顶点转换  model view projection  几何体组装 光栅化 片元处理  深度测试，混合操作，雾，剪切测试和模板测试  输出到帧缓冲区  固定功能管线： 可配置，只能给固定的几个接口传递参数" />
+<meta property="og:description" content="title: WebGL 着色器编程实践（一）简介 date: 2015-12-28 tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技术，有别于过往需加装浏览器" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hustdanielhu.com/post/%E7%9D%80%E8%89%B2%E5%99%A8%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E4%B8%80%E7%AE%80%E4%BB%8B/" />
 
-
 <meta itemprop="name" content="">
-<meta itemprop="description" content="title: WebGL 着色器编程实践（一）简介 date: 2015-12-28
-tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技术，有别于过往需加装浏览器插件，通过WebGL的技术，只需要编写网页代码即可实现3D图像的展示。
- 是HTML5特性之一 是硬件加速的 基于 OpenGL ES 2.0 的 javascript binding  支持情况： 桌面浏览器  Mozilla Firefox─从4.0开始支持默认激活。 Google Chrome─从9.0开始支持默认激活。 Internet Explorer─从11开始支持[2]。较旧的版本可以安装第三方插件来支持，如IEWebGL.[3] Safari─在Mac OS X Snow Leopard上的Safari 5.1、OS X Mountain Lion, Mac OS X Lion上的Safari6.0或较新版本开始支持WebGL，默认情况下禁用。 Opera（需自行激活）  移动浏览器：  Firefox OS Firefox for mobile Google Chrome Opera Mobile Tizen Ubuntu Touch WebOS iOS  着色器 着色器是跑在GPU上的小程序，了解着色器（shader）之前，先要了解现代显卡的渲染流程
-渲染流程：  顶点转换  model view projection  几何体组装 光栅化 片元处理  深度测试，混合操作，雾，剪切测试和模板测试  输出到帧缓冲区  固定功能管线： 可配置，只能给固定的几个接口传递参数">
+<meta itemprop="description" content="title: WebGL 着色器编程实践（一）简介 date: 2015-12-28 tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技术，有别于过往需加装浏览器">
+
+<meta itemprop="wordCount" content="1295">
 
 
 
-<meta itemprop="wordCount" content="113">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="title: WebGL 着色器编程实践（一）简介 date: 2015-12-28
-tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技术，有别于过往需加装浏览器插件，通过WebGL的技术，只需要编写网页代码即可实现3D图像的展示。
- 是HTML5特性之一 是硬件加速的 基于 OpenGL ES 2.0 的 javascript binding  支持情况： 桌面浏览器  Mozilla Firefox─从4.0开始支持默认激活。 Google Chrome─从9.0开始支持默认激活。 Internet Explorer─从11开始支持[2]。较旧的版本可以安装第三方插件来支持，如IEWebGL.[3] Safari─在Mac OS X Snow Leopard上的Safari 5.1、OS X Mountain Lion, Mac OS X Lion上的Safari6.0或较新版本开始支持WebGL，默认情况下禁用。 Opera（需自行激活）  移动浏览器：  Firefox OS Firefox for mobile Google Chrome Opera Mobile Tizen Ubuntu Touch WebOS iOS  着色器 着色器是跑在GPU上的小程序，了解着色器（shader）之前，先要了解现代显卡的渲染流程
-渲染流程：  顶点转换  model view projection  几何体组装 光栅化 片元处理  深度测试，混合操作，雾，剪切测试和模板测试  输出到帧缓冲区  固定功能管线： 可配置，只能给固定的几个接口传递参数"/>
+<meta name="twitter:description" content="title: WebGL 着色器编程实践（一）简介 date: 2015-12-28 tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技术，有别于过往需加装浏览器"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -151,6 +137,8 @@ tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技�
         
       </li>
     
+
+    
   </ul>
 </nav>
 
@@ -212,6 +200,8 @@ tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技�
     </div>
     </div>
 </div>
+
+  
 
   
 
@@ -285,6 +275,10 @@ tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技�
 
       </li>
     
+
+    
+    
+
     
   </ul>
 </nav>
@@ -321,71 +315,40 @@ tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技�
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#tags">tags:</a>
-<ul>
-<li><a href="#webgl简介">WebGL简介</a>
-<ul>
-<li><a href="#支持情况">支持情况：</a>
-<ul>
-<li>
-<ul>
-<li><a href="#桌面浏览器">桌面浏览器</a></li>
-<li><a href="#移动浏览器">移动浏览器：</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><a href="#着色器">着色器</a>
-<ul>
-<li><a href="#渲染流程">渲染流程：</a>
-<ul>
-<li><a href="#固定功能管线">固定功能管线：</a></li>
-<li><a href="#可编程渲染管线">可编程渲染管线：</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><a href="#webgl使用的着色器语言-glsl">WebGL使用的着色器语言：GLSL</a>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#其他着色器语言">其他着色器语言</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><a href="#在webgl上的实践">在WebGL上的实践</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#tags">title: WebGL 着色器编程实践（一）简介
+date: 2015-12-28
+tags:</a>
+      <ul>
+        <li><a href="#webgl简介">WebGL简介</a></li>
+        <li><a href="#着色器">着色器</a></li>
+      </ul>
+    </li>
+    <li><a href="#webgl使用的着色器语言glsl">WebGL使用的着色器语言：GLSL</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#在webgl上的实践">在WebGL上的实践</a></li>
+  </ul>
 </nav>
   </div>
 </div>
 
     
     <div class="post-content">
-      
-
-<p>title: WebGL 着色器编程实践（一）简介
-date: 2015-12-28</p>
-
-<h2 id="tags">tags:</h2>
-
+      <h2 id="tags">title: WebGL 着色器编程实践（一）简介
+date: 2015-12-28
+tags:</h2>
 <h3 id="webgl简介">WebGL简介</h3>
-
 <p>WebGL是一项利用JavaScript API呈现3D电脑图形的技术，有别于过往需加装浏览器插件，通过WebGL的技术，只需要编写网页代码即可实现3D图像的展示。</p>
-
 <ul>
 <li>是HTML5特性之一</li>
 <li>是硬件加速的</li>
 <li>基于 OpenGL ES 2.0 的 javascript binding</li>
 </ul>
-
 <h4 id="支持情况">支持情况：</h4>
-
 <h6 id="桌面浏览器">桌面浏览器</h6>
-
 <ul>
 <li>Mozilla Firefox─从4.0开始支持默认激活。</li>
 <li>Google Chrome─从9.0开始支持默认激活。</li>
@@ -393,9 +356,7 @@ date: 2015-12-28</p>
 <li>Safari─在Mac OS X Snow Leopard上的Safari 5.1、OS X Mountain Lion, Mac OS X Lion上的Safari6.0或较新版本开始支持WebGL，默认情况下禁用。
 Opera（需自行激活）</li>
 </ul>
-
 <h6 id="移动浏览器">移动浏览器：</h6>
-
 <ul>
 <li>Firefox OS</li>
 <li>Firefox for mobile</li>
@@ -406,75 +367,50 @@ Opera（需自行激活）</li>
 <li>WebOS</li>
 <li>iOS</li>
 </ul>
-
-<hr />
-
+<hr>
 <h3 id="着色器">着色器</h3>
-
 <p>着色器是跑在GPU上的小程序，了解着色器（shader）之前，先要了解现代显卡的渲染流程</p>
-
 <h4 id="渲染流程">渲染流程：</h4>
-
 <ul>
 <li>顶点转换
-
 <ul>
 <li>model</li>
 <li>view</li>
 <li>projection</li>
-</ul></li>
+</ul>
+</li>
 <li>几何体组装</li>
 <li>光栅化</li>
 <li>片元处理
-
 <ul>
 <li>深度测试，混合操作，雾，剪切测试和模板测试</li>
-</ul></li>
+</ul>
+</li>
 <li>输出到帧缓冲区</li>
 </ul>
-
 <h5 id="固定功能管线">固定功能管线：</h5>
-
 <p>可配置，只能给固定的几个接口传递参数</p>
-
 <h5 id="可编程渲染管线">可编程渲染管线：</h5>
-
 <p>可编程</p>
-
 <p>可编程渲染管线是硬件编程，我们编写的shader程序实际上是一部分的GPU执行逻辑，
 具体来说，是控制了顶点处理和片元处理的逻辑，因此会非常灵活，一般来说我们用shader来自行实现光照和材质，可以用上各种光照和反射模型
 ，GPU是多核的，注重于并行计算，现代的GPU的并行计算能力已经超越了GPU，因此也出现了基于GPU的高性能计算接口，比如NVIDIA 的 CUDA</p>
-
-<hr />
-
-<h2 id="webgl使用的着色器语言-glsl">WebGL使用的着色器语言：GLSL</h2>
-
+<hr>
+<h2 id="webgl使用的着色器语言glsl">WebGL使用的着色器语言：GLSL</h2>
 <p>GLSL （OpenGL Shading Language）
 GLSL的着色器代码分成2个部分：Vertex Shader（顶点着色器）和Fragment（片断着色器），有时还会有Geometry Shader（几何着色器），这两种着色器一种控制顶点处理，一种控制片元处理</p>
-
 <p>GLSL其使用C语言语法作为基础高阶着色语言。但只是语法很相似，由于是跑在GPU上的，GLSL 提供了一些C语言不存在的一些特性，比如内建的向量和矩阵运算。也增加了一些限制，具体大家可以自己去了解</p>
-
 <h5 id="其他着色器语言">其他着色器语言</h5>
-
 <p>webGL只是基于OpenGL ES 的一个web端的接口，而OpenGL只是一个开放的硬件抽象层，与特定的硬件平台无关，除了OpenGL,还有一些基于特定平台的图形库，比较有名的是<strong>DirectX (Windows), metal (iOS, OSX),skia (android)</strong>,使用这些图形库写出来的代码可读性都不好，大量使用了硬件相关的api，属于为了性能舍弃可移植性的选择, 学术界一般只关注OpenGL</p>
-
 <p><strong>HLSL</strong> 是基于DirectX上的只能在 windows 上跑的shader语言，在windows上有出色表现</p>
-
 <p><strong>Cg</strong> 是由NVIDIA公司开发的高阶着色器语言，Cg程序是运行在OpenGL和 DirectX标准顶点和像素着色的基础上的，像引擎采用的也是Cg语言</p>
-
-<hr />
-
+<hr>
 <h2 id="在webgl上的实践">在WebGL上的实践</h2>
-
 <p>webGL 上基本抛弃了固定功能管线, 除了javascript所控制的逻辑以外，我们可以用GLSL来控制渲染流程，并编程实现我们能想到的任意效果</p>
-
 <p>我们来看看著名 shader 社区 shadertoy上两个令人惊叹的效果</p>
-
 <p><a href="https://www.shadertoy.com/view/XsX3RB">example1</a></p>
-
 <p><a href="https://www.shadertoy.com/view/ldS3Wm">example2</a></p>
-
-<hr />
+<hr>
 
     </div>
 
@@ -487,7 +423,10 @@ GLSL的着色器代码分成2个部分：Vertex Shader（顶点着色器）和Fr
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">0001-01-01</span>
+    <span class="item-content">
+      0001-01-01
+      
+    </span>
   </p>
   
   <p class="copyright-item">
@@ -599,6 +538,8 @@ GLSL的着色器代码分成2个部分：Vertex Shader（顶点着色器）和Fr
 
     
 
+  
+
         </div>
       </div>
     </main>
@@ -666,7 +607,7 @@ GLSL的着色器代码分成2个部分：Vertex Shader（顶点着色器）和Fr
     &copy;
     
       2015 -
-    2019
+    2020
     <span class="heart">
       
       <i class="iconfont">
@@ -712,6 +653,8 @@ GLSL的着色器代码分成2个部分：Vertex Shader（顶点着色器）和Fr
 
 <script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
+
+
   <script type="text/javascript">
     window.MathJax = {
       showProcessingMessages: false,
@@ -724,11 +667,17 @@ GLSL的着色器代码分成2个部分：Vertex Shader（顶点着色器）和Fr
 
 
 
+
+
+
+
   
     <script type="text/javascript" src="/js/load-photoswipe.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
   
+
+
 
 
 

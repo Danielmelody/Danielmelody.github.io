@@ -9,45 +9,36 @@
   </url>
   
   <url>
-    <loc>https://hustdanielhu.com/</loc>
-    <lastmod>2019-06-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>https://hustdanielhu.com/post/</loc>
+    <lastmod>2020-03-16T10:28:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hustdanielhu.com/post/siggraph-2019-terrain-amplificatin-with-implicit-3d-features-%E8%A7%A3%E8%AF%BB/</loc>
+    <lastmod>2020-03-16T10:28:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://hustdanielhu.com/tags/life/</loc>
-    <lastmod>2019-06-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hustdanielhu.com/post/</loc>
-    <lastmod>2019-06-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hustdanielhu.com/tags/</loc>
-    <lastmod>2019-06-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hustdanielhu.com/post/%E6%BB%91%E9%9B%AA%E6%94%BB%E7%95%A5/</loc>
     <lastmod>2019-06-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hustdanielhu.com/tags/feelings-and-thoughts/</loc>
-    <lastmod>2019-04-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>https://hustdanielhu.com/tags/</loc>
+    <lastmod>2019-06-30T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hustdanielhu.com/post/i-ve-paid-my-dues-time-after-time/</loc>
-    <lastmod>2019-04-09T00:00:00+00:00</lastmod>
+    <loc>https://hustdanielhu.com/post/%E6%BB%91%E9%9B%AA%E6%94%BB%E7%95%A5/</loc>
+    <lastmod>2019-06-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -60,9 +51,17 @@
   </url>
   
   <url>
+    <loc>https://hustdanielhu.com/tags/feelings-and-thoughts/</loc>
+    <lastmod>2019-01-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://hustdanielhu.com/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2019-01-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -73,9 +72,17 @@
   </url>
   
   <url>
+    <loc>https://hustdanielhu.com/</loc>
+    <lastmod>2017-08-28T21:41:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://hustdanielhu.com/tags/c&#43;&#43;/</loc>
     <lastmod>2018-01-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -88,7 +95,8 @@
   <url>
     <loc>https://hustdanielhu.com/tags/data-mining/</loc>
     <lastmod>2017-10-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -108,7 +116,8 @@
   <url>
     <loc>https://hustdanielhu.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/</loc>
     <lastmod>2017-05-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -121,7 +130,8 @@
   <url>
     <loc>https://hustdanielhu.com/tags/%E6%9E%B6%E6%9E%84/</loc>
     <lastmod>2016-11-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -147,12 +157,14 @@
   
   <url>
     <loc>https://hustdanielhu.com/post/%E7%9D%80%E8%89%B2%E5%99%A8%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E4%B8%80%E7%AE%80%E4%BB%8B/</loc>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://hustdanielhu.com/categories/</loc>
-    <priority>0</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>

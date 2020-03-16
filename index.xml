@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Daniel&#39;s mind paradise</title>
@@ -6,7 +6,7 @@
     <description>Recent content on Daniel&#39;s mind paradise</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 30 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 18 Feb 2018 22:05:02 +0000</lastBuildDate>
     
         <atom:link href="https://hustdanielhu.com/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,9 +18,20 @@
       
       <guid>https://hustdanielhu.com/about/</guid>
       
-        <description>Hi，I &amp;rsquo;m Daniel, A Game developer &amp;amp; graphics researcher now working in Tencent.
+        <description>Hi，I &amp;lsquo;m Daniel, A Game developer &amp;amp; graphics researcher now working in Tencent.
 If you like, have a look at some of my interesting projects on github:
  CanvasToy A WebGL rendering library witch supports physical-based rendering, also formed a tile-based deferred rendering pipeline. Lexacc A compiler-front-end parser generator  yimingdz@gmail.com, any technical or academic discussion is welcome.</description>
+      
+    </item>
+    
+    <item>
+      <title>SIGGRAPH 2019: Terrain Amplificatin With Implicit 3D Features 解读</title>
+      <link>https://hustdanielhu.com/post/siggraph-2019-terrain-amplificatin-with-implicit-3d-features-%E8%A7%A3%E8%AF%BB/</link>
+      <pubDate>Mon, 16 Mar 2020 10:28:59 +0800</pubDate>
+      
+      <guid>https://hustdanielhu.com/post/siggraph-2019-terrain-amplificatin-with-implicit-3d-features-%E8%A7%A3%E8%AF%BB/</guid>
+      
+        <description>The original paper: Paris, Axel, et al. &amp;ldquo;Terrain Amplification with Implicit 3D Features.&amp;rdquo; ACM Transactions on Graphics (TOG) 38.5 (2019): 1-15. 近年来，SIGFRAPH 关注隐式建模这种传统领域的的文章越来越少，目前学界的重点主要在研究怎么把深</description>
       
     </item>
     
@@ -32,17 +43,6 @@ If you like, have a look at some of my interesting projects on github:
       <guid>https://hustdanielhu.com/post/%E6%BB%91%E9%9B%AA%E6%94%BB%E7%95%A5/</guid>
       
         <description>写给朋友们看的（大冰箱）新手滑雪攻略 滑雪也算是人生必体验清单之一了 按照原计划，我可能会在更晚一点接触滑雪，但是因为一些神奇的原因（主要是因为</description>
-      
-    </item>
-    
-    <item>
-      <title>I&#39;ve paid my dues, time after time.</title>
-      <link>https://hustdanielhu.com/post/i-ve-paid-my-dues-time-after-time/</link>
-      <pubDate>Tue, 09 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://hustdanielhu.com/post/i-ve-paid-my-dues-time-after-time/</guid>
-      
-        <description>在如此长远的一辈子的尺度上看，我是如此幸运。 不是所有 bug 都有机会暴露，不是所有人都能做单元测试 已经捡起来原来的爱好，已经重新认识人，重新处在一</description>
       
     </item>
     
@@ -152,10 +152,7 @@ If you like, have a look at some of my interesting projects on github:
       
       <guid>https://hustdanielhu.com/post/%E7%9D%80%E8%89%B2%E5%99%A8%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5%E4%B8%80%E7%AE%80%E4%BB%8B/</guid>
       
-        <description>title: WebGL 着色器编程实践（一）简介 date: 2015-12-28
-tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技术，有别于过往需加装浏览器插件，通过WebGL的技术，只需要编写网页代码即可实现3D图像的展示。
- 是HTML5特性之一 是硬件加速的 基于 OpenGL ES 2.0 的 javascript binding  支持情况： 桌面浏览器  Mozilla Firefox─从4.0开始支持默认激活。 Google Chrome─从9.0开始支持默认激活。 Internet Explorer─从11开始支持[2]。较旧的版本可以安装第三方插件来支持，如IEWebGL.[3] Safari─在Mac OS X Snow Leopard上的Safari 5.1、OS X Mountain Lion, Mac OS X Lion上的Safari6.0或较新版本开始支持WebGL，默认情况下禁用。 Opera（需自行激活）  移动浏览器：  Firefox OS Firefox for mobile Google Chrome Opera Mobile Tizen Ubuntu Touch WebOS iOS  着色器 着色器是跑在GPU上的小程序，了解着色器（shader）之前，先要了解现代显卡的渲染流程
-渲染流程：  顶点转换  model view projection  几何体组装 光栅化 片元处理  深度测试，混合操作，雾，剪切测试和模板测试  输出到帧缓冲区  固定功能管线： 可配置，只能给固定的几个接口传递参数</description>
+        <description>title: WebGL 着色器编程实践（一）简介 date: 2015-12-28 tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技术，有别于过往需加装浏览器</description>
       
     </item>
     
@@ -166,7 +163,7 @@ tags: WebGL简介 WebGL是一项利用JavaScript API呈现3D电脑图形的技�
       
       <guid>https://hustdanielhu.com/post/%E7%AE%97%E6%B3%95%E8%AE%B0%E5%BD%95%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/</guid>
       
-        <description>问题描述： 给定一个字符串s，将s分割成一些子串，使每个子串都是回文串。 返回s所有可能的回文串分割方案。 样例 给出 1 s = “aab” 返回 1 [ [&amp;#34;aa&amp;#34;,&amp;#34;b&amp;#34;], [&amp;#34;a&amp;#34;,&amp;#34;a&amp;#34;,&amp;#34;b&amp;#34;] ]</description>
+        <description>问题描述： 给定一个字符串s，将s分割成一些子串，使每个子串都是回文串。 返回s所有可能的回文串分割方案。 样例 给出 s = “aab” 返回 [ [&amp;quot;aa&amp;quot;,&amp;quot;b&amp;quot;], [&amp;quot;a&amp;quot;,&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;] ] 思路</description>
       
     </item>
     

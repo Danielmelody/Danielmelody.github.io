@@ -31,10 +31,12 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.67.1" />
 
 
 <link rel="canonical" href="https://hustdanielhu.com/post/%E8%B0%88%E8%B0%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" />
+
+
 
 
 
@@ -50,7 +52,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.ec807d8b802a40889537c26e014f733206312ea440d42e1f0dabed80918de1ac.css" integrity="sha256-7IB9i4AqQIiVN8JuAU9zMgYxLqRA1C4fDavtgJGN4aw=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa3d941d1d0e0ddc985804227feabffea55c89883eb0af34e0532a7ae9135151.css" integrity="sha256-&#43;j2UHR0ODdyYWAQif&#43;q//qVciYg&#43;sK804FMqeukTUVE=" media="screen" crossorigin="anonymous">
 
 
 
@@ -60,21 +62,17 @@
 <meta property="og:description" content="是什么？ 很多人写了几年代码，可能连一行单元测试都没有写过。单元测试是什么？是针对程序模块（软件设计的最小单位）来进行正确性检验的测试工作 就我" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hustdanielhu.com/post/%E8%B0%88%E8%B0%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" />
-<meta property="article:published_time" content="2016-11-09T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2016-11-09T00:00:00&#43;00:00"/>
-
+<meta property="article:published_time" content="2016-11-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2016-11-09T00:00:00+00:00" />
 <meta itemprop="name" content="谈谈单元测试">
 <meta itemprop="description" content="是什么？ 很多人写了几年代码，可能连一行单元测试都没有写过。单元测试是什么？是针对程序模块（软件设计的最小单位）来进行正确性检验的测试工作 就我">
-
-
 <meta itemprop="datePublished" content="2016-11-09T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2016-11-09T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="2128">
+<meta itemprop="wordCount" content="2132">
 
 
 
-<meta itemprop="keywords" content="架构," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="架构," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="谈谈单元测试"/>
 <meta name="twitter:description" content="是什么？ 很多人写了几年代码，可能连一行单元测试都没有写过。单元测试是什么？是针对程序模块（软件设计的最小单位）来进行正确性检验的测试工作 就我"/>
 
@@ -141,6 +139,8 @@
         
       </li>
     
+
+    
   </ul>
 </nav>
 
@@ -202,6 +202,8 @@
     </div>
     </div>
 </div>
+
+  
 
   
 
@@ -275,6 +277,10 @@
 
       </li>
     
+
+    
+    
+
     
   </ul>
 </nav>
@@ -311,88 +317,58 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#是什么">是什么？</a></li>
-<li><a href="#为什么">为什么？</a></li>
-<li><a href="#什么时候">什么时候？</a></li>
-<li><a href="#谁">谁？</a></li>
-<li><a href="#自动化">自动化？</a></li>
-<li><a href="#应该写多细">应该写多细？</a></li>
-<li><a href="#单元测试的弊端">单元测试的弊端</a></li>
-<li><a href="#一些技巧">一些技巧</a></li>
-<li><a href="#关于测试驱动开发">关于测试驱动开发</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#是什么">是什么？</a></li>
+        <li><a href="#为什么">为什么？</a></li>
+        <li><a href="#什么时候">什么时候？</a></li>
+        <li><a href="#谁">谁？</a></li>
+        <li><a href="#自动化">自动化？</a></li>
+        <li><a href="#应该写多细">应该写多细？</a></li>
+        <li><a href="#单元测试的弊端">单元测试的弊端</a></li>
+        <li><a href="#一些技巧">一些技巧</a></li>
+        <li><a href="#关于测试驱动开发">关于测试驱动开发</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
 
     
     <div class="post-content">
-      
-
-<h3 id="是什么">是什么？</h3>
-
+      <h3 id="是什么">是什么？</h3>
 <p>很多人写了几年代码，可能连一行单元测试都没有写过。单元测试是什么？是针对程序模块（软件设计的最小单位）来进行正确性检验的<strong>测试</strong>工作</p>
-
 <p>就我的理解，它是一种持续集成的手段。</p>
-
 <p>通常一个持续维护的项目，就算别的任何测试都没有，也几乎不会少了单元测试。尤其是库开发者，几乎会非常审慎的编写详尽的测试代码</p>
-
 <h3 id="为什么">为什么？</h3>
-
 <p>理解单元测试是一个有点hard的过程。基本上，如果你之前没写过单元测试，或者自己胡乱开始写单元测试，缺乏思考的话，那你可能一直认为unit test make no sense。</p>
-
 <p>单元测试有什么用？我认为最重要的主要有两点</p>
-
 <ul>
 <li>确保其他人修改代码后，原来的功能维持正确（这称为回归测试／regression testing）。</li>
 <li>强迫程序员设计合理的API</li>
 </ul>
-
 <h3 id="什么时候">什么时候？</h3>
-
 <p>关于什么时候写单元测试，这是个问题。应该在编写完功能的时候写吗？或者是编写功能代码之前？还是同步进行？</p>
-
 <h3 id="谁">谁？</h3>
-
 <p>有人会误解单元测试是测试工程师的任务，但实际上的原则是，谁改动的源代码，谁就负责增加/修改/减少被影响代码的单元测试</p>
-
 <h3 id="自动化">自动化？</h3>
-
 <p>好的测试应该同时包含自动化和手工的部分，自动化测试是一个广泛的话题，所涵盖的内容不仅仅限于单元测试。</p>
-
 <p>推荐使用脚本或者自动化工具来做自动化测试</p>
-
 <p>手动测试也是必要的，否则会进入一种非常盲目的开发状态</p>
-
 <h3 id="应该写多细">应该写多细？</h3>
-
 <p>TDD他爸Kent Beck：</p>
-
 <blockquote>
 <p><strong>老板为我的代码付报酬，而不是测试，所以，我对此的价值观是——测试越少越好，少到你对你的代码质量达到了某种自信</strong>（我觉得这种的自信标准应该要高于业内的标准，当然，这种自信也可能是种自大）。如果我的编码生涯中不会犯这种典型的错误（如：在构造函数中设了个错误的值），那我就不会测试它。<strong>我倾向于去对那些有意义的错误做测试，所以，我对一些比较复杂的条件逻辑会异常地小心</strong>。当在一个团队中，我会非常小心的测试那些会让团队容易出错的代码。</p>
 </blockquote>
-
 <p>我认为这是不同场景下的策略，当你在维护一个多人合作的项目时，提高覆盖率是非常有必要的，当然，这不代表有必要写冗余测试代码</p>
-
 <h3 id="单元测试的弊端">单元测试的弊端</h3>
-
 <p>好的单元测试代码通常是主体代码量的2-3倍，但是，代码量并不是单元测试的弊端。</p>
-
 <p>单元测试的真正问题在于，一些不够好的测试代码可能会带来隐患。并给程序员一种盲目的错觉，</p>
-
 <p>其次，单元测试并不是足够有效的保证，在google那样体量的公司，单元测试是远远不够的</p>
-
 <p>另外一个通常认为的弊端是，开发工程师通常不愿意编写测试代码，这导致一些开源项目的patch经常被打回，原因是增加的feature没有提供相应的测试代码。对于hacker来说可能非常反感单元测试</p>
-
 <h3 id="一些技巧">一些技巧</h3>
-
 <ol>
 <li><strong>不应该编写成功通过的单元测试</strong>-它们应该被写成不通过的。你可以在几分钟内让任何一组测试通过，但这只是在欺骗你自己。</li>
 <li><strong>测试类应该只测试一个功能</strong>-你应该用一个功能去测试一个方法。否则，你会违反了<a href="https://www.jeremymorgan.com/blog/programming/single-responsibility-principle/">单一职责原则</a>。</li>
@@ -408,17 +384,14 @@
 <li><strong>单元测试不是集成测试</strong>-如果你想测试结果，不要使用单元测试。</li>
 <li><strong>测试必须具有确定性</strong>-你需要一个确定的预测结果，所以，如果有时候测试通过了，但是不意味着完成测试了。</li>
 <li><strong>保持你的测试是幂等的</strong>-你应该能够运行你的测试多次而不改变它的输出结果，并且测试也不应该改变任何的数据或者添加任何东西。无论是运行一次还是一百万次，它的效果都应该是一样的。</li>
-<li><strong>测试类一次仅测试一个类，测试方法一次仅测试一个方法-</strong>组织方法能够在问题出现时检测出来，并帮你确定测试依赖。</li>
+<li>**测试类一次仅测试一个类，测试方法一次仅测试一个方法-**组织方法能够在问题出现时检测出来，并帮你确定测试依赖。</li>
 <li><strong>在你的测试里使用异常</strong>-你在测试里会遇到异常，所以，请不要忽略它，要使用它。</li>
 <li><strong>不要使用你自己的测试类去测试第三方库的功能</strong>-大多数好的库都应该有它们自己的测试，如果没考虑用mocks去产生一致性的结果的话。</li>
 <li><strong>限制规则</strong>-当在一些规则下写测试时，记住你的限制和它们（最小和最大）设置成最大的一致性。</li>
 <li><strong>测试类不应该需要配置或者自定义安装</strong>-你的测试类应该能够给任何人使用并且使它运行。“在我的机器上运行”不应该出现在这。</li>
 </ol>
-
 <h3 id="关于测试驱动开发">关于测试驱动开发</h3>
-
 <p>即为test-driven development, TDD。这种开发方法很难想象的会在极限编程中使用，其流程为</p>
-
 <blockquote>
 <ol>
 <li>加入一个测试。</li>
@@ -428,10 +401,8 @@
 <li>重构代码。</li>
 <li>回到 1。</li>
 </ol>
-
 <p>TDD 是先写测试，再实现功能。好处是实现只会刚好满足测试，而不会写了一些不需要的代码，或是没有被测试的代码。</p>
 </blockquote>
-
 <p>TDD太过于极端，不过非常大胆，我个人不是很倾向TDD，因为这会浪费非常多时间修改代码</p>
 
     </div>
@@ -445,7 +416,10 @@
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2016-11-09</span>
+    <span class="item-content">
+      2016-11-09
+      
+    </span>
   </p>
   
   <p class="copyright-item">
@@ -560,6 +534,8 @@
 
     
 
+  
+
         </div>
       </div>
     </main>
@@ -627,7 +603,7 @@
     &copy;
     
       2015 -
-    2019
+    2020
     <span class="heart">
       
       <i class="iconfont">
@@ -673,6 +649,8 @@
 
 <script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
+
+
   <script type="text/javascript">
     window.MathJax = {
       showProcessingMessages: false,
@@ -685,11 +663,17 @@
 
 
 
+
+
+
+
   
     <script type="text/javascript" src="/js/load-photoswipe.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
   
+
+
 
 
 

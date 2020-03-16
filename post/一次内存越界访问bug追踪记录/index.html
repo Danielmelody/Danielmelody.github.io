@@ -31,10 +31,12 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.67.1" />
 
 
 <link rel="canonical" href="https://hustdanielhu.com/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/" />
+
+
 
 
 
@@ -50,7 +52,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.ec807d8b802a40889537c26e014f733206312ea440d42e1f0dabed80918de1ac.css" integrity="sha256-7IB9i4AqQIiVN8JuAU9zMgYxLqRA1C4fDavtgJGN4aw=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa3d941d1d0e0ddc985804227feabffea55c89883eb0af34e0532a7ae9135151.css" integrity="sha256-&#43;j2UHR0ODdyYWAQif&#43;q//qVciYg&#43;sK804FMqeukTUVE=" media="screen" crossorigin="anonymous">
 
 
 
@@ -60,21 +62,17 @@
 <meta property="og:description" content="最近写毕业设计，想把结果简单的用OpenGL表现一下，结果程序总是莫名其妙的随机crash，在debug模式下，这一次crash在glfw的" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hustdanielhu.com/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/" />
-<meta property="article:published_time" content="2018-01-30T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2018-01-30T00:00:00&#43;00:00"/>
-
+<meta property="article:published_time" content="2018-01-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-01-30T00:00:00+00:00" />
 <meta itemprop="name" content="一次内存越界访问bug追踪记录">
 <meta itemprop="description" content="最近写毕业设计，想把结果简单的用OpenGL表现一下，结果程序总是莫名其妙的随机crash，在debug模式下，这一次crash在glfw的">
-
-
 <meta itemprop="datePublished" content="2018-01-30T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-01-30T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="1278">
 
 
 
-<meta itemprop="keywords" content="C&#43;&#43;," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="C&#43;&#43;," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="一次内存越界访问bug追踪记录"/>
 <meta name="twitter:description" content="最近写毕业设计，想把结果简单的用OpenGL表现一下，结果程序总是莫名其妙的随机crash，在debug模式下，这一次crash在glfw的"/>
 
@@ -141,6 +139,8 @@
         
       </li>
     
+
+    
   </ul>
 </nav>
 
@@ -202,6 +202,8 @@
     </div>
     </div>
 </div>
+
+  
 
   
 
@@ -275,6 +277,10 @@
 
       </li>
     
+
+    
+    
+
     
   </ul>
 </nav>
@@ -310,45 +316,37 @@
 <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
-    
+    <nav id="TableOfContents"></nav>
   </div>
 </div>
 
     
     <div class="post-content">
       <p>最近写毕业设计，想把结果简单的用OpenGL表现一下，结果程序总是莫名其妙的随机crash，在debug模式下，这一次crash在glfw的函数内部，下一次就crash在自己的代码里，再下一次又能好好运行（三次载入的是同一个版本的程序）。</p>
-
 <p>刚开始我是懵逼的，因为有一段时间没写C++了，看到这样的崩溃不知道bug从何找起。而且这次遇到的错误信息貌似和以前都不一样，还有不少干扰信息</p>
-
 <p>我决定先复制一下这个crash的信息，然后google一下看能不能找到原因，结果搜到的都是一些其他的问题产生的bug，和我的情况完全不同，只好作罢。</p>
-
 <p>作为一个OpenGL/WebGL老手，我不是很敢相信是我调用OpenGL API出了问题，因为整个程序比较简单，，我出错的概率比较低。我对照官方的例子和我自己的旧代码检查了几遍，很快排除了opengl一些常见操作导致crash的可能，那么就只剩下自己的代码出问题了。</p>
-
 <p>可是我怎么检查也发现不了问题在哪，于是我只好一个一个注释代码，直到不crash为止</p>
-
 <p>这个工作相当烦，因为怀疑的点太多了！就在我快要抓狂的时候我默念一遍又一遍错误信息，突然灵光一闪：</p>
-
 <p>每一次crash都有错误信息如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">malloc: *** error <span class="k">for</span> object 0x1001012f8: incorrect checksum <span class="k">for</span> freed object
         - object was probably modified after being freed.
-        *** <span class="nb">set</span> a breakpoint in malloc_error_break to debug</code></pre></td></tr></table>
+        *** <span class="nb">set</span> a breakpoint in malloc_error_break to debug
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>这里说已经释放的对象的校验和错误，也就是说已释放的对象可能已经被修改</p>
-
+</div><p>这里说已经释放的对象的校验和错误，也就是说已释放的对象可能已经被修改</p>
 <p>那么什么时候才能修改到已经释放的对象？答案是野指针或者内存越界</p>
-
 <p>想到这其实思路已经差不多出来了，首先我很确信程序中没有野指针，那么就只剩下内存越界了，检查几段数组操作的代码，发现是在操作Mesh的一段代码出了问题</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -394,13 +392,11 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>这段代码越界访问了堆区内存（访问的是vector内部的c array），导致后续的new校验失败，也就是说可能引起毫不相关代码的crash（但也不是完全不相关，被crash的代码应该紧接着这个越界操作不久，时间上局部性比较大）非常干扰程序员的判断</p>
-
+</div><p>这段代码越界访问了堆区内存（访问的是vector内部的c array），导致后续的new校验失败，也就是说可能引起毫不相关代码的crash（但也不是完全不相关，被crash的代码应该紧接着这个越界操作不久，时间上局部性比较大）非常干扰程序员的判断</p>
 <p>下面是正确的代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -444,11 +440,8 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>这真的是非常低级的一个错误，不仅导致了程序崩溃，也会导致法线数据混乱。</p>
-
+</div><p>这真的是非常低级的一个错误，不仅导致了程序崩溃，也会导致法线数据混乱。</p>
 <p>需要注意的是，msvc 的debug mode会在vector的operator[] 检查越界，然而如果在mac使用的是libc++却不会</p>
-
 <p>另外，以后再遇到incorrect checksum for freed object 这样的报错信息大概就知道是怎么回事了吧。。。不过出内存问题应该首先想到跑静态分析，能省下很多痛苦的debug时间</p>
 
     </div>
@@ -462,7 +455,10 @@
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2018-01-30</span>
+    <span class="item-content">
+      2018-01-30
+      
+    </span>
   </p>
   
   <p class="copyright-item">
@@ -577,6 +573,8 @@
 
     
 
+  
+
         </div>
       </div>
     </main>
@@ -644,7 +642,7 @@
     &copy;
     
       2015 -
-    2019
+    2020
     <span class="heart">
       
       <i class="iconfont">
@@ -690,6 +688,8 @@
 
 <script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
+
+
   <script type="text/javascript">
     window.MathJax = {
       showProcessingMessages: false,
@@ -702,11 +702,17 @@
 
 
 
+
+
+
+
   
     <script type="text/javascript" src="/js/load-photoswipe.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
   
+
+
 
 
 

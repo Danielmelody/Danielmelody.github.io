@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读 - Daniel&#39;s mind paradise</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="Daniel" />
+  <meta name="description" content="最近学校智能数据处理的作业要求阅读KDD2017，正好可以了解一点机器学习/数据挖掘的东西，简单选了一篇比较有社会影响的文章，发现读起来居然" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.67.1" />
+
+
+<link rel="canonical" href="https://hustdanielhu.com/posts/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.fa3d941d1d0e0ddc985804227feabffea55c89883eb0af34e0532a7ae9135151.css" integrity="sha256-&#43;j2UHR0ODdyYWAQif&#43;q//qVciYg&#43;sK804FMqeukTUVE=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读" />
+<meta property="og:description" content="最近学校智能数据处理的作业要求阅读KDD2017，正好可以了解一点机器学习/数据挖掘的东西，简单选了一篇比较有社会影响的文章，发现读起来居然" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hustdanielhu.com/posts/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/" />
+<meta property="article:published_time" content="2017-10-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2017-10-28T00:00:00+00:00" />
+<meta itemprop="name" content="KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读">
+<meta itemprop="description" content="最近学校智能数据处理的作业要求阅读KDD2017，正好可以了解一点机器学习/数据挖掘的东西，简单选了一篇比较有社会影响的文章，发现读起来居然">
+<meta itemprop="datePublished" content="2017-10-28T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2017-10-28T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="3040">
+
+
+
+<meta itemprop="keywords" content="Data Mining," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读"/>
+<meta name="twitter:description" content="最近学校智能数据处理的作业要求阅读KDD2017，正好可以了解一点机器学习/数据挖掘的东西，简单选了一篇比较有社会影响的文章，发现读起来居然"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Daniel's mind paradise</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/posts/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/about/">Danielhu</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      Daniel's mind paradise
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/posts/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/about/">Danielhu</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+  
+  <header class="post-header">
+    <h1 class="post-title">KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读</h1>
+    
+    <div class="post-meta">
+      <time datetime="2017-10-28" class="post-time">
+        2017-10-28
+      </time>
+    </div>
+  </header>
+
+  
+  
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#问题定义和抽象">问题定义和抽象</a>
+      <ul>
+        <li><a href="#这个问题被证明是一个np-hard问题证明过程如下">这个问题被证明是一个NP-hard问题，证明过程如下：</a></li>
+      </ul>
+    </li>
+    <li><a href="#算法的系统框架">算法的系统框架</a></li>
+    <li><a href="#实验和评估">实验和评估</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+  
+  <div class="post-content">
+      <p>最近学校智能数据处理的作业要求阅读KDD2017，正好可以了解一点机器学习/数据挖掘的东西，简单选了一篇比较有社会影响的文章，发现读起来居然比图形学的paper好懂多了23333。大体来看数据挖掘所涉及到的知识可能还是更偏向于从基础算法出发，数学没有图形学多。不过这篇没有涉及deep learning，如果有哪方面的东西或许情况会有所不同。</p>
+<p>言归正传，这是微软亚洲研究院联合摩拜单车发表的一篇用数据驱动解决<strong>城市单车道路规划问题</strong>的一篇paper。这篇paper背靠摩拜的大量单车数据，提出一种类似于贪心算法的解法。</p>
+<h2 id="问题定义和抽象">问题定义和抽象</h2>
+<p>政府需要对自行车道做出恰当的规划，而自行车道的规划需要综合考虑多方面的因素：</p>
+<ul>
+<li>预算限制：主要包括政府财政预算以及城市给自行车的余留空间大小</li>
+<li>便于施工和管理：施工队需要派遣到各个不同的地点铺设自行车道，为了便于管理，通常倾向于使这些车道集合成k个聚类的区域，而不是大面积分散的形式</li>
+<li>提高自行车的使用率：从政府的角度来说，希望良好规划的自行车道能提高自行车的可用性，以及覆盖更多的区域</li>
+</ul>
+<p>这是一个需要考虑诸多方面的复杂问题，而要对这个问题应用算法就必须对这些条件进行抽象，我们考虑整个路面网络图为
+$$
+G = (V, E)
+$$</p>
+<p>其中V为点集代表道路交叉点，E为边集，代表道路交叉点之间的路段。我们的自行车道规划问题的目标就是找到一个边集的子集
+$$
+E&rsquo;
+$$
+来满足上述的三个条件，这三个条件抽象化即为：</p>
+<ul>
+<li>
+<p>每条路段铺设自行车道的经济成本为
+$$
+e_i.c
+$$
+而政府的财政总预算为B</p>
+<p>所有道路铺设自行车道的经济成本不能超过财政的总预算，即：
+$$
+\sum_{e_i \in E} e_i.c &lt; B
+$$
+**这是限制条件一**</p>
+</li>
+<li>
+<p>所有自行车道分成最多k个相关的子区域</p>
+</li>
+</ul>
+<p>$$
+C(E&rsquo;) \leq k
+$$</p>
+<p>​	其中
+$$
+C(E&rsquo;)
+$$
+​	代表集合中聚类的个数</p>
+<p>​	<strong>这是限制条件二</strong></p>
+<ul>
+<li>
+<p>最大化使用效益</p>
+<p>主要有两个目标：</p>
+<ul>
+<li>促进更多的用户使用自行车，也即用户的覆盖数</li>
+<li>提高用户的骑行体验，覆盖更多连续的路段（一般来说，骑自行车的人希望能在连续的自行车道上行驶，而不是断断续续的自行车道）</li>
+</ul>
+<p>然而这两个目标通常是冲突的，因为用户有不同的骑行路径，因此需要对每个自行车轨道
+$$
+tr_i
+$$
+设计一个可伸缩的估价函数
+$$
+tr_i.g
+$$
+对这两个目标的不同侧重将影响这个估价函数
+$$
+tr_i.g = \sum_{s_j \in S_i} {\alpha^{\frac{s_j.l}{min(e.l)}} \times \frac{s_j.l}{min(e.l)}}, \alpha \ge 1
+$$
+其中
+$$
+S_i
+$$
+是经过轨道的**连续片段序列**的集合
+$$
+s_j
+$$
+是其中的元素
+$$
+\frac{s_j.l}{min(e.l)}
+$$
+是对连续片段的长度的度量（以整个网络中最短路段长度为单位，因此这个值不会小于1），这是估价函数中的**自变量**</p>
+<p>在估价函数中
+$$
+\alpha
+$$
+就是影响两个目标权重的参数，这个参数越小表面约侧重用户的覆盖数量，越不重视道路的连续性</p>
+<p>设计一个指数因子的目的是为了突出连续性的作用，否则这个函数将是线性的，经过最终求和之后（下面将会提到）道路连续性的影响将消除</p>
+<p>整个网络的估价函数是每条自行车轨道的估价函数之和
+$$
+E&rsquo;.g = \sum_{tr_i \in Tr, tr_i \cap E&rsquo; \ne \emptyset}tr_i.g
+$$
+**这就是我们的目标函数**</p>
+</li>
+</ul>
+<h3 id="这个问题被证明是一个np-hard问题证明过程如下">这个问题被证明是一个NP-hard问题，证明过程如下：</h3>
+<p>要证明这个问题是一个NP-hard问题，只要证明这个问题和01背包问题等价即可，我们把每一个路段
+$$
+e_i
+$$
+视为背包中的一项，这个路段的经济成本以及空间成本视为这一项占据的空间，将要铺设自行车轨道的集合视为背包，其具有最大为B的空间（财政预算以及道路空间），当
+$$
+\alpha = 1
+$$
+的时候，效益函数是一个和其他项无关的量，相当于背包问题中的价格。这样，这个问题就降级成了一个01背包问题。</p>
+<p>更详细的证明略去</p>
+<h2 id="算法的系统框架">算法的系统框架</h2>
+<p>主要分为两步：</p>
+<ol>
+<li>
+<p>预处理，主要包括  1)解析GPS点到轨道数据  2) 将轨道映射到路段。3）为路段建立反向索引，这样可以加快基于路段查询轨道的速度</p>
+</li>
+<li>
+<p>贪心网络扩张算法</p>
+</li>
+</ol>
+<p>这一步是整个算法的核心，又分为两步。</p>
+<ol>
+<li>首先需要寻找到k个贪心网络的起始片段</li>
+</ol>
+<p>我们可以直接选择效益函数在top-k高的k个片段作为起始片段。（经过对数据集的研究，发现在共享单车轨迹起点密集处一般分布在在像大型商场这样离地铁较远的地方，被称为空间热点，而往往效益函数高的地方就在这些空间热点附近）</p>
+<p>这种方法非常直接而简单，但是，top-k高的片段往往容易集中在一起，不能很好的扩张，因此，我们采用自下而上（其实自上而下应该也是可以的）的 hierarchical spatial clustering (层次空间聚类)来帮助选出最合适的贪心网络 起始点。</p>
+<p>层次空间聚类和K-means不同，它在确定的层级总会产生稳定的结果。为了简化计算，我们首先还是需要筛选出那些效益函数排名较高的路段，作为聚类的基本元素</p>
+<p>接下来执行层次空间聚类算法，它每次都合并距离最近的两个聚类。由于这里明显用的是欧式距离，因此我们可以把聚类的中心点作为簇的位置来计算欧式距离。执行这个算法得到k个聚类，再从每一个聚类中选择效益函数最高的路段，这样我们就能得到更加“均匀分布”的贪心网络起始点。</p>
+<p>2） 进行贪心网络扩张</p>
+<p>到了这一步其实就比较简单了，我们对每一个子网络同步进行扩张，每次寻找和网络邻接的rank 最高的路段加入网络，直到满足下面条件的一个：</p>
+<ul>
+<li>所有候选路段都已加入某一个网络</li>
+<li>预算被使用完</li>
+</ul>
+<p>至此，算法的主体已经阐述完毕</p>
+<pre><code>​
+</code></pre>
+<h2 id="实验和评估">实验和评估</h2>
+<p>为了有效的评估和验证上述算法，MSRA的研究人员利用摩拜单车在中国上海整整一个月的骑行数据来深度分析自行车轨迹。</p>
+<p>上海的城市网络拥有333,766个路口和440,922个路段。而摩拜单车在这个一个月内共有13,063个独立用户使用了3971辆共享单车，骑行了230,303次。</p>
+<p>下面两张图图给出了骑行长度和骑行时间的大致分布状况，显然，大部分骑行距离集中在相对较近的路程附近（70%的骑行短于2km），骑行时间也集中于短时。</p>
+<p><img src="/images/kdd17mobike/1.png" alt=""></p>
+<p>下图给出了开始骑行的时间在一天之间的分布，可以看到在早/晚上下班的“冲刺阶段”是最多人选择使用共享单车的时候</p>
+<p><img src="/images/kdd17mobike/2.png" alt=""></p>
+<p>下图反应的则是路段的轨迹数量的分布，这是一个半对数坐标(semi-log)图，其中纵坐标为轨迹数量的对数。大部分路段的骑行轨迹数量小于100，而小部分的路段超过2000，这就证明合理的自行车道规划非常重要</p>
+<p><img src="/images/kdd17mobike/3.png" alt=""></p>
+<p>最后是骑行轨迹的空间热点分布图，结合地图来看，大多数骑行从住宅区开始，但在早上8-10点，更多的骑行起点在地铁站</p>
+<p><img src="/images/kdd17mobike/4.png" alt=""></p>
+<h4 id="根据实验进行效益评估">根据实验进行效益评估</h4>
+<p>在我们的算法中，主要有三个输入参数会明显影响总效益：聚类的个数k，预算B，以及表示对道路连续的重视程度的因子alpha。</p>
+<p>对于聚类个数
+$$
+k
+$$
+下图给出了这个实验中对不同的k使用hierarchical spatial clustering 和 top-k 对总体效益的比较。</p>
+<p><img src="/images/kdd17mobike/5.png" alt=""></p>
+<p>图中显示在
+$$
+1 \leq k \leq 9
+$$
+这个范围内hierarchical spatial clustering的结果总是更好，并且观察top-k的效益函数发现，当k &lt; 8，总效益不变，这是由于效益高的函数往往集中在一起的缘故。</p>
+<p>对于总体预算
+$$
+B
+$$
+下图也给出了不同预算在top-k和hierarchical spatial clustering两种策略下对效益的影响。</p>
+<p><img src="/images/kdd17mobike/6.png" alt=""></p>
+<p>观察发现大的预算下后者更优，当预算较小时反而前者更优，这则是因为当预算较小时把非常有限的轨道铺设在自行车骑行最为频繁的路段可能是更好的策略</p>
+<p>对于因子
+$$
+\alpha
+$$
+以下图为例，这个值越大，选择的路段集合就越纵深，越小集合就越分散越短小。</p>
+<p><img src="/images/kdd17mobike/7.png" alt=""></p>
+<h2 id="总结">总结</h2>
+<p>MSRA通过数据驱动的方法为自行车道的设计提供了更科学的参考，不仅如此，他们对实际路段进行了观察，发现在一些算法高度推荐修建自行车道而没有自行车道的地区常常出现自行车混杂在机动车道以及不得不在较多的停车区穿梭的现象，这无疑是危险且不符合好的城市交通建设的。实验和观察证明数据驱动的方法能在有限的预算下寻找到更好的规划方法，并得到了政府的高度评价</p>
+<p><em>声明：本文系个人对原paper的部分翻译和解释，仅作个人学习用途</em></p>
+
+  </div>
+
+  
+  
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Daniel</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+      2017-10-28
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+  
+  
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/wechat.jpg">
+        <span>微信打赏</span>
+      </label>
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div>
+</article>
+
+
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  <div class="disqus-comment">
+  <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
+    显示 Disqus 评论
+  </div>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = "https://hustdanielhu.com/posts/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/";
+    };
+    function load_disqus() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'Danielhu';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+      $('#load_disqus').remove();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  </div>
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:yimingdz@gmail.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="http://github.com/Danielhu229" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://www.zhihu.com/people/dao-chang-22-44" rel="me noopener" class="iconfont"
+      title="zhihu"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M351.791182 562.469462l192.945407 0c0-45.367257-21.3871-71.939449-21.3871-71.939449L355.897709 490.530013c3.977591-82.182744 7.541767-187.659007 8.816806-226.835262l159.282726 0c0 0-0.86367-67.402109-18.578124-67.402109s-279.979646 0-279.979646 0 16.850783-88.141456 39.318494-127.053698c0 0-83.60514-4.510734-112.121614 106.962104S81.344656 355.077018 76.80834 367.390461c-4.536316 12.313443 24.62791 5.832845 36.941354 0 12.313443-5.832845 68.050885-25.924439 84.252893-103.69571l86.570681 0c1.165546 49.28652 4.596691 200.335724 3.515057 226.835262L109.86113 490.530013c-25.275663 18.147312-33.701566 71.939449-33.701566 71.939449L279.868105 562.469462c-8.497535 56.255235-23.417339 128.763642-44.275389 167.210279-33.05279 60.921511-50.55235 116.65793-169.802314 212.576513 0 0-19.442818 14.257725 40.829917 9.073656 60.273758-5.185093 117.305683-20.739347 156.840094-99.807147 20.553105-41.107233 41.805128-93.250824 58.386782-146.138358l-0.055259 0.185218 167.855986 193.263655c0 0 22.035876-51.847855 5.832845-108.880803L371.045711 650.610918l-42.1244 31.157627-0.045025 0.151449c11.69946-41.020252 20.11206-81.5749 22.726607-116.858498C351.665315 564.212152 351.72876 563.345412 351.791182 562.469462z"></path>
+  <path d="M584.918753 182.033893l0 668.840094 70.318532 0 28.807093 80.512708 121.875768-80.512708 153.600307 0L959.520453 182.033893 584.918753 182.033893zM887.150192 778.934538l-79.837326 0-99.578949 65.782216-23.537066-65.782216-24.855084 0L659.341766 256.673847l227.807403 0L887.149169 778.934538z"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://hustdanielhu.com/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2015 -
+    2020
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        Daniel
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

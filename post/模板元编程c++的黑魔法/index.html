@@ -31,10 +31,12 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.67.1" />
 
 
 <link rel="canonical" href="https://hustdanielhu.com/post/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8Bc&#43;&#43;%E7%9A%84%E9%BB%91%E9%AD%94%E6%B3%95/" />
+
+
 
 
 
@@ -50,7 +52,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.ec807d8b802a40889537c26e014f733206312ea440d42e1f0dabed80918de1ac.css" integrity="sha256-7IB9i4AqQIiVN8JuAU9zMgYxLqRA1C4fDavtgJGN4aw=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.fa3d941d1d0e0ddc985804227feabffea55c89883eb0af34e0532a7ae9135151.css" integrity="sha256-&#43;j2UHR0ODdyYWAQif&#43;q//qVciYg&#43;sK804FMqeukTUVE=" media="screen" crossorigin="anonymous">
 
 
 
@@ -60,21 +62,17 @@
 <meta property="og:description" content="关于模板与泛型 如果你曾经使用过template，那你一定对泛型编程有过了解，你可能在java和c#中使用过泛型代码，但是，需要注意的是，C&#43;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hustdanielhu.com/post/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8Bc&#43;&#43;%E7%9A%84%E9%BB%91%E9%AD%94%E6%B3%95/" />
-<meta property="article:published_time" content="2016-03-06T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2016-03-06T00:00:00&#43;00:00"/>
-
+<meta property="article:published_time" content="2016-03-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2016-03-06T00:00:00+00:00" />
 <meta itemprop="name" content="模板元编程：C&#43;&#43;的黑魔法">
 <meta itemprop="description" content="关于模板与泛型 如果你曾经使用过template，那你一定对泛型编程有过了解，你可能在java和c#中使用过泛型代码，但是，需要注意的是，C&#43;">
-
-
 <meta itemprop="datePublished" content="2016-03-06T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2016-03-06T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1524">
+<meta itemprop="wordCount" content="1522">
 
 
 
-<meta itemprop="keywords" content="C&#43;&#43;," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="C&#43;&#43;," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="模板元编程：C&#43;&#43;的黑魔法"/>
 <meta name="twitter:description" content="关于模板与泛型 如果你曾经使用过template，那你一定对泛型编程有过了解，你可能在java和c#中使用过泛型代码，但是，需要注意的是，C&#43;"/>
 
@@ -141,6 +139,8 @@
         
       </li>
     
+
+    
   </ul>
 </nav>
 
@@ -202,6 +202,8 @@
     </div>
     </div>
 </div>
+
+  
 
   
 
@@ -275,6 +277,10 @@
 
       </li>
     
+
+    
+    
+
     
   </ul>
 </nav>
@@ -311,33 +317,27 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#关于模板与泛型">关于模板与泛型</a></li>
-<li><a href="#tamplate-参数类型">tamplate 参数类型</a></li>
-<li><a href="#template-是图灵完备的">template 是图灵完备的</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#关于模板与泛型">关于模板与泛型</a></li>
+        <li><a href="#tamplate-参数类型">tamplate 参数类型</a></li>
+        <li><a href="#template-是图灵完备的">template 是图灵完备的</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
 
     
     <div class="post-content">
-      
-
-<h3 id="关于模板与泛型">关于模板与泛型</h3>
-
+      <h3 id="关于模板与泛型">关于模板与泛型</h3>
 <p>如果你曾经使用过template，那你一定对泛型编程有过了解，你可能在java和c#中使用过泛型代码，但是，需要注意的是，C++的泛型和java，C#一类的泛型有着根本性的不同，C++ 的泛型有个更适合的名字，叫做<strong>编译期多态</strong>，是的，C++的泛型本质上是一种多态。</p>
-
 <p>怎么理解这个编译期多态？举个例子，假如你有一个template function  的定义如下</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -349,11 +349,10 @@
 <span class="p">};</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>并且假设你是这样使用它的</p>
+</div><p>并且假设你是这样使用它的</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -375,98 +374,83 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>很明显，结果是0.3和0，你使用Java做上面这些事情也会得到同样的结果。但是在编译期两者做的事情是不一样的：</p>
-
+</div><p>很明显，结果是0.3和0，你使用Java做上面这些事情也会得到同样的结果。但是在编译期两者做的事情是不一样的：</p>
 <ul>
 <li>C++编译器会把所有用到的template<strong>全部展开一遍，生成多份代码</strong>。在上面这个例子中，template展开为参数分别为 float 和 int 的两个函数，由运行时参数决定运行哪个函数。</li>
 <li>Java编译器则会对所有用到的类型执行擦除，也就是说会把所有带类型的引用<strong>向上转型到Object</strong>，并且在运行期需要类型化时强制转换为对应类型</li>
 </ul>
-
 <p>注意到Java泛型实现中的装箱和拆箱过程了吗？毫无疑问这会有不小的效率损失。而C++可以避免这一点。更重要的是，C++ 的泛型实现机制赋予了程序员一定的在编译期生成代码的能力(因此template这样的命名更确切一些)，有了这个，我们差不多就可以做一些事情了</p>
-
 <h3 id="tamplate-参数类型">tamplate 参数类型</h3>
-
 <p>有以下三种：</p>
-
 <ul>
 <li>模板的类型形参 (type parameter)</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="err"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
 </code></pre></td></tr></table>
 </div>
-</div>
+</div><ul>
+<li>
+<p>模板的非类型形参 (non-type parameter)</p>
+<p>模板的非类型行参只有以下几种形式</p>
 <ul>
-<li>模板的非类型形参 (non-type parameter)</li>
+<li>整型或枚举型</li>
+<li>到对象的指针或函数指针</li>
+<li>到对象的引用或函数引用</li>
+<li>成员指针</li>
 </ul>
-
-<p>模板的非类型行参只有以下几种形式
-  + 整型或枚举型
-  + 到对象的指针或函数指针
-  + 到对象的引用或函数引用
-  + 成员指针</p>
-
-<p>​   因此，以下几种代码都是可以接受的</p>
+</li>
+</ul>
+<p>​	因此，以下几种代码都是可以接受的</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span> <span class="n">a</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">A</span> <span class="p">{};</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*</span> <span class="n">b</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">B</span> <span class="p">{};</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">C</span><span class="p">{};</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span> <span class="n">a</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="nc">A</span> <span class="p">{};</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*</span> <span class="n">b</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="nc">B</span> <span class="p">{};</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="nc">C</span><span class="p">{};</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<ul>
-<li>模板形参 (template template parameter)</li>
-</ul>
-
+</div><ul>
+<li>
+<p>模板形参 (template template parameter)</p>
 <p>模板行参的意思是模板里面可以是另一个模板，如</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp">  <span class="k">template</span><span class="o">&lt;</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;&gt;</span> <span class="k">class</span><span class="err"> </span><span class="nc">X</span><span class="p">{};</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;&gt;</span> <span class="k">class</span> <span class="nc">X</span><span class="p">{};</span>
 </code></pre></td></tr></table>
 </div>
-</div>
+</div></li>
+</ul>
 <h3 id="template-是图灵完备的">template 是图灵完备的</h3>
-
 <p>所谓的图灵完备指的是以下定义</p>
-
 <blockquote>
 <p>在<a href="https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AE%A1%E7%AE%97%E6%80%A7%E7%90%86%E8%AE%BA">可计算性理论</a>里，如果一系列操作数据的规则（如<a href="https://zh.wikipedia.org/wiki/%E6%8C%87%E4%BB%A4%E9%9B%86">指令集</a>、<a href="https://zh.wikipedia.org/wiki/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80">编程语言</a>、<a href="https://zh.wikipedia.org/wiki/%E7%B4%B0%E8%83%9E%E8%87%AA%E5%8B%95%E6%A9%9F">细胞自动机</a>）可以用来模拟<a href="https://zh.wikipedia.org/wiki/%E5%9B%BE%E7%81%B5%E6%9C%BA">单带图灵机</a>，那么它是<strong>图灵完备的</strong></p>
 </blockquote>
-
 <p>(WikiPedia)</p>
-
 <p>我们可以按照百度百科的定义下去理解</p>
-
 <blockquote>
 <p>在可计算理论中，当一组数据操作的规则（一组指令集，编程语言，或者元胞自动机）满足任意数据按照一定的顺序可以计算出结果，被称为图灵完备（turing complete）</p>
 </blockquote>
-
 <p>(百度百科)</p>
-
 <p>一般来讲，如果一个东西能支持一个无限的递归过程，那么它就是图灵完备的，很显然，C++ template是如此特殊，它本身就是图灵完备的！</p>
-
 <p>理解这一点并不困难，我们把 C++ template 看做是一个特殊的图灵机，它以未做template展开的C++远代码为输入，以不带template的C++源代码为输出，在这种意义下，你甚至可以认为 template是一种只运行在编译期的语言！</p>
-
 <p>我们来看一个有趣的例子</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -492,7 +476,7 @@
 <pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span> <span class="n">i</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="n">sum</span> <span class="p">{</span>
+<span class="k">struct</span> <span class="nc">sum</span> <span class="p">{</span>
     <span class="k">enum</span> <span class="p">{</span>
         <span class="n">value</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">sum</span><span class="o">&lt;</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;::</span><span class="n">value</span>
     <span class="p">};</span>
@@ -500,7 +484,7 @@
 
 <span class="c1">// 对i = 1特化
 </span><span class="c1"></span><span class="k">template</span><span class="o">&lt;&gt;</span>
-<span class="k">struct</span> <span class="n">sum</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="p">{</span>
+<span class="k">struct</span> <span class="nc">sum</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="k">enum</span><span class="p">{</span>
         <span class="n">value</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="p">};</span>
@@ -512,13 +496,9 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>好，现在编译运行它，看输出了什么？</p>
-
+</div><p>好，现在编译运行它，看输出了什么？</p>
 <p>很简单，输出了211，它是 1+2+3+…+20的结果，而这个结果是编译期计算出来的！编译器在编译的时候把所有用到的template参数展开，在展开过程中 当模板实参是 i 的时候需要事先知道 i-1 的template，因此当给的实际参数是 20 的时候就会递归式的展开到 0，这样所需要的结果就在编译期算出来了，因此这是一种牺牲编译期性能来提高运行期性能的手段</p>
-
 <p>关于C++模板的黑魔法还有很多，我们现在看到的只是冰山一角，著名的boost库就应用了大量这种技巧。不过在真正的工程上目前还用的不是很多，其缺点也是显然的：调试困难，错误信息不可读，编译时间大幅延长。</p>
-
 <p>目前cpp 的 meta programming 还处在很多牛人的玩具的地位，不过能把运行期做的事情放到编译期，我相信这一特性还是非常吸引程序员的</p>
 
     </div>
@@ -532,7 +512,10 @@
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2016-03-06</span>
+    <span class="item-content">
+      2016-03-06
+      
+    </span>
   </p>
   
   <p class="copyright-item">
@@ -647,6 +630,8 @@
 
     
 
+  
+
         </div>
       </div>
     </main>
@@ -714,7 +699,7 @@
     &copy;
     
       2015 -
-    2019
+    2020
     <span class="heart">
       
       <i class="iconfont">
@@ -760,6 +745,8 @@
 
 <script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
+
+
   <script type="text/javascript">
     window.MathJax = {
       showProcessingMessages: false,
@@ -772,11 +759,17 @@
 
 
 
+
+
+
+
   
     <script type="text/javascript" src="/js/load-photoswipe.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
   
+
+
 
 
 
