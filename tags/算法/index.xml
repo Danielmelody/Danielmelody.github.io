@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>算法 on Daniel&#39;s mind paradise</title>
+    <link>https://hustdanielhu.com/tags/%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content in 算法 on Daniel&#39;s mind paradise</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	<atom:link href="https://hustdanielhu.com/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>算法记录：分割回文串</title>
+      <link>https://hustdanielhu.com/post/%E7%AE%97%E6%B3%95%E8%AE%B0%E5%BD%95%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hustdanielhu.com/post/%E7%AE%97%E6%B3%95%E8%AE%B0%E5%BD%95%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/</guid>
+      <description>问题描述： 给定一个字符串s，将s分割成一些子串，使每个子串都是回文串。 返回s所有可能的回文串分割方案。 样例 给出 s = “aab” 返回 [ [&amp;quot;aa&amp;quot;,&amp;quot;b&amp;quot;], [&amp;quot;a&amp;quot;,&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;] ] 思路</description>
+    </item>
+    
+  </channel>
+</rss>

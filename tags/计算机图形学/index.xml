@@ -6,10 +6,28 @@
     <description>Recent content in 计算机图形学 on Daniel&#39;s mind paradise</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 11 May 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Mar 2020 10:28:59 +0800</lastBuildDate>
     
 	<atom:link href="https://hustdanielhu.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SIGGRAPH 2019: Terrain Amplificatin With Implicit 3D Features 解读</title>
+      <link>https://hustdanielhu.com/post/siggraph-2019-terrain-amplificatin-with-implicit-3d-features-%E8%A7%A3%E8%AF%BB/</link>
+      <pubDate>Mon, 16 Mar 2020 10:28:59 +0800</pubDate>
+      
+      <guid>https://hustdanielhu.com/post/siggraph-2019-terrain-amplificatin-with-implicit-3d-features-%E8%A7%A3%E8%AF%BB/</guid>
+      <description>The original paper: Paris, Axel, et al. &amp;ldquo;Terrain Amplification with Implicit 3D Features.&amp;rdquo; ACM Transactions on Graphics (TOG) 38.5 (2019): 1-15. 近年来，SIGFRAPH 关注隐式建模这种传统领域的的文章越来越少，目前学界的重点主要在研究怎么把深</description>
+    </item>
+    
+    <item>
+      <title>一次内存越界访问bug追踪记录</title>
+      <link>https://hustdanielhu.com/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://hustdanielhu.com/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/</guid>
+      <description>最近写毕业设计，想把结果简单的用OpenGL表现一下，结果程序总是莫名其妙的随机crash，在debug模式下，这一次crash在glfw的</description>
+    </item>
     
     <item>
       <title>实时渲染中的软阴影技术</title>
