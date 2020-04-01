@@ -68,7 +68,7 @@
 <meta itemprop="description" content="TL;DR; 在计算机图形学中，插值（Interpolation）和拟合（Curve Fitting）在表面建模，路径规划，粒子系统等子领域中应用广泛， 且">
 <meta itemprop="datePublished" content="2020-03-19T15:46:14&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-19T15:46:14&#43;08:00" />
-<meta itemprop="wordCount" content="3462">
+<meta itemprop="wordCount" content="3648">
 
 
 
@@ -326,19 +326,21 @@
     <div class="post-content">
       <h3 id="tldr">TL;DR;</h3>
 <p>在计算机图形学中，插值（Interpolation）和拟合（Curve Fitting）在表面建模，路径规划，粒子系统等子领域中应用广泛， 且具有相似形式。这两种方法都是从一个点序列（Point Sequence）生成曲面。区别在于 Interpolation 一定会经过所有 Point， 而 Curve Fitting 的 Point 会分布在生成的曲线两侧。</p>
-<p>为了计算方便，大多数工业中的插值和拟合方法都是分段多项式函数（样条）来表示的。使用样条可以避免出现著名的 <a href="https://en.wikipedia.org/wiki/Runge%27s_phenomenon">Runge&rsquo;s phenomenon</a> ，同时，样条还具有局部性，也就是对局部的插值函数的修改不会影响到整体，对于工业设计意义重大。</p>
+<p>为了计算方便，大多数工业中的插值和拟合方法都是分段多项式函数（样条）来表示的。使用样条可以避免出现著名的 <a href="https://en.wikipedia.org/wiki/Runge%27s_phenomenon">Runge&rsquo;s phenomenon</a> ，同时，样条还具有局部性，也就是对局部的插值函数的修改不会影响到整体，对于建模和工业设计的局部调整意义重大。</p>
 <p>一般来说，样条曲线方程不高于三次，因为较低次数的曲线能达到更好的局部拟合效果，而三次方程是实现<strong>曲线 \( G^2 \) 连续的最低幂次</strong>。也就是说，图形学/工业设计上遇到的曲线基本都是分段三次曲线，因此我们首先关注三次样条曲线（Cubic Spline）的一些共有性质。</p>
-<p>在大学本科教材“数值分析”中，一个n段的三次样条曲线的形式是</p>
+<p>在大学本科教材“数值分析”中，一个插值n个节点的三次样条曲线的形式是</p>
 <p>$$
-S(x) = \sum_{k=1}^{n-1} S_k(x) = \sum_{k = 1}^{n-1} y_k + b_k(x - x_k) + c_k(x - x_k)^2 +c_k(x - x_k)^3
+S(x) = S_1(x), x \in [x_1, x_{2}] \\\<br>
+&hellip; \\\<br>
+S(x) = S_k(x), x \in [x_k, x_{k+1}] \\\<br>
+S(x) = S_n(x), x \in [x_{n-1}, x_n] \\\<br>
 $$</p>
-<p>现在，我们先来研究单个样条的性质。我们知道单个样条实际上就是一个截断的三次曲线</p>
-<p>需要给出 3n-3 个 参数，用以控制每个分段的曲线形状。这个一般形式并不能直接在建模中直接使用，主要有两个缺点：</p>
-<ul>
-<li>没有对 \( G^0, G^1, G^2 \) 做任何保证</li>
-<li>\( yk, b_k, c_k \) 参数不直观</li>
-</ul>
-<p>为了解决这个问题，一个自然的想法是根据 <strong>经过点/控制点</strong> 来生成曲线函数。根据经过点生成函数可以称为插值；根据控制点生成函数的算法可以称为拟合。</p>
+<p>$$
+S_k(x) = y_k + b_k(x - x_k) + c_k(x - x_k)^2 +d_k(x - x_k)^3
+$$</p>
+<p>我们知道单个样条实际上就是一个截断的三次曲线，每个曲线段有4个参数 \( y_k, b_k, c_k, d_k \)，因此一共需要给出 \( 4n - 4 \) 个 参数，用以控制每个分段的曲线形状。如果要求 \( C^0 \) 连续即曲线通过所有数据点\( y_k \), 可以给出 \( 2n - 2 \) 个条件, 如果要求 \( C^1 \) 连续 和 \( C^2 \) 连续可以给出 \( 2n-4 \)个条件, 因此我们一共有 4n - 6 个方程组，却要求解 4n - 4 个条件。多出的两个自由的使得三次样条的解有无数多个</p>
+<p>显然，这个一般形式并不能直接在建模中直接使用。首先其求解比较复杂，其次很多情况下我们并不需要 \( C^2 \) 的连续级别，因此在图形学中往往采用更直接的方式来给出参数。</p>
+<p>另外，样条形式不仅仅可以用于插值，还可以用于拟合，这种情况下虽然曲线不经过数据点，但往往通过一些权重函数来组合数据点，在拟合中，这些点一般称为<strong>控制点</strong></p>
 <p>在图形学中广泛应用的插值和拟合方法分别是 <em>Cubic Hermite Interpolation</em> 和 <em>Non Uniform Rational B Spline(NURBS)</em>。本文将分别介绍</p>
 <h2 id="cubic-hermite-interpolation">Cubic Hermite Interpolation</h2>
 <p>在计算机图形学中应用最广的是插值方法是 Cubic Hermite 插值，这种插值方法需要提供节点的坐标和节点的一阶导数。其好处是节点坐标和节点导数都可以通过图形界面来调整。且由于节点的导数和坐标已经确定，Cubic Hermite 插值是天然 \( G^1 \) 连续的</p>
