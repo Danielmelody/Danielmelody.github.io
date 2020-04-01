@@ -25,6 +25,17 @@ If you like, have a look at some of my interesting projects on github:
     </item>
     
     <item>
+      <title>Interpolation and Curve Fitting in Computer Graphics</title>
+      <link>https://hustdanielhu.com/post/curves/</link>
+      <pubDate>Thu, 19 Mar 2020 15:46:14 +0800</pubDate>
+      
+      <guid>https://hustdanielhu.com/post/curves/</guid>
+      
+        <description>TL;DR; 在计算机图形学中，插值（Interpolation）和拟合（Curve Fitting）在表面建模，路径规划，粒子系统等子领域中应用广泛， 且</description>
+      
+    </item>
+    
+    <item>
       <title>SIGGRAPH 2019: Terrain Amplificatin With Implicit 3D Features 解读</title>
       <link>https://hustdanielhu.com/post/siggraph-2019-terrain-amplificatin-with-implicit-3d-features-%E8%A7%A3%E8%AF%BB/</link>
       <pubDate>Mon, 16 Mar 2020 10:28:59 +0800</pubDate>

@@ -370,7 +370,7 @@
 </span><span class="cp">#endif
 </span></code></pre></td></tr></table>
 </div>
-</div><p>assert 其实是在来源于C语言的头文件<!-- raw HTML omitted --> 中定义的宏</p>
+</div><p>assert 其实是在来源于C语言的头文件<cassert> 中定义的宏</p>
 <p>一般来说，如果condition 是false，那么assert 首先向stderr 打印错误信息，然后调用 abort (触发一个SIGABRT中断信号)来非正常结束程序</p>
 <ul>
 <li>assert 不是 error handling, assertion 处理的是<strong>代码的 bug</strong> 而不是程序预期的输入错误或者系统错误等</li>
@@ -1044,7 +1044,7 @@ guard variable for Singleton::instance()::singleton:
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>我们看到foo有两个重载版本，为了告诉编译器我期望 T 有嵌套 internal_type 类型，我们使用了 decltype + 逗号表达式 + declval。decltype(std::declval<!-- raw HTML omitted -->(), std::declval<!-- raw HTML omitted -->()) 的真正类型是 void，但对T::internal_type进行了求值，因此编译器知道这里 T 是 more specific 的</p>
+</div><p>我们看到foo有两个重载版本，为了告诉编译器我期望 T 有嵌套 internal_type 类型，我们使用了 decltype + 逗号表达式 + declval。decltype(std::declval<typename T::internal_type>(), std::declval<void>()) 的真正类型是 void，但对T::internal_type进行了求值，因此编译器知道这里 T 是 more specific 的</p>
 <h2 id="member-functor-detector">member functor detector</h2>
 <p>更有用的例子是判断类型有没有包含某个名字的成员函数，这一点对template programming 中的duck typing 很重要</p>
 <div class="highlight"><div class="chroma">
@@ -1166,7 +1166,7 @@ guard variable for Singleton::instance()::singleton:
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>现在我们终于可以尝试解释一下这个 std::is_unsigned<!-- raw HTML omitted -->::value 是个什么东西了</p>
+</div><p>现在我们终于可以尝试解释一下这个 std::is_unsigned<T>::value 是个什么东西了</p>
 <p>cppreference 中给出的可能实现如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

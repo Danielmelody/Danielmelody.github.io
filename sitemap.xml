@@ -9,8 +9,15 @@
   </url>
   
   <url>
+    <loc>https://hustdanielhu.com/post/curves/</loc>
+    <lastmod>2020-03-19T15:46:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://hustdanielhu.com/post/</loc>
-    <lastmod>2020-03-16T10:28:59+08:00</lastmod>
+    <lastmod>2020-03-19T15:46:14+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
