@@ -6,7 +6,7 @@
     <description>Recent content on Daniel&#39;s mind paradise</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 18 Feb 2018 22:05:02 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 06 Jun 2020 20:54:58 +0800</lastBuildDate>
     
         <atom:link href="https://hustdanielhu.com/index.xml" rel="self" type="application/rss+xml" />
     
@@ -21,6 +21,17 @@
         <description>Hi，I &amp;lsquo;m Daniel, A Game developer &amp;amp; graphics researcher now working in Tencent.
 If you like, have a look at some of my interesting projects on github:
  CanvasToy A WebGL rendering library which supports physical-based rendering, also formed a tile-based deferred rendering pipeline. Lexacc A compiler-front-end parser generator  yimingdz@gmail.com, any technical or academic discussion is welcome.</description>
+      
+    </item>
+    
+    <item>
+      <title>Daniel&#39;s shadertoy collections</title>
+      <link>https://hustdanielhu.com/shadertoy/</link>
+      <pubDate>Sat, 06 Jun 2020 20:54:58 +0800</pubDate>
+      
+      <guid>https://hustdanielhu.com/shadertoy/</guid>
+      
+        <description> Godel, Escher, Bach    uniform sphere points    date streams    infinite level-of-detail noise   </description>
       
     </item>
     
