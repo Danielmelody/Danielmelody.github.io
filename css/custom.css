@@ -1,0 +1,8 @@
+@font-face {
+    font-family: Caranda;
+    src: url(caranda.ttf);
+}
+
+.logo {
+    font-family: Caranda !important;
+}
