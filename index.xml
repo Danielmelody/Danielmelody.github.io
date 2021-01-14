@@ -6,21 +6,34 @@
     <description>Recent content on Daniel&#39;s mind paradise</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 19 Mar 2020 15:46:14 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 15 Jan 2021 00:18:34 +0800</lastBuildDate>
     
         <atom:link href="https://hustdanielhu.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>About Me</title>
+      <title>About</title>
       <link>https://hustdanielhu.com/about/</link>
-      <pubDate>Sun, 18 Feb 2018 22:05:02 +0000</pubDate>
+      <pubDate>Wed, 13 Jan 2021 22:05:02 +0000</pubDate>
       
       <guid>https://hustdanielhu.com/about/</guid>
       
-        <description>Hi，I &amp;rsquo;m Daniel, A Game developer &amp;amp; graphics researcher now working in Tencent.
+        <description>Hi，I &amp;rsquo;m Daniel
 If you like, have a look at some of my interesting projects on github:
- CanvasToy A WebGL rendering library which supports physical-based rendering, also formed a tile-based deferred rendering pipeline. Lexacc A compiler-front-end parser generator  yimingdz@gmail.com, any technical or academic discussion is welcome.</description>
+  Ruschm Scheme(R7RS) interpretor/compiler rust implementation
+  CanvasToy A WebGL rendering library which supports physical-based rendering, also formed a tile-based deferred rendering pipeline.
+  yimingdz@gmail.com, any technical or academic discussion is welcome.</description>
+      
+    </item>
+    
+    <item>
+      <title>Summary 2020</title>
+      <link>https://hustdanielhu.com/post/summary2020/</link>
+      <pubDate>Fri, 15 Jan 2021 00:18:34 +0800</pubDate>
+      
+      <guid>https://hustdanielhu.com/post/summary2020/</guid>
+      
+        <description>年终总结似乎是一个技术圈流行的活动，我在18年也写过，可是现在的心境已经不太一样了。18年的年终总结看起来像一个约束，一个计划，但是其实总结</description>
       
     </item>
     

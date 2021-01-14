@@ -5,10 +5,6 @@
     <link>https://hustdanielhu.com/categories/</link>
     <description>Recent content in Categories on Daniel&#39;s mind paradise</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    
-	<atom:link href="https://hustdanielhu.com/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>zh-cn</language><atom:link href="https://hustdanielhu.com/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

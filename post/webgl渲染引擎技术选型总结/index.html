@@ -31,7 +31,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.74.3" />
+<meta name="generator" content="Hugo 0.79.1" />
 
 
 <link rel="canonical" href="https://hustdanielhu.com/post/webgl%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E6%80%BB%E7%BB%93/" />
@@ -70,7 +70,7 @@
 <meta itemprop="description" content="经过一年断断续续的踩坑，我的webgl渲染器已经到了攻坚阶段（很惭愧，离成熟还有不少距离）目前的主要工作集中在延迟渲染，阴影走样和PBS材质">
 <meta itemprop="datePublished" content="2017-04-29T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2017-04-29T00:00:00+00:00" />
-<meta itemprop="wordCount" content="2629">
+<meta itemprop="wordCount" content="2628">
 
 
 
@@ -141,7 +141,7 @@ if (!doNotTrack) {
         
           
           
-            <a class="menu-item-link" href="https://hustdanielhu.com/about/">About Me</a>
+            <a class="menu-item-link" href="https://hustdanielhu.com/about/">About</a>
           
         
       </li><li class="mobile-menu-item">
@@ -273,7 +273,7 @@ if (!doNotTrack) {
         
           
           
-            <a class="menu-item-link" href="https://hustdanielhu.com/about/">About Me</a>
+            <a class="menu-item-link" href="https://hustdanielhu.com/about/">About</a>
           
 
         
@@ -377,7 +377,7 @@ amd的define，require这些函数的应用场景，更多是在<strong>多页�
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="nx">namespace</span> <span class="nx">bar</span> <span class="p">{</span>
+<pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="kr">namespace</span> <span class="nx">bar</span> <span class="p">{</span>
     <span class="kr">export</span> <span class="kr">class</span> <span class="nx">Foo</span> <span class="p">{</span>
         <span class="p">...</span>
     <span class="p">}</span>
@@ -400,7 +400,7 @@ amd的define，require这些函数的应用场景，更多是在<strong>多页�
 <td class="lntd">
 <pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="c1">/// &lt;reference path=&#34;Foo&#34;/&gt;
 </span><span class="c1"></span>
-<span class="nx">namespace</span> <span class="nx">bar</span> <span class="p">{</span>
+<span class="kr">namespace</span> <span class="nx">bar</span> <span class="p">{</span>
     <span class="kr">export</span> <span class="kr">class</span> <span class="nx">Fooo</span> <span class="kr">extends</span> <span class="nx">Foo</span> <span class="p">{</span>
         <span class="p">...</span>
     <span class="p">}</span>
@@ -423,9 +423,9 @@ amd的define，require这些函数的应用场景，更多是在<strong>多页�
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="c1">/// &lt;reference path=&#34;Foo&#34;/&gt;
-</span><span class="c1"></span><span class="kr">import</span> <span class="o">*</span> <span class="kr">as</span> <span class="nx">SomeLib</span> <span class="nx">from</span> <span class="s2">&#34;SomeLibrary&#34;</span>
+</span><span class="c1"></span><span class="kr">import</span> <span class="o">*</span> <span class="kr">as</span> <span class="nx">SomeLib</span> <span class="kr">from</span> <span class="s2">&#34;SomeLibrary&#34;</span>
 
-<span class="nx">namespace</span> <span class="nx">bar</span> <span class="p">{</span>
+<span class="kr">namespace</span> <span class="nx">bar</span> <span class="p">{</span>
     <span class="kr">export</span> <span class="kr">class</span> <span class="nx">Fooo</span> <span class="kr">extends</span> <span class="nx">Foo</span> <span class="p">{</span>
         <span class="p">...</span>
     <span class="p">}</span>
@@ -438,7 +438,7 @@ amd的define，require这些函数的应用场景，更多是在<strong>多页�
 <p>这样其实是一个很好的中小型项目的解决办法，既没有污染全局命名空间，又做了良好的封装。但是JavaScript的专家说了，我们要做最先进的模块系统，于是这样的方式立马被否定了，随着各大库开始对跑在浏览器上的库使用amd，define/require反到变成优雅的方式了</p>
 <p>于是理所当然的，在更换到external module的时候，TS编译的结果是多个amd module，这些module在一个或者多个文件里，需要一个requirejs或者browserify或者webpack来做进一步的加工或处理</p>
 <p>我觉得这正是javascript令人生厌的地方，总是要经过非常麻烦的多道工序才能完成一件事情，同样的事情在C++，Java都属于根本不需要操心的事情。</p>
-<p>我没有选择requirejs或者browserify或者webpack中的一个（但是我确实折腾webpack折腾了很久，一直不能和typescript完美配合），因为毕竟我只需要把库的功能导出来，提供amd接口就够了，因为使用者应该具备&quot;使用amd library的基础知识&rdquo;</p>
+<p>我没有选择requirejs或者browserify或者webpack中的一个（但是我确实折腾webpack折腾了很久，一直不能和typescript完美配合），因为毕竟我只需要把库的功能导出来，提供amd接口就够了，因为使用者应该具备&quot;使用amd library的基础知识&quot;</p>
 <p>除了我上述说的这些坑以外，我还在nodejs里面踩过karma，karma with requirejs，jasmine，以及组合使用ts，karma，jasmine，requirejs的巨坑。我时不时有一种后悔选了WebGL做引擎开发试水的感觉，因为我在这些别的语言早已不是问题的问题上画的时间实在是太多了</p>
 
     </div>
@@ -639,7 +639,7 @@ amd的define，require这些函数的应用场景，更多是在<strong>多页�
     &copy;
     
       2015 -
-    2020
+    2021
     <span class="heart">
       
       <i class="iconfont">

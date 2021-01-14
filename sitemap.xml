@@ -3,7 +3,28 @@
   
   <url>
     <loc>https://hustdanielhu.com/about/</loc>
-    <lastmod>2017-08-28T21:41:52+08:00</lastmod>
+    <lastmod>2021-01-13T23:41:52+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hustdanielhu.com/</loc>
+    <lastmod>2021-01-15T00:18:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hustdanielhu.com/post/</loc>
+    <lastmod>2021-01-15T00:18:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hustdanielhu.com/post/summary2020/</loc>
+    <lastmod>2021-01-15T00:18:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -16,21 +37,7 @@
   </url>
   
   <url>
-    <loc>https://hustdanielhu.com/</loc>
-    <lastmod>2020-03-19T15:46:14+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://hustdanielhu.com/post/curves/</loc>
-    <lastmod>2020-03-19T15:46:14+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hustdanielhu.com/post/</loc>
     <lastmod>2020-03-19T15:46:14+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
