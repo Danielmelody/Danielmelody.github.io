@@ -435,7 +435,7 @@ if (!doNotTrack) {
 
 <p>在值的世界里，函数参数是一个 <span  class="math">\(Variable\)</span> ，它会在应用的时候被替换成具体值，那么自然的，在在类型世界里，函数参数的类型也可以是一个  <span  class="math">\(Variable\)</span>，称为类型变量，在应用的时候，类型变量的值被替换为了具体类型</p>
 
-<p>对于 <span  class="math">\(id = \lambda x.x\)</span> 这样的函数，如果引入类型变量，我们可以这样表示其类型：<span  class="math">\(id: \Lambda X.X\)</span>，这个 大写的 <span  class="math">\(\Lambda\)</span> 就相当于类型世界的 <span  class="math">\(\lambda\)</span></p>
+<p>对于 <span  class="math">\(id = \lambda x.x\)</span> 这样的函数，如果引入类型变量，我们可以这样表示其类型：<span  class="math">\(id: \Lambda X.X \rightarrow X \)</span>，这个 大写的 <span  class="math">\(\Lambda\)</span> 就相当于类型世界的 <span  class="math">\(\lambda\)</span></p>
 
 <p><span  class="math">\(id\)</span> 函数的类型的产生是自然的，不需要依赖别的信息，仅靠函数体就能得到，可以很简单的证明，对于任意 lambda 抽象，我们都能产生这么一个带有类型变量的类型</p>
 
@@ -494,7 +494,7 @@ typeof \space \texttt {(id "a")} = Y
 
 <p>这些约束的求解过程 (unification) 实际上是一个类型空间上的高斯消元，具体算法有 Algorithm J 和 Algorithm W， 由于相较而言比较好实现，工业上 Algorithm W 用的比较多。</p>
 
-<p>你可以在 wikipedia 上找到关于 Algorithm W 的说明，以及使用 Haskell 实现 algorithm W 的 paper。尽管如此，我还是给出一个简单的算法帮助理解：</p>
+<p>你可以在 wikipedia 上找到关于 Algorithm W 的说明，以及<a href="https://github.com/wh5a/Algorithm-W-Step-By-Step/blob/master/AlgorithmW.pdf">使用 Haskell 实现 algorithm W</a> 的 paper。尽管如此，我还是给出一个简单的算法帮助理解：</p>
 
 <ol>
 <li>给定一个约束集合 <span  class="math">\(S\)</span>, 记其中所有出现的自由变量集合为 <span  class="math">\(F = free(S)\)</span></li>
@@ -518,7 +518,7 @@ typeof \space \texttt {(id "a")} = Y
 
 <p><span  class="math">\[ \forall Fi \in S^{\prime}, Fi = (F Xi) \]</span></p>
 
-<p>这是最基本的 Algorithm W 的描述，我们可以增加一些自定义 syntax-directive rule 和 type operator 来补充完整 scheme 的类型系统。比如，为了描述 r7rs 的 vector 类型，我们需要一个类型构造器 <span  class="math">\(Vec: \Lambda X_1 X_2... X_n . Vec \space \texttt{of} \space X_1 X_2... X_n\)</span> , 以及一条生成规则：</p>
+<p>这是最基本的 Algorithm W 的描述，我们可以增加一些自定义 syntax-directive rule 和 type operator 来补充完整 scheme 的类型系统。比如，为了描述 <a href="https://small.r7rs.org/">r7rs</a> 的 vector 类型，我们需要一个类型构造器 <span  class="math">\(Vec: \Lambda X_1 X_2... X_n . Vec \space \texttt{of} \space X_1 X_2... X_n\)</span> , 以及一条生成规则：</p>
 
 <p><span  class="math">\[typeof \texttt{ \#(x1 x2 ... xn)} = Vec \space \texttt{of} \space X_1 X_2... X_n\]</span></p>
 
