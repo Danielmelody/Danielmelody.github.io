@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>在 Scheme 语言上构建静态类型系统 - Daniel&#39;s mind paradise</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="Daniel" />
+  <meta name="description" content="因为工作的关系，需要在古老的 Scheme 上实现一个编译到某种 Vectorized statically typed IR 的编译器，其编译过程需要支持 on-demand parameterized polymorphic ，比如 &#43; 这个函数，需要按需实例化为支持向量&#43;常量" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.82.0" />
+
+
+<link rel="canonical" href="https://hustdanielhu.com/post/static_scheme/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.01e3d8f03f142b439a96010ab309f91dd8b973cdd2248b73944b9b0db931248a.css" integrity="sha256-AePY8D8UK0OalgEKswn5Hdi5c83SJItzlEubDbkxJIo=" media="screen" crossorigin="anonymous">
+
+
+
+
+<link rel="stylesheet" href="/css/custom.css">
+
+
+<meta property="og:title" content="在 Scheme 语言上构建静态类型系统" />
+<meta property="og:description" content="因为工作的关系，需要在古老的 Scheme 上实现一个编译到某种 Vectorized statically typed IR 的编译器，其编译过程需要支持 on-demand parameterized polymorphic ，比如 &#43; 这个函数，需要按需实例化为支持向量&#43;常量" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hustdanielhu.com/post/static_scheme/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-04-18T01:31:59&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-18T01:31:59&#43;08:00" />
+
+<meta itemprop="name" content="在 Scheme 语言上构建静态类型系统">
+<meta itemprop="description" content="因为工作的关系，需要在古老的 Scheme 上实现一个编译到某种 Vectorized statically typed IR 的编译器，其编译过程需要支持 on-demand parameterized polymorphic ，比如 &#43; 这个函数，需要按需实例化为支持向量&#43;常量"><meta itemprop="datePublished" content="2021-04-18T01:31:59&#43;08:00" />
+<meta itemprop="dateModified" content="2021-04-18T01:31:59&#43;08:00" />
+<meta itemprop="wordCount" content="4618">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在 Scheme 语言上构建静态类型系统"/>
+<meta name="twitter:description" content="因为工作的关系，需要在古老的 Scheme 上实现一个编译到某种 Vectorized statically typed IR 的编译器，其编译过程需要支持 on-demand parameterized polymorphic ，比如 &#43; 这个函数，需要按需实例化为支持向量&#43;常量"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-167493016-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Daniel's mind paradise</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/shadertoy/">ShaderToy</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/about/">About</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/index.xml">RSS</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      Daniel's mind paradise
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/shadertoy/">ShaderToy</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/about/">About</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hustdanielhu.com/index.xml">RSS</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">在 Scheme 语言上构建静态类型系统</h1>
+      
+      <div class="post-meta">
+        <time datetime="2021-04-18" class="post-time">
+          2021-04-18
+        </time>
+        
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.js" integrity="sha512-O7WTu9pghLBfbQSGAf2xOFoRxDrHKS3kjRuuiCWttAf76q6h8Qj+KYPBF5EdZsE24LvXiFUshVNWaAxBOij8VA==" crossorigin="anonymous"></script>
+
+<p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css" integrity="sha512-el2z+rjIj40JeIlKyqcoRjGNjvwHVlyahNQ1PhSs4PCztr6jJ4GgpjgN+1a++L9HZxhLXpa4eLG3ry976z0O2Q==" crossorigin="anonymous" /></p>
+
+<p>因为工作的关系，需要在古老的 Scheme 上实现一个编译到某种 Vectorized statically typed IR 的编译器，其编译过程需要支持 on-demand parameterized polymorphic ，比如 <code>+</code> 这个函数，需要按需实例化为支持向量+常量， 向量+向量， 常量+常量的对应逻辑。这就需要 类型系统支持到 <span  class="math">\( \lambda 2 \)</span>  , 也就是 System F, 在不引入类型标注的情况下，Hindley-Milner 类型系统是最好的选择</p>
+
+<p>在现代语言 Haskell, Rust, TypeScript 中我们均能看到 Hindley-Milner 类型系统 的身影。HM 系统同样可以兼容类型标注作为类型推断的辅助，已经成为大多数有类型函数式语言的类型系统的基础。</p>
+
+<h3 id="scheme-as-a-static-typed-language">Scheme as A static typed language</h3>
+
+<p>完全静态是不可能的，因为 Scheme 中的 List 的类型是动态的，List 中的元素可以是任意合法的 Scheme 值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="o">&#39;</span><span class="p">(</span><span class="ss">&#39;bar</span> <span class="mi">1</span> <span class="o">&#39;</span><span class="p">()</span> <span class="p">(</span><span class="k">lambda </span><span class="o">&#39;</span><span class="p">()</span> <span class="no">#f</span><span class="p">)</span> <span class="s">&#34;foo&#34;</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>这样的话 List 的元素类型就必须是一个动态类型</p>
+
+<p>但是如果我们只考虑一个 Scheme 的子集，我们就可以在享受 Scheme 的一些优越特性的同时 （如 hygenic macros）, 利用类型系统更容易的写出正确的程序，并且打通和其他静态类型语言的桥梁。</p>
+
+<p>我们做一个很简单的限制： List 和 Vector 的元素类型必须一致。这样 List/Vector 的类型就变成静态的了。我们获得了一个 Scheme 的语义上的子集。</p>
+
+<p>我们目前有了静态类型系统的语义基础，现在我们可以在这个无类型标注的语言上构建一个真正的类型系统了</p>
+
+<h3 id="scheme-as-second-typed-lambda-calculus">Scheme as second typed lambda calculus</h3>
+
+<p>众所周知，Scheme 可以认为是 lambda 演算用程序语言表达的结果，加上多参数函数，更多的基本类型（数字，字符串，bool 等），REPL 等等feature，</p>
+
+<p>如上节提到， Scheme 实际上和无类型 lambda 演算一样是动态类型，我们考虑给 Scheme 加上一个最简单的静态类型系统，使得 Scheme 的每一个项都有一个确定的类型，根据我们开头提到的，这实际上要求类型系统至少是一个 支持多态的有类型 lambda 演算，也就是 System F (<span  class="math">\(\lambda 2\)</span>)</p>
+
+<p>为了从一个简单的地方开始，我们先来看看简单类型 Lambda 演算，他是 <span  class="math">\(\lambda 2\)</span> 的基础</p>
+
+<p>lambda 演算 只有三个简单的语法：</p>
+
+<ul>
+<li>Variable <span  class="math">\(x\)</span></li>
+<li>Abstraction <span  class="math">\((\lambda x.M)\)</span></li>
+<li>Application <span  class="math">\((M N)\)</span></li>
+</ul>
+
+<p>分别代表变量, 常数，抽象（也就是函数），和应用（函数应用）</p>
+
+<p>如果给 LC 加上类型约束，那么自然地，我们会如何规定值的类型呢？</p>
+
+<ul>
+<li><p>假设变量 <span  class="math">\(x\)</span> 拥有类型  <span  class="math">\(\sigma\)</span>, 那么 变量 <span  class="math">\(x\)</span> 拥有类型  <span  class="math">\(\sigma\)</span></p></li>
+
+<li><p>如果在某个环境中，已知  <span  class="math">\(x\)</span> 有类型 <span  class="math">\(\sigma\)</span> 可以推导出 <span  class="math">\(t\)</span> 有类型 <span  class="math">\(\tau\)</span></p></li>
+</ul>
+
+<p>那么：可以在该环境中构造 lambda 抽象 <span  class="math">\(\lambda x:\tau.t\)</span> ，其类型是 <span  class="math">\(\sigma \rightarrow \tau\)</span></p>
+
+<ul>
+<li>如果在特定上下文中，可以推导出 t 有类型  <span  class="math">\(\sigma \rightarrow \tau\)</span> 和 u 有类型 <span  class="math">\(\tau\)</span> 则在同一个上下文中，</li>
+</ul>
+
+<p>那么：可以推导出表达式 <span  class="math">\(t u\)</span> 有类型 <span  class="math">\(\tau\)</span>。这捕获了函数应用的概念。</p>
+
+<p>这三条规则也可以用自然推演（Natural Deduction）的形式定义，即：</p>
+
+<p><span  class="math">\[\frac {x{\mathbin {:}}\sigma \in \Gamma }{\Gamma \vdash x{\mathbin {:}}\sigma }Var\]</span></p>
+
+<p><span  class="math">\[{\frac {\Gamma ,x{\mathbin {:}}\sigma \vdash e{\mathbin {:}}\tau }{\Gamma \vdash (\lambda x{\mathbin {:}}\sigma .~e){\mathbin {:}}(\sigma \to \tau )}}Abs\]</span></p>
+
+<p><span  class="math">\[{\frac {\Gamma \vdash e_{1}{\mathbin {:}}\sigma \to \tau \quad \Gamma \vdash e_{2}{\mathbin {:}}\sigma }{\Gamma \vdash e_{1}~e_{2}{\mathbin {:}}\tau }}App\]</span></p>
+
+<p>在 Scheme 上实现的话，实际要做的工作就是搞清楚 Scheme 版本的 typing rules。</p>
+
+<ul>
+<li>常数，这个很简单，我们可以直接从 syntax 得到类型</li>
+<li>变量绑定，对于语句 <code>(define x y)</code> where <span  class="math">\(y:\sigma\)</span> , 我们得到  <span  class="math">\(x: \sigma\)</span></li>
+<li>Function Application, 对于表达式 (foo arg2 ...), 如果 foo 的类型为 <span  class="math">\(A1 A2 ... An \rightarrow Ret\)</span>, 那么表达式的类型为 <span  class="math">\(Ret\)</span></li>
+</ul>
+
+<p>到现在为止，好像都没什么问题，直到我们遇到函数定义：</p>
+
+<ul>
+<li>Native function，看起来也还好办，只需要库函数自己声明自己的类型就行，但是由于没有多态，目前我们只能指定 如 <code>+</code> 这样的函数类型为 <span  class="math">\(Int... \rightarrow Int\)</span> ，一旦这样声明， <code>+</code> 就不能接受 <span  class="math">\(Float\)</span> 类型的数据了</li>
+<li>User Defined Function, 对于形如 <code>(lambda (arg1...) ...last)</code> 这样的函数，我们没有足够的信息来确定 <code>arg1</code> <code>arg2</code> 等参数的类型，因为我们没有引入显式类型标注。但是引入类型标注无疑会导致语言成倍的复杂</li>
+</ul>
+
+<p>怎么办呢？一个自然的想法是，从函数的应用处来反推函数的类型，我们可以假定在函数应用处，所有参数的类型已经确定，那么把参数的类型作为代换，就能推出整个函数体的类型。比如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="nv">identity</span> <span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">identity</span> <span class="mi">1</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>把 x 用常量 1 代换，而常量 1 具有类型 <span  class="math">\(Int\)</span>, 函数体为 x，因此这个函数的应用结果 <code>(identity 1)</code> 的类型也是 <span  class="math">\(Int\)</span>，函数 identity 的类型为 <span  class="math">\(Int \rightarrow Int\)</span></p>
+
+<p>很快我们就会发现问题，identity 可能不只有一种类型，他可能是 <span  class="math">\(Float \rightarrow Float\)</span>, <span  class="math">\(Symbol \rightarrow Symbol\)</span> ... 等等，一个值怎么会有多种类型？然而从 Scheme 的语义看，这完全没有问题，站在解释器的角度，我只不过把参数代换进函数体，得到一个结果而已。</p>
+
+<p>可是到类型系统这里就遇到了灾难，我们发现简单类型 Lambda 演算已经不够用了，我们需要一种描述机制可以描述 id 这样的函数。</p>
+
+<p>在值的世界里，函数参数是一个 <span  class="math">\(Variable\)</span> ，它会在应用的时候被替换成具体值，那么自然的，在在类型世界里，函数参数的类型也可以是一个  <span  class="math">\(Variable\)</span>，称为类型变量，在应用的时候，类型变量的值被替换为了具体类型</p>
+
+<p>对于 <span  class="math">\(id = \lambda x.x\)</span> 这样的函数，如果引入类型变量，我们可以这样表示其类型：<span  class="math">\(id: \Lambda X.X\)</span>，这个 大写的 <span  class="math">\(\Lambda\)</span> 就相当于类型世界的 <span  class="math">\(\lambda\)</span></p>
+
+<p><span  class="math">\(id\)</span> 函数的类型的产生是自然的，不需要依赖别的信息，仅靠函数体就能得到，可以很简单的证明，对于任意 lambda 抽象，我们都能产生这么一个带有类型变量的类型</p>
+
+<p>现在，我们得到了一个带有类型变量的类型，如果这时候没有额外的信息，这个类型实际上就无法”求解“了，也就是无法代换为不含类型变量的具体类型，这些类型变量被称作是 “自由的”</p>
+
+<p>显而易见，我们可以从函数调用处获得这些”额外信息“</p>
+
+<p>值得注意的是，调用处有多个，在每个 id 的 occurrence， id 都是不同的类型，就 符号 id 而言其本身是多态的（Polymorphism）, 但是这种多态是有限的，其范围就是所有的 occurrence。这种有限的多态，正是 Hindley Milner 系统中的核心： <strong>Let-Polymorphism</strong></p>
+
+<p>Hindley Milner(以下简称 HM) 在 Lambda Calculus 的语法基础上增加了一条 let 语句</p>
+
+<p><span  class="math">\[
+ {\begin{array}{lrll}\\e&=&x&{\textrm {variable}}\\&\vert &e_{1}\ e_{2}&{\textrm {application}}\\&\vert &\lambda \ x\ .\ e&{\textrm {abstraction}}\\&\vert &{\mathtt {let}}\ x=e_{1}\ {\mathtt {in}}\ e_{2}&\\\\\end{array}}
+\]</span></p>
+
+<p>上面这个公式里的 let 语句就是实现 <strong>Let-Polymorphism</strong> 的基础，举例来说：</p>
+
+<p><span  class="math">\[\mathtt{let} \ id = \lambda x.x \ \mathtt{in} \ (id\ 3) \ (id \ \mathtt{"text"}) ...\]</span></p>
+
+<p>实际上表达了一个代换过程，这里两个 id 在各自的表达式里分别代换为 <span  class="math">\(Int \rightarrow Int\)</span> 和 <span  class="math">\(String \rightarrow String\)</span>。这种 let 形式实质上绕开了多态的问题，也就是说在 HM 系统里，除了 Let 语句，其他地方任然不允许一个identifier有多个类型</p>
+
+<p>这样缺点也很明显：表达起来很繁琐，所有函数的应用点都需要写在 let 语句里。实际上如果一个函数所有可能的调用都是已知的，那么所有调用点的类型都能够确定，我们也不需要拘泥于写出 let ... 这样的形式。我们只需要在函数定义的环境里的所有应用都当做是 let 语句的 <span  class="math">\(e_2\)</span> 部分就可以了。</p>
+
+<p>基于 let 语句，我们可以在简单类型 Lambda 演算上增加一条 Rules：LET</p>
+
+<p><span  class="math">\[\frac{\Gamma \vdash e_{0}:\sigma \ \ \ \ \ \  \Gamma,x:\sigma \vdash
+e_{1}:\tau}{\Gamma \vdash \mathbf{let}\ x= e_{0}\ \mathbf{in}\ e_{1}:\tau}{Let}\]</span></p>
+
+<p>到了这里，我们已经可以利用静态类型系统来为 无类型 Lambda 演算，或者是 Scheme 来做一些静态类型检查了，举例来说：</p>
+
+<p>假设我们已经知道函数 <code>+</code> 的类型为 <span  class="math">\(\Lambda X \rightarrow X \rightarrow X\)</span> , 对于下面的 scheme 程序：</p>
+
+<p><code>(define (id (x) x)</code></p>
+
+<p><code>(+ 1 (id &quot;a&quot;))</code> ，</p>
+
+<p>我们在全局环境里定义了 id 和 +，因此我们剩下的约束都是在一个全局的 Let 语句里产生的：</p>
+
+<p><span  class="math">\[Let  \space \texttt{id} : \Lambda X. X \rightarrow X \\ \space\texttt{+} : \Lambda X. X \rightarrow X \rightarrow X \]</span></p>
+
+<p>我们可以在 parse 的过程中根据语法产生五个显而易见的约束：</p>
+
+<p><span  class="math">\[
+Int = X \\
+typeof \space  \texttt {(id "a")} = X \\
+typeof \space \texttt{(+ 1 (id "a")) } = X \\
+String = Y \\
+typeof \space \texttt {(id "a")} = Y
+\]</span></p>
+
+<p>这个过程叫做 syntax-direct rules。这些约束都是以等价形式出现的，即等号左边和右边是没有次序的等价关系。</p>
+
+<p><strong>注意，这里出现的所有类型和类型变量都是 mono type，所有重复出现的函数引用都有单独的类型</strong></p>
+
+<p>求解这些约束，我们能得到一个类型错误：表达式 <span  class="math">\(\texttt{(id "a")}\)</span>  的类型为 <span  class="math">\(String\)</span>，而我们又期望表达式 <span  class="math">\(\texttt{(id "a")}\)</span> 的类型为 <span  class="math">\(Int\)</span>。</p>
+
+<p>这些约束的求解过程 (unification) 实际上是一个类型空间上的高斯消元，具体算法有 Algorithm J 和 Algorithm W， 由于相较而言比较好实现，工业上 Algorithm W 用的比较多。</p>
+
+<p>你可以在 wikipedia 上找到关于 Algorithm W 的说明，以及使用 Haskell 实现 algorithm W 的 paper。尽管如此，我还是给出一个简单的算法帮助理解：</p>
+
+<ol>
+<li>给定一个约束集合 <span  class="math">\(S\)</span>, 记其中所有出现的自由变量集合为 <span  class="math">\(F = free(S)\)</span></li>
+<li>根据 <span  class="math">\(F\)</span> 构造一个初始化变量表 <span  class="math">\(\textbf{Table} = \{ var: var | var \in F  \}\)</span></li>
+<li>从 <span  class="math">\(S\)</span> 中取一个约束 <span  class="math">\(C_i\)</span>, 令 <span  class="math">\(S^{\prime} = S - \{ c_i \}\)</span></li>
+<li><span  class="math">\([VAR]\)</span> 如果 <span  class="math">\(c_i\)</span> 符合形式 <span  class="math">\(x_i = \tau\)</span> 或者 <span  class="math">\(\tau = x_i\)</span>,（即约束的任意一边是一个类型变量） 那么
+
+<ul>
+<li>对于剩下的约束，做一个“替换“操作，<span  class="math">\(\forall C \in S^{\prime}, subsitude(C,x_i = \tau\)</span>)</li>
+<li>对于   <span  class="math">\(\textbf{Table}\)</span> 中对应的变量同样做这个替换操作 <span  class="math">\(x_i = \tau\)</span></li>
+</ul></li>
+<li><span  class="math">\([VAR]\)</span> 如果 <span  class="math">\(c_i\)</span>  符合形式 <span  class="math">\(X_l \rightarrow Y_l =  X_r \rightarrow Y_r\)</span>,  那么就产生两个新的约束 <span  class="math">\(X_l = X_r\)</span> 和  <span  class="math">\(Y_l = Y_r\)</span> 加入到 <span  class="math">\(S\)</span> 中 （这里代表了函数的等价约束）</li>
+</ol>
+
+<p><span  class="math">\[ S := S \cup \{ X_l = X_r, Y_l = Y_r\}\]</span></p>
+
+<ul>
+<li>\( [APP] \) 如果 \( c_i \)  符合形式 \( (F \space X) = Y \), 那么该约束转换为 \( F = X \rightarrow Y \),   \( S := S \cup { F = X \rightarrow Y } \)</li>
+<li>\( [ABS|LET] \) 如果 \( c_i \)  符合形式 \( F = \Lambda X. Y \), 这里右边 F 是一个let-polytype， 需要类型参数来确定具体的 monotype 类型。 产生这种形式的约束一般是遇到了函数定义 \( ABS \) 。我们根据上文的 Let-polymorphism知道，所有函数的类型在不同的 occurrence 处是不一样的，因此这条规则接下来的动作是，找到 F 的所有 occurrence ，然后产生恰当的类型参数，得到一个 monotype，这里我们可以直接产生最 general 的类型，即对所有的类型参数都直接生成一个类型变量</li>
+</ul>
+
+<p><span  class="math">\[ \forall Fi \in S^{\prime}, Fi = (F Xi) \]</span></p>
+
+<p>这是最基本的 Algorithm W 的描述，我们可以增加一些自定义 syntax-directive rule 和 type operator 来补充完整 scheme 的类型系统。比如，为了描述 r7rs 的 vector 类型，我们需要一个类型构造器 <span  class="math">\(Vec: \Lambda X_1 X_2... X_n . Vec \space \texttt{of} \space X_1 X_2... X_n\)</span> , 以及一条生成规则：</p>
+
+<p><span  class="math">\[typeof \texttt{ \#(x1 x2 ... xn)} = Vec \space \texttt{of} \space X_1 X_2... X_n\]</span></p>
+
+<p>当然，根据我们的目标， vec 的元素类型需要限定为一致　</p>
+
+<p><span  class="math">\(X_1 = X_2, X_2=X_3, ...X_n = X\)</span>　</p>
+
+<p>而 vec 的类型也可以简化为 <span  class="math">\(Vec \space \texttt{of} \space X\)</span></p>
+
+<p>在 unify 的时候，也需要增加一条</p>
+
+<ul>
+<li>\( [VAR] \) 如果 <span  class="math">\(c_i\)</span>  符合形式 <span  class="math">\(Vec \space \texttt{of} \space X =  Vec \space \texttt{of} \space Y\)</span>,  那么就产生n个新的约束加入到 <span  class="math">\(S\)</span> 中 （这里代表了数组的等价约束）</li>
+</ul>
+
+<p><span  class="math">\[S := S \cup \{ X = Y\}\]</span></p>
+
+<p>题外话：如果在 unification 的时候带上类型约束产生的位置并在求解的时候传递下去，就可以在报类型错误的时候给出正确的定位信息了</p>
+
+<p>Hindley-Milner 的另外两个 Rules，<span  class="math">\(GEN\)</span> 和 <span  class="math">\(INST\)</span>，实际上已经隐式包含在 <span  class="math">\(ABS\)</span> 和 <span  class="math">\(APP\)</span> 中了，在 syntax-directive 的过程里不会显式的出现，这里也给出两个 rules 的形式化描述：</p>
+
+<p><span  class="math">\[
+\frac{\Gamma \vdash e:\sigma \ \ \ \ \alpha \notin
+free(\Gamma)}{\Gamma \vdash e:\forall \alpha.\sigma}{GEN} \\
+\frac{\Gamma \vdash e:\sigma \ \ \ \ \ \sigma \succeq \sigma'}{\Gamma
+\vdash e:\sigma'}{INST}
+\]</span></p>
+
+<p>　</p>
+
+<p>至此，可以说基本完成了一个静态类型 scheme 的框架，基于此我们也实现了 scheme 的一个子集的编译器</p>
+
+<h2 id="后记">后记</h2>
+
+<p>我依旧庆幸自己有这么一个机会能在腾讯做这么 Geek 的事情，本文完成时，已经距离我提交离职申请过去5天了。</p>
+
+<p>我相信任何一个熟悉腾讯这家公司的人，都不太相信我能在腾讯写编译器。我曾经也以为，我能干出点不同的事情。然而我忽略了最重要的两点：</p>
+
+<ul>
+<li>作为一家游戏工作室，如何能投入资源帮你做这个编译器项目？</li>
+<li>作为一个只有两个人的研发小组，为什么要去负责推广？我们究竟是做一个 Saller 还是 Developer？</li>
+</ul>
+
+<p>Google 的前辈 <a href="https://laike9m.com/blog/jin-ji-nian-wo-zai-zhi-chang-cai-guo-de-keng,143/">laike9m 的 blog 有一段话</a>，我很认同</p>
+
+<ul>
+<li>这里仅讨论内部工具项目，不适用于面向外部用户的产品。几年下来我有一个很直接的观察，成功的内部工具基本都是 2c，很少有 2b 的。可能有人会好奇，内部工具也有 2b2c 之说吗？有个很简单判断方法：一个工具或系统，如果工程师能自己用起来，那就是 2c；如果需要部门里 &gt;1 人讨论并决定，那就是 2b。举两个例子：一个开箱即用的任务监控面板是 2c 的，而一个需要修改 release 流程才能使用的工具就是 2b 的。当然，我观察到的样本很少，所以结论未必对。但我真心感觉 2b 的东西想推动，要花费几倍于 2c 工具的时间，效果还未必好。总之如果你有的选，请尽量把时间花在 2c 项目上。</li>
+</ul>
+
+<p>很不幸，Leader 认为我们应该按照 2b 模式去做。 于是我得自己负责宣传，绞尽脑汁想落地，不断推销我们的东西。逐渐的我开始觉得不对劲，这不是就是发生在阿里达摩院的相似的故事吗？我并不否认销售的作用，甚至我很认同，在有朝一日，如果我去创业，或者成为某个大产品/业务的负责人，这些都是我应该考虑的事情，可是无论如何，都不是我现在这个位置和现在拥有的资源所能够考虑的事情</p>
+
+<p>另外还有一点是，也许腾讯做中间件产品太习惯 2b 了，工程师几乎遇不到 ”开箱即用“ 的产品，做什么都习惯拉个群做”客服“，软件质量上的缺陷用这种方式弥补，而不是靠单元测试和issue tracker，久而久之，可能就忘记了外面的世界是什么样</p>
+
+<p>总而言之，在腾讯做技术没有前途，本人待业中，希望有好坑可以联系我~</p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Daniel</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+      2021-04-18
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/wechat.jpg">
+        <span>微信打赏</span>
+      </label>
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div>
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/summary2020/">
+            <span class="next-text nav-default">Summary 2020</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  <div class="disqus-comment">
+  <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
+    显示 Disqus 评论
+  </div>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = "https://hustdanielhu.com/post/static_scheme/";
+    };
+    function load_disqus() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'Danielhu';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+      $('#load_disqus').remove();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  </div>
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:yimingdz@gmail.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="http://github.com/Danielmelody" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://www.zhihu.com/people/dao-chang-22-44" rel="me noopener" class="iconfont"
+      title="zhihu"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M351.791182 562.469462l192.945407 0c0-45.367257-21.3871-71.939449-21.3871-71.939449L355.897709 490.530013c3.977591-82.182744 7.541767-187.659007 8.816806-226.835262l159.282726 0c0 0-0.86367-67.402109-18.578124-67.402109s-279.979646 0-279.979646 0 16.850783-88.141456 39.318494-127.053698c0 0-83.60514-4.510734-112.121614 106.962104S81.344656 355.077018 76.80834 367.390461c-4.536316 12.313443 24.62791 5.832845 36.941354 0 12.313443-5.832845 68.050885-25.924439 84.252893-103.69571l86.570681 0c1.165546 49.28652 4.596691 200.335724 3.515057 226.835262L109.86113 490.530013c-25.275663 18.147312-33.701566 71.939449-33.701566 71.939449L279.868105 562.469462c-8.497535 56.255235-23.417339 128.763642-44.275389 167.210279-33.05279 60.921511-50.55235 116.65793-169.802314 212.576513 0 0-19.442818 14.257725 40.829917 9.073656 60.273758-5.185093 117.305683-20.739347 156.840094-99.807147 20.553105-41.107233 41.805128-93.250824 58.386782-146.138358l-0.055259 0.185218 167.855986 193.263655c0 0 22.035876-51.847855 5.832845-108.880803L371.045711 650.610918l-42.1244 31.157627-0.045025 0.151449c11.69946-41.020252 20.11206-81.5749 22.726607-116.858498C351.665315 564.212152 351.72876 563.345412 351.791182 562.469462z"></path>
+  <path d="M584.918753 182.033893l0 668.840094 70.318532 0 28.807093 80.512708 121.875768-80.512708 153.600307 0L959.520453 182.033893 584.918753 182.033893zM887.150192 778.934538l-79.837326 0-99.578949 65.782216-23.537066-65.782216-24.855084 0L659.341766 256.673847l227.807403 0L887.149169 778.934538z"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://hustdanielhu.com/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2015 -
+    2021
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        Daniel
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css"
+    integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG"
+    crossorigin="anonymous">
+
+  
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js"
+    integrity="sha384-JiKN5O8x9Hhs/UE5cT5AAJqieYlOZbGT3CHws/y97o3ty4R7/O5poG9F3JoiOYw1"
+    crossorigin="anonymous"></script>
+
+  
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI"
+    crossorigin="anonymous" onload="renderMathInElement(document.body);">
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        
+      });
+    });
+  </script>
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

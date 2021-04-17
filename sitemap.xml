@@ -10,14 +10,21 @@
   
   <url>
     <loc>https://hustdanielhu.com/</loc>
-    <lastmod>2021-01-15T00:18:34+08:00</lastmod>
+    <lastmod>2021-04-18T01:31:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://hustdanielhu.com/post/</loc>
-    <lastmod>2021-01-15T00:18:34+08:00</lastmod>
+    <lastmod>2021-04-18T01:31:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hustdanielhu.com/post/static_scheme/</loc>
+    <lastmod>2021-04-18T01:31:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
