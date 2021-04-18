@@ -6,7 +6,7 @@
     <description>Recent content on Daniel&#39;s mind paradise</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 15 Jan 2021 00:18:34 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 18 Apr 2021 01:31:59 +0800</lastBuildDate>
     
         <atom:link href="https://hustdanielhu.com/index.xml" rel="self" type="application/rss+xml" />
     
@@ -23,6 +23,17 @@ If you like, have a look at some of my interesting projects on github:
   Ruschm Scheme(R7RS) interpretor/compiler rust implementation
   CanvasToy A WebGL rendering library which supports physical-based rendering, also formed a tile-based deferred rendering pipeline.
   yimingdz@gmail.com, any technical or academic discussion is welcome.</description>
+      
+    </item>
+    
+    <item>
+      <title>在 Scheme 语言上构建静态类型系统</title>
+      <link>https://hustdanielhu.com/post/static_scheme/</link>
+      <pubDate>Sun, 18 Apr 2021 01:31:59 +0800</pubDate>
+      
+      <guid>https://hustdanielhu.com/post/static_scheme/</guid>
+      
+        <description>因为工作的关系，需要在古老的 Scheme 上实现一个编译到某种 Vectorized statically typed IR 的编译器，其编译过程需要支持 on-demand parameterized polymorphic ，比如 + 这个函数，需要按需实例化为支持向量+常量</description>
       
     </item>
     
@@ -177,17 +188,6 @@ If you like, have a look at some of my interesting projects on github:
       <guid>https://hustdanielhu.com/post/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</guid>
       
         <description>hexo的博客也搞了不久了，可惜换电脑的时候不小心丢失了数据，想了一些办法只恢复了几篇文章，另外还是觉得hexo的博客不够灵活。可定制化也不</description>
-      
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://hustdanielhu.com/post/static_scheme/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://hustdanielhu.com/post/static_scheme/</guid>
-      
-        <description>#! https://zhuanlan.zhihu.com/p/365734222 title: &amp;ldquo;在 Scheme 语言上构建静态类型系统&amp;rdquo; date: 2021-04-18T01:31:59+08:00 katex: true markup: &amp;ldquo;mmark&amp;rdquo; 因为工作的关系，需要在古老的 Scheme 上实现一个编译到某种 Vectorized statically typed IR 的编译器，</description>
       
     </item>
     
