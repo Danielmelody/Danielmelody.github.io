@@ -10,21 +10,14 @@
   
   <url>
     <loc>https://hustdanielhu.com/</loc>
-    <lastmod>2021-04-18T01:31:59+08:00</lastmod>
+    <lastmod>2021-01-15T00:18:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://hustdanielhu.com/post/</loc>
-    <lastmod>2021-04-18T01:31:59+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hustdanielhu.com/post/static_scheme/</loc>
-    <lastmod>2021-04-18T01:31:59+08:00</lastmod>
+    <lastmod>2021-01-15T00:18:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -165,6 +158,12 @@
   <url>
     <loc>https://hustdanielhu.com/post/%E6%96%B0%E7%9A%84%E5%BC%80%E5%A7%8B/</loc>
     <lastmod>2015-12-27T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hustdanielhu.com/post/static_scheme/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
