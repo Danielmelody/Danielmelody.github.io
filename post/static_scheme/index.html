@@ -385,7 +385,7 @@ if (!doNotTrack) {
 <li><p>如果在某个环境中，已知  <span  class="math">\(x\)</span> 有类型 <span  class="math">\(\sigma\)</span> 可以推导出 <span  class="math">\(t\)</span> 有类型 <span  class="math">\(\tau\)</span></p></li>
 </ul>
 
-<p>那么：可以在该环境中构造 lambda 抽象 <span  class="math">\(\lambda x:\tau.t\)</span> ，其类型是 <span  class="math">\(\sigma \rightarrow \tau\)</span></p>
+<p>那么：可以在该环境中构造 lambda 抽象 <span  class="math">\(\lambda x.t\)</span> ，其类型是 <span  class="math">\(\sigma \rightarrow \tau\)</span></p>
 
 <ul>
 <li>如果在特定上下文中，可以推导出 t 有类型  <span  class="math">\(\sigma \rightarrow \tau\)</span> 和 u 有类型 <span  class="math">\(\tau\)</span> 则在同一个上下文中，</li>
