@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal-md</title>
+    <link rel="shortcut icon" href="./favicon.ico"/>
+    <link rel="stylesheet" href="./dist/reveal.css" />
+    <link rel="stylesheet" href="./dist/theme/sky.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./_assets/normalcase.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template"># Introducing Rust in Game Development
+
+Shared By @[DanielHu](https://hustdanielhu.com/), 6/30/2021
+</script></section><section  data-markdown><script type="text/template">
+
+## History and Motivation
+
+* First invented by *Graydon Hoare* at *Mozilla Research*, to help build mozilla's next-gen web engine, [servo](https://servo.org/)
+* Designed for Performance and safety, concurrency
+* Expressing Low-level control with high-level abstraction
+</script></section><section  data-markdown><script type="text/template">
+
+## Rust killing features
+
+- Almost Statically-proved memory safety
+- Fearless Concurrency
+- Performance: Same level to C++
+- Type rich(From Haskell): Algebra data type(ADT), dyn trait, type inference, Generics
+- Modern dependency management
+- Stable ABI: trait object</script></section><section  data-markdown><script type="text/template">
+## Rust's drawbacks
+
+* Hard to learn, but not hard than C++
+* Build times (no longger than C++)
+* Big binary
+* ...
+</script></section><section ><section data-markdown><script type="text/template">
+# Rust is growing fast
+</script></section><section data-markdown><script type="text/template">
+## Open Source
+
+- Linux kernel (partial)
+- Game Engines: bevy, [amethyst](https://github.com/amethyst/amethyst), ggez, [specs](https://github.com/amethyst/specs)
+- Operating systems: Redox, intermezzOS, Theseus
+- GUI: Druid, Iced, Tauri, imgui-rs
+- Web Framework: [Rocket](https://rocket.rs/), Actix Web, Yew
+- Broswers: Servo, Chromium
+- Compilers: [swc](https://github.com/swc-project/swc), Rust
+- Other: GNU [Coreutils](https://github.com/uutils/coreutils), [ripgrep](https://github.com/BurntSushi/ripgrep), [Deno](https://github.com/denoland/deno)</script></section><section data-markdown><script type="text/template">## Commercial use
+
+- Microsoft, Google, Facebook, HUAWEI, AWS, Mozilla
+  - Founded *Rust Foundation*
+- [NPM](https://www.infoq.com/news/2019/03/rust-npm-performance/) Adopted Rust to Remove Performance Bottlenecks
+- Coursera, Dropbox, 1Password
+- Bytedance's Lark, Pingcap's tidb.
+- etc..., see [Production User List](https://www.rust-lang.org/production/users)
+</script></section><section data-markdown><script type="text/template">
+## Commercial Use (Game Industry)
+
+* Embark Studio (Former devs of CryEngine, Battle Field)
+  * [rust-gpu](https://github.com/EmbarkStudios/rust-gpu)
+  * [A new Game Engine](https://github.com/EmbarkStudios/rust-gpu#why-embark)
+* [Ready At Dawn](https://www.reddit.com/r/programming/comments/91fx7q/game_studio_ready_at_dawn_switching_to_rust_for/)
+</script></section></section><section ><section data-markdown><script type="text/template">
+# Rust features examples
+</script></section><section data-markdown><script type="text/template">
+### 1. Prevent using after free
+```rust
+let y: &i32;
+{
+    let x = 5;
+    y = &x;
+}
+
+println!("{}", y);
+```
+> error: `x` does not live long enough
+</script></section><section data-markdown><script type="text/template">
+### 2. Prevent Data race
+
+```rust
+let mut x = 5;
+let y = &mut x;
+
+*y += 1;
+
+println!("{}", x);
+```
+
+> error: cannot borrow `x` as immutable because it is also borrowed as mutable
+</script></section><section data-markdown><script type="text/template">
+### Explicit lifetime management
+
+This function takes a reference and return a reference.
+
+``` rust
+fn smallest_number(n: &[i32]) -> &i32 {
+    let mut s = &n[0];
+    for r in &n[1..] {
+        if r < s {
+            s = r;
+        }
+    }
+    s
+}
+```
+</script></section><section data-markdown><script type="text/template">This is equivalent to
+```rust
+fn smallest_number<'a>(n: &'a [i32]) -> &'a i32 {
+    ...
+}
+```
+
+Given:
+
+```
+let s;
+{
+    let numbers = [2, 4, 1, 0, 9];
+    s = smallest_number(&numbers);
+}
+println!("{}", s)
+```
+</script></section><section data-markdown><script type="text/template">
+Got:
+
+```
+error[E0597]: `numbers` does not live long enough
+ --> src/main.rs:5:29
+  |
+5 |         s = smallest_number(&numbers);
+  |                             ^^^^^^^^ borrowed value does not live long enough
+6 |     }
+  |     - `numbers` dropped here while still borrowed
+7 |     println!("{}", s)
+  |                    - borrow later used here
+```
+</script></section><section data-markdown><script type="text/template">
+
+## 4. Algebra DataType
+
+| Rust                             | Math  | Notes                   |
+| -------------------------------- | ----- | ----------------------- |
+| Never                            | 0     | No Values               |
+| () = ()                          | 1     | Exactly One Values      |
+| bool = true \| false             | 1+1   |                         |
+| Option<T> = None \| T            | a + 1 | can be handled by Monad |
+| Result<T, Err> = Ok(T) \| Err(E) | a + b |                         |
+</script></section><section data-markdown><script type="text/template">
+| Rust          | Math            | Notes         |
+| ------------- | --------------- | ------------- |
+| enum {...}    | a + b + ... + m | Sum types     |
+| struct {...}  | a * b * ...* m  | Product types |
+| fn(a: A) -> B | $b^a$           |
+</script></section><section data-markdown><script type="text/template">
+* Product Type: struct
+
+* **Sum Type**: enum, Option, Result
+
+```rust
+#[derive(Debug)]
+enum Tree<T> {
+    Empty,
+    Node(T, Box<Tree<T>>, Box<Tree<T>>)
+}
+```
+> Sum type is a disjoint union
+</script></section><section data-markdown><script type="text/template">
+### Sum Type Example: Option
+
+```rust
+fn checked_division(dividend: i32, divisor: i32) -> Option<i32> ;
+```
+Handled by pattern matching:
+
+```rust
+match checked_division(dividend, divisor) {
+    None => println!("{} / {} failed!", dividend, divisor),
+    Some(quotient) => {
+        println!("{} / {} = {}", dividend, divisor, quotient)
+    },
+}
+```</script></section><section data-markdown><script type="text/template">
+### 4. Lazy Evaluation
+
+* Iterator
+
+```rust
+pub trait Iterator {
+    type Item;
+
+    fn next(&mut self) -> Option<Self::Item>;
+}
+```
+
+* Iterator Adapter
+
+```rust
+  let v1: Vec<i32> = vec![1, 2, 3];
+  let iter = v1.iter().map(|x| x + 1);
+  let v2: List<i32> = iter.collect(); // Can be re-collect as List!
+```
+</script></section><section data-markdown><script type="text/template">### WebAssembly Ecosystem
+
+*Rust -> LLVM IR -> WebAssembly*
+
+extra toolchain:
+  * wasm-bingen: communicate with `javascript` by `wasm`
+  * wasm-pack: publish rust generated wasm to npm
+
+checkout [tidb-wasm](http://play.tidb.io/), an entirely database running inside your browser.
+</script></section></section><section ><section data-markdown><script type="text/template">
+# Rust Intergrated into UE4: How to
+</script></section><section data-markdown><script type="text/template">
+ Note Using *[Autocxx](https://github.com/google/autocxx)* by Google is more productive now
+</script></section><section data-markdown><script type="text/template">
+### Expected Result
+
+
+![](./RunInUE4.png)
+
+```cpp
+#include "wrapper.hh"
+...
+
+ARustInUE4GameModeBase() {
+    UE_LOG(
+    LogTemp, 
+    Warning, 
+    TEXT("call rust: 2 + 2 = %d"), 
+    rust_plus(2, 2));
+}
+
+```
+</script></section><section data-markdown><script type="text/template">## Step 1: port to C++
+
+### Generate C/C++ Header
+
+```zsh
+cbindgen --crate rust-to-cpp --output src/wrapper.hh 
+```</script></section><section data-markdown><script type="text/template">
+## Step 1: port to C++
+
+lib.rs
+
+```rust
+#[no_mangle]
+pub extern "C" fn rust_plus(a: i32, b: i32) -> i32 {
+    println!("print from rust: {} + {}", a, b);
+    a + b
+}
+```
+
+main.cpp
+
+```cpp
+#include "wrapper.hh"
+#include <iostream>
+
+int main() {
+  int a, b;
+  std::cout << "enter 2 numbers:" << std::endl;
+  std::cin >> a >> b;
+  std::cout << rust_plus(a, b) << std::endl;
+  return 0;
+}
+```</script></section><section data-markdown><script type="text/template">
+## Step 1: port to C++
+
+### Build and Run
+
+```zsh
+cbindgen --crate rust-to-cpp --output src/wrapper.hh # auto generate cpp header
+cargo build && c++ src/main.cpp -L./target/debug -l rust_to_cpp # link
+./a.out # run
+```
+
+```zsh
+enter 2 numbers:
+12 34
+print from rust: 12 + 34
+46
+```
+</script></section><section data-markdown><script type="text/template">
+## Step 2: Use In UE4
+
+Put the rust-to-cpp project somewhere in a plugin folder
+
+```zsh
+.
+├── PluginUseRust.uplugin
+├── Resources
+│   └── Icon128.png
+├── RustLib  --- reference the rust-to-cpp project
+│   ├── Cargo.toml
+│   ├── README.md
+│   └── src
+│       ├── lib.rs
+│       └── main.cpp
+└── Source
+```
+</script></section><section data-markdown><script type="text/template">
+```csharp
+PublicIncludePaths.AddRange(
+  new string[] {Path.Combine(libPath, "src")}
+);	
+if (Target.Platform == UnrealTargetPlatform.Win64) {
+	  PublicAdditionalLibraries.Add(Path.Combine(libPath, "target/release/rust_to_cpp.lib"));
+		PublicSystemLibraries.Add("msvcrt.lib");
+		PublicSystemLibraries.Add( "advapi32.lib");
+		PublicSystemLibraries.Add( "ws2_32.lib");
+		PublicSystemLibraries.Add( "userenv.lib");
+}
+```
+
+---- </script></section><section data-markdown><script type="text/template">
+![](./RunInUE4.png)
+</script></section><section data-markdown><script type="text/template">
+Rust Intergrated in Other Game Engines:
+
+Discussions: 
+* [Rust(lang) in Unity3D](https://www.reddit.com/r/Unity3D/comments/37r294/rustlang_in_unity3d/)
+* [Rust in AAA game engine: rust ](https://www.reddit.com/r/rust/comments/9zuk09/rust_in_aaa_game_engine/)
+* [Why Rust is the Future of Game Development](https://thefuntastic.com/blog/why-rust-is-the-future-game-dev)
+</script></section></section><section  data-markdown><script type="text/template">
+# Q & A</script></section></div>
+    </div>
+
+    <script src="./dist/reveal.js"></script>
+
+    <script src="./plugin/markdown/markdown.js"></script>
+    <script src="./plugin/highlight/highlight.js"></script>
+    <script src="./plugin/zoom/zoom.js"></script>
+    <script src="./plugin/notes/notes.js"></script>
+    <script src="./plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
