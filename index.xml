@@ -27,6 +27,17 @@ If you like, have a look at some of my interesting projects on github:
     </item>
     
     <item>
+      <title>Daniel&#39;s public slides</title>
+      <link>https://hustdanielhu.com/slides/</link>
+      <pubDate>Fri, 09 Jul 2021 00:01:36 +0800</pubDate>
+      
+      <guid>https://hustdanielhu.com/slides/</guid>
+      
+        <description> Introducing Rust in Game Development   </description>
+      
+    </item>
+    
+    <item>
       <title>在 Scheme 语言上构建静态类型系统</title>
       <link>https://hustdanielhu.com/post/static_scheme/</link>
       <pubDate>Sun, 18 Apr 2021 01:31:59 +0800</pubDate>
