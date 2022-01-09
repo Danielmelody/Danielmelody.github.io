@@ -31,7 +31,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.82.0" />
+<meta name="generator" content="Hugo 0.91.2" />
 
 
 <link rel="canonical" href="https://hustdanielhu.com/post/%E7%8E%B0%E4%BB%A3c-%E6%83%AF%E7%94%A8%E6%B3%95/" />
@@ -52,7 +52,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.01e3d8f03f142b439a96010ab309f91dd8b973cdd2248b73944b9b0db931248a.css" integrity="sha256-AePY8D8UK0OalgEKswn5Hdi5c83SJItzlEubDbkxJIo=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.444f741ba7b684e63dff9a3b61ec1fb750c9b563b5a0b64153f1af8025c5fac1.css" integrity="sha256-RE90G6e2hOY9/5o7Yewft1DJtWO1oLZBU/GvgCXF&#43;sE=" media="screen" crossorigin="anonymous">
 
 
 
@@ -64,12 +64,12 @@
 <meta property="og:description" content="现在是 9102 年了，再来总结 C&#43;&#43; 的惯用法似乎有点落伍，但是 C&#43;&#43; 的强大依然毋庸置疑。最近我也把目光投向 rust，C&#43;&#43; 不管怎么演进，历史包袱还是太沉重了" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hustdanielhu.com/post/%E7%8E%B0%E4%BB%A3c-%E6%83%AF%E7%94%A8%E6%B3%95/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2019-02-06T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2019-02-06T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2019-02-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-02-06T00:00:00+00:00" />
 
 <meta itemprop="name" content="现代C&#43;&#43;惯用法">
-<meta itemprop="description" content="现在是 9102 年了，再来总结 C&#43;&#43; 的惯用法似乎有点落伍，但是 C&#43;&#43; 的强大依然毋庸置疑。最近我也把目光投向 rust，C&#43;&#43; 不管怎么演进，历史包袱还是太沉重了"><meta itemprop="datePublished" content="2019-02-06T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-02-06T00:00:00&#43;00:00" />
+<meta itemprop="description" content="现在是 9102 年了，再来总结 C&#43;&#43; 的惯用法似乎有点落伍，但是 C&#43;&#43; 的强大依然毋庸置疑。最近我也把目光投向 rust，C&#43;&#43; 不管怎么演进，历史包袱还是太沉重了"><meta itemprop="datePublished" content="2019-02-06T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-02-06T00:00:00+00:00" />
 <meta itemprop="wordCount" content="4735">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="现代C&#43;&#43;惯用法"/>
@@ -395,14 +395,14 @@
 <h2 id="运行期断言">运行期断言</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#ifdef NDEBUG
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#ifdef NDEBUG
 </span><span class="cp">#define assert(condition) ((void)0)
 </span><span class="cp">#else
 </span><span class="cp">#define assert(condition) </span><span class="cm">/*implementation defined*/</span><span class="cp">
@@ -417,7 +417,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -429,7 +429,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">foo1</span><span class="p">(</span><span class="kt">int</span> <span class="n">score</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">foo1</span><span class="p">(</span><span class="kt">int</span> <span class="n">score</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="n">score</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="err">）</span><span class="p">{</span>
         <span class="c1">// internal logics
 </span><span class="c1"></span>    <span class="p">}</span>    
@@ -472,7 +472,7 @@
 <p>下面的代码可以限制 Vector 的 dimension 始终大于 1</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -482,7 +482,7 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">ElemType</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="o">&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">ElemType</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="o">&gt;</span>
 <span class="k">class</span> <span class="nc">Vector</span> <span class="p">{</span>
     <span class="k">static_assert</span><span class="p">(</span><span class="n">N</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#34;1D Vector is not allowed, use scalar types&#34;</span><span class="p">);</span>
     <span class="n">ElemType</span> <span class="n">elem_</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
@@ -495,7 +495,7 @@
 </div><p>另外，利用 static_assert + type_traits 也能实现语义约束，比如我们想写一个检查无符号加法溢出的函数，并希望调用方不传递有符号类型，那么我们可以：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -503,7 +503,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 <span class="kt">bool</span> <span class="n">check_overflow_add_unsigned</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">static_assert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_unsigned</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">,</span> <span class="s">&#34;T must be unsigned types!&#34;</span><span class="p">);</span>
     <span class="p">...</span>
@@ -520,12 +520,12 @@
 <h4 id="单行宏">单行宏</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define a 1
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define a 1
 </span><span class="cp">#define b (a + 1)
 </span><span class="cp">#define c a * b
 </span></code></pre></td></tr></table>
@@ -533,12 +533,12 @@
 </div><h4 id="多行宏">多行宏</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define Vec \
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define Vec \
 </span><span class="cp">static int x; \
 </span><span class="cp">static int y;
 </span></code></pre></td></tr></table>
@@ -547,7 +547,7 @@
 <h2 id="宏参数">宏参数</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -561,7 +561,7 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp">#define DUPLICATE(index, times) for(int index = 0; index &lt; times; ++index)
 </span><span class="cp"></span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> 
@@ -581,7 +581,7 @@
 <p>例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -592,7 +592,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define DEFINE_AND_PRINT(type, varname) \
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define DEFINE_AND_PRINT(type, varname) \
 </span><span class="cp">type varname; \
 </span><span class="cp">std::cout &lt;&lt; &#34;declare &#34; &lt;&lt; #type &lt;&lt; &#34; &#34; &lt;&lt; #varname &lt;&lt; std::endl;
 </span><span class="cp"></span>
@@ -607,14 +607,14 @@
 <p>## 直接把前后的字符合并成一个token，可以用来自动生成出一些新的token（类名，函数名，变量名等）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define CREATE_3_VARS(name) name##1, name##2, name##3
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define CREATE_3_VARS(name) name##1, name##2, name##3
 </span><span class="cp"></span><span class="kt">int</span> <span class="nf">CREATE_3_VARS</span><span class="p">(</span><span class="n">myInts</span><span class="p">);</span>
 <span class="n">myInts1</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
 <span class="n">myInts2</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
@@ -630,7 +630,7 @@
 <p>我们怎样在C#中实现单例？</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -656,7 +656,7 @@
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
     <span class="p">{</span>
         <span class="k">static</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
  
@@ -685,7 +685,7 @@
 </div><h2 id="线程安全">线程安全</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -712,7 +712,7 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
     <span class="p">{</span>
         <span class="k">static</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
         <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="kt">object</span> <span class="n">padlock</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>
@@ -742,7 +742,7 @@
 </div><h2 id="double-check">Double-Check</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -771,7 +771,7 @@
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c#" data-lang="c#"> <span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"> <span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
     <span class="p">{</span>
         <span class="k">static</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
         <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="kt">object</span> <span class="n">padlock</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>
@@ -803,14 +803,14 @@
 </div><h2 id="meyers-singleton-in-c">Meyers' Singleton in C++</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">static</span> <span class="n">Singleton</span><span class="o">&amp;</span> <span class="n">instance</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">static</span> <span class="n">Singleton</span><span class="o">&amp;</span> <span class="n">instance</span><span class="p">()</span>
 <span class="p">{</span>
      <span class="k">static</span> <span class="n">Singleton</span> <span class="n">s</span><span class="p">;</span>
      <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
@@ -823,7 +823,7 @@
 <p>以clang 为例，Meyers 单例生成的汇编代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -867,7 +867,7 @@
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">Singleton::instance():               # @Singleton::instance()
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Singleton::instance():               # @Singleton::instance()
         push    rbp
         mov     rbp, rsp
         sub     rsp, 16
@@ -925,20 +925,20 @@ guard variable for Singleton::instance()::singleton:
 <p>所谓默认模板参数很好理解，和函数的默认参数一样，例子如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span> <span class="o">=</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="c1">// int is the default template parameter for argument U
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span> <span class="o">=</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="c1">// int is the default template parameter for argument U
 </span></code></pre></td></tr></table>
 </div>
 </div><p>当不指定 U 时，U默认为int</p>
 <p>由于替换的次序不同，在替换默认模板参数的时候，实际上可以利用已经替换过的参数来替换默认参数</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">internal_type</span><span class="o">&gt;</span> 
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">internal_type</span><span class="o">&gt;</span> 
 </code></pre></td></tr></table>
 </div>
 </div><p>而替换失败(subtitition failure) 指的是上述的替换产生了问题，比如传递给类型参数A的类型可能没有一个叫internal_type的嵌套类型，</p>
@@ -946,7 +946,7 @@ guard variable for Singleton::instance()::singleton:
 <p>有人说那我改一下默认参数是不是能产生subtitition failure is not an error呢？很遗憾不行。只有default template parameter 不同的template是有歧义的</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -970,7 +970,7 @@ guard variable for Singleton::instance()::singleton:
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="k">struct</span> <span class="nc">A</span> <span class="p">{</span>
   <span class="k">using</span> <span class="n">internal_type</span> <span class="o">=</span> <span class="kt">int</span><span class="p">;</span>
@@ -999,7 +999,7 @@ guard variable for Singleton::instance()::singleton:
 <p>Example from <a href="https://en.wikipedia.org/wiki/Substitution_failure_is_not_an_error">wikipedia</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1015,7 +1015,7 @@ guard variable for Singleton::instance()::singleton:
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">Test</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">Test</span> <span class="p">{</span>
     <span class="k">typedef</span> <span class="kt">int</span> <span class="n">foo</span><span class="p">;</span>
 <span class="p">};</span>
 
@@ -1035,7 +1035,7 @@ guard variable for Singleton::instance()::singleton:
 <p>这是 SFINAE 的一个应用，用来检查类参数有没有 T 有在类内部 typedef internal_type 类型</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1059,7 +1059,7 @@ guard variable for Singleton::instance()::singleton:
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="k">struct</span> <span class="nc">A</span> <span class="p">{</span>
   <span class="k">using</span> <span class="n">internal_type</span> <span class="o">=</span> <span class="kt">int</span><span class="p">;</span>
 <span class="p">};</span>
@@ -1088,7 +1088,7 @@ guard variable for Singleton::instance()::singleton:
 <p>更有用的例子是判断类型有没有包含某个名字的成员函数，这一点对template programming 中的duck typing 很重要</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1133,7 +1133,7 @@ guard variable for Singleton::instance()::singleton:
 </span><span class="lnt">43
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&lt;type_traits&gt;</span><span class="cp">
 </span><span class="cp"></span>
@@ -1189,7 +1189,7 @@ guard variable for Singleton::instance()::singleton:
 <p>一个简单的例子是上文提到的 match unsigned 类型的泛型函数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1197,7 +1197,7 @@ guard variable for Singleton::instance()::singleton:
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 <span class="kt">bool</span> <span class="n">check_overflow_add_unsigned</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">static_assert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_unsigned</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">,</span> <span class="s">&#34;T must be unsigned types!&#34;</span><span class="p">);</span>
     <span class="p">...</span>
@@ -1209,7 +1209,7 @@ guard variable for Singleton::instance()::singleton:
 <p>cppreference 中给出的可能实现如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1221,7 +1221,7 @@ guard variable for Singleton::instance()::singleton:
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">namespace</span> <span class="n">detail</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">namespace</span> <span class="n">detail</span> <span class="p">{</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span><span class="kt">bool</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">is_arithmetic</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">&gt;</span>
 <span class="k">struct</span> <span class="nc">is_unsigned</span> <span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">integral_constant</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="n">T</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span> <span class="p">{};</span>
 
@@ -1245,7 +1245,7 @@ guard variable for Singleton::instance()::singleton:
 <p>RAII 在 STL 中被大量使用。文件流是一个很好的例子。销毁文件流对象，也会同步关闭文件，而不需要手动关闭文件描述符</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1273,7 +1273,7 @@ guard variable for Singleton::instance()::singleton:
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp">
 <span class="cp">#include</span> <span class="cpf">&lt;mutex&gt;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&lt;string&gt; </span><span class="cp">
@@ -1497,7 +1497,7 @@ guard variable for Singleton::instance()::singleton:
     &copy;
     
       2015 -
-    2021
+    2022
     <span class="heart">
       
       <i class="iconfont">

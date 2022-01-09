@@ -31,7 +31,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.82.0" />
+<meta name="generator" content="Hugo 0.91.2" />
 
 
 <link rel="canonical" href="https://hustdanielhu.com/post/curves/" />
@@ -52,7 +52,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.01e3d8f03f142b439a96010ab309f91dd8b973cdd2248b73944b9b0db931248a.css" integrity="sha256-AePY8D8UK0OalgEKswn5Hdi5c83SJItzlEubDbkxJIo=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.444f741ba7b684e63dff9a3b61ec1fb750c9b563b5a0b64153f1af8025c5fac1.css" integrity="sha256-RE90G6e2hOY9/5o7Yewft1DJtWO1oLZBU/GvgCXF&#43;sE=" media="screen" crossorigin="anonymous">
 
 
 
@@ -64,13 +64,13 @@
 <meta property="og:description" content="TL;DR; 在计算机图形学中，插值（Interpolation）和拟合（Curve Fitting）在表面建模，路径规划，粒子系统等子领域中应用广泛， 且" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hustdanielhu.com/post/curves/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-03-19T15:46:14&#43;08:00" />
-<meta property="article:modified_time" content="2020-03-19T15:46:14&#43;08:00" />
+<meta property="article:published_time" content="2020-03-19T15:46:14+08:00" />
+<meta property="article:modified_time" content="2020-03-19T15:46:14+08:00" />
 
 <meta itemprop="name" content="Interpolation and Curve Fitting in Computer Graphics">
-<meta itemprop="description" content="TL;DR; 在计算机图形学中，插值（Interpolation）和拟合（Curve Fitting）在表面建模，路径规划，粒子系统等子领域中应用广泛， 且"><meta itemprop="datePublished" content="2020-03-19T15:46:14&#43;08:00" />
-<meta itemprop="dateModified" content="2020-03-19T15:46:14&#43;08:00" />
-<meta itemprop="wordCount" content="3648">
+<meta itemprop="description" content="TL;DR; 在计算机图形学中，插值（Interpolation）和拟合（Curve Fitting）在表面建模，路径规划，粒子系统等子领域中应用广泛， 且"><meta itemprop="datePublished" content="2020-03-19T15:46:14+08:00" />
+<meta itemprop="dateModified" content="2020-03-19T15:46:14+08:00" />
+<meta itemprop="wordCount" content="3644">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Interpolation and Curve Fitting in Computer Graphics"/>
 <meta name="twitter:description" content="TL;DR; 在计算机图形学中，插值（Interpolation）和拟合（Curve Fitting）在表面建模，路径规划，粒子系统等子领域中应用广泛， 且"/>
@@ -369,10 +369,10 @@
 <p>一般来说，样条曲线方程不高于三次，因为较低次数的曲线能达到更好的局部拟合效果，而三次方程是实现<strong>曲线 \( G^2 \) 连续的最低幂次</strong>。也就是说，图形学/工业设计上遇到的曲线基本都是分段三次曲线，因此我们首先关注三次样条曲线（Cubic Spline）的一些共有性质。</p>
 <p>在大学本科教材“数值分析”中，一个插值n个节点的三次样条曲线的形式是</p>
 <p>$$
-S(x) = S_1(x), x \in [x_1, x_{2}] \\\<br>
-&hellip; \\\<br>
-S(x) = S_k(x), x \in [x_k, x_{k+1}] \\\<br>
-S(x) = S_n(x), x \in [x_{n-1}, x_n] \\\<br>
+S(x) = S_1(x), x \in [x_1, x_{2}] \\\
+&hellip; \\\
+S(x) = S_k(x), x \in [x_k, x_{k+1}] \\\
+S(x) = S_n(x), x \in [x_{n-1}, x_n] \\\
 $$</p>
 <p>$$
 S_k(x) = y_k + b_k(x - x_k) + c_k(x - x_k)^2 +d_k(x - x_k)^3
@@ -454,11 +454,11 @@ $$</p>
 <p>$$
 P(t) = \sum_{i=0}^{n} P_iN_{i, p}(t)
 $$</p>
-<p>其中 \( P_i \) 是控制点。\( N_{i, p}(t) \) 称为**样条基函数**，是一个 \( p \) 次（\( p+1 \)阶）多项式。</p>
+<p>其中 \( P_i \) 是控制点。\( N_{i, p}(t) \) 称为<strong>样条基函数</strong>，是一个 \( p \) 次（\( p+1 \)阶）多项式。</p>
 <p>目前采用最广的样条基函数是由 Cox-De Boor 公式递归定义的。</p>
 <p>$$
 N_{i,0}(x):= \begin{cases}
-&amp;1  &amp;,t_{i}\leq x&lt;t_{i+1} \\\<br>
+&amp;1  &amp;,t_{i}\leq x&lt;t_{i+1} \\\
 &amp;0  &amp;,{otherwise} \end{cases}
 $$</p>
 <p>$$
@@ -700,7 +700,7 @@ $$</p>
     &copy;
     
       2015 -
-    2021
+    2022
     <span class="heart">
       
       <i class="iconfont">

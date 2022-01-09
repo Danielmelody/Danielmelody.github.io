@@ -6,7 +6,7 @@
     <description>Recent content on Daniel&#39;s mind paradise</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 18 Apr 2021 01:31:59 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 09 Jan 2022 22:12:40 +0800</lastBuildDate>
     
         <atom:link href="https://hustdanielhu.com/index.xml" rel="self" type="application/rss+xml" />
     
@@ -23,6 +23,17 @@ If you like, have a look at some of my interesting projects on github:
   Ruschm Scheme(R7RS) interpretor/compiler rust implementation
   CanvasToy A WebGL rendering library which supports physical-based rendering, also formed a tile-based deferred rendering pipeline.
   yimingdz@gmail.com, any technical or academic discussion is welcome.</description>
+      
+    </item>
+    
+    <item>
+      <title>我的商业思维的变迁</title>
+      <link>https://hustdanielhu.com/post/commercial-thoughts/</link>
+      <pubDate>Sun, 09 Jan 2022 22:12:40 +0800</pubDate>
+      
+      <guid>https://hustdanielhu.com/post/commercial-thoughts/</guid>
+      
+        <description>引子：我认为作为一个程序员不能不对商业有一些概念，从大一算起，我踏入计算机/互联网互联网行业已经有7年了，这期间我关于商业的思考有了很多变化</description>
       
     </item>
     
