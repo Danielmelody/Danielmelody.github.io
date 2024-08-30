@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>现代C&#43;&#43;惯用法 - Daniel&#39;s mind paradise</title>
-  
+<html
+  lang="zh-cn"
+  itemscope
+  itemtype="http://schema.org/WebPage"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+          现代C&#43;&#43;惯用法 - Daniel&#39;s mind paradise
+        </title>
+    
 
 <meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
 
 <meta name="MobileOptimized" content="width"/>
 <meta name="HandheldFriendly" content="true"/>
@@ -31,7 +37,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2" />
+<meta name="generator" content="Hugo 0.124.1" />
 
 
 <link rel="canonical" href="https://hustdanielhu.com/post/%E7%8E%B0%E4%BB%A3c-%E6%83%AF%E7%94%A8%E6%B3%95/" />
@@ -52,7 +58,9 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.444f741ba7b684e63dff9a3b61ec1fb750c9b563b5a0b64153f1af8025c5fac1.css" integrity="sha256-RE90G6e2hOY9/5o7Yewft1DJtWO1oLZBU/GvgCXF&#43;sE=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.e826e860368147e5a6685e686355e4d7789023c18c9ea2e78b35f6786ce92736.css" integrity="sha256-6CboYDaBR&#43;WmaF5oY1Xk13iQI8GMnqLnizX2eGzpJzY=" media="screen" crossorigin="anonymous">
+
+
 
 
 
@@ -66,13 +74,11 @@
 <meta property="og:url" content="https://hustdanielhu.com/post/%E7%8E%B0%E4%BB%A3c-%E6%83%AF%E7%94%A8%E6%B3%95/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-02-06T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-02-06T00:00:00+00:00" />
-
 <meta itemprop="name" content="现代C&#43;&#43;惯用法">
 <meta itemprop="description" content="现在是 9102 年了，再来总结 C&#43;&#43; 的惯用法似乎有点落伍，但是 C&#43;&#43; 的强大依然毋庸置疑。最近我也把目光投向 rust，C&#43;&#43; 不管怎么演进，历史包袱还是太沉重了"><meta itemprop="datePublished" content="2019-02-06T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2019-02-06T00:00:00+00:00" />
-<meta itemprop="wordCount" content="4735">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="现代C&#43;&#43;惯用法"/>
+<meta itemprop="wordCount" content="4741">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="现代C&#43;&#43;惯用法"/>
 <meta name="twitter:description" content="现在是 9102 年了，再来总结 C&#43;&#43; 的惯用法似乎有点落伍，但是 C&#43;&#43; 的强大依然毋庸置疑。最近我也把目光投向 rust，C&#43;&#43; 不管怎么演进，历史包袱还是太沉重了"/>
 
 <!--[if lte IE 9]>
@@ -87,9 +93,11 @@
 
 
 
-</head>
-<body>
-  <div id="mobile-navbar" class="mobile-navbar">
+  </head>
+  <body>
+    <div id="back-to-top"></div>
+
+    <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
     <a href="/" class="logo">Daniel's mind paradise</a>
   </div>
@@ -151,8 +159,8 @@
 </nav>
 
 
-  
     
+      
 
 
 
@@ -209,14 +217,12 @@
     </div>
 </div>
 
-  
+    
 
-  
+    
 
-  
-
-  <header id="header" class="header container">
-    <div class="logo-wrapper">
+    <header id="header" class="header">
+      <div class="logo-wrapper">
   <a href="/" class="logo">
     
       Daniel's mind paradise
@@ -302,86 +308,58 @@
   </ul>
 </nav>
 
-  </header>
-
-  <div id="mobile-panel">
-    <main id="main" class="main bg-llight">
-      <div class="content-wrapper">
-        <div id="content" class="content container">
-          <article class="post bg-white">
-    
-    <header class="post-header">
-      <h1 class="post-title">现代C&#43;&#43;惯用法</h1>
-      
-      <div class="post-meta">
-        <time datetime="2019-02-06" class="post-time">
-          2019-02-06
-        </time>
-        
-        
-
-        
-        
-          <span id="busuanzi_container_page_pv">
-            | 阅读 <span id="busuanzi_value_page_pv"></span>
-          </span>
-        
-
-        
-        
-      </div>
     </header>
 
+    <div id="mobile-panel">
+      <main id="main" class="main bg-llight wallpaper">
+        <div class="content-wrapper">
+    <div id="content" class="content">
+      <article class="post">
+        
+        <header class="post-header">
+          <h1 class="post-title">现代C&#43;&#43;惯用法</h1>
+          
+
+          <div class="post-meta">
+  <div class="post-meta-author">
+    by
+      Daniel
+    
+  </div>
+
+  <div class="post-meta-time">
+    <time datetime="2019-02-06">
+      2019-02-06
+    </time>
+  </div>
+
+  
+
+
+  <div class="post-meta__right">
+    
+
+    
+
+
     
     
-<div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
-  <div class="post-toc-content">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#内容大纲">内容大纲</a></li>
-  </ul>
+      <span id="busuanzi_container_page_pv">
+        | 阅读 <span id="busuanzi_value_page_pv"></span>
+      </span>
+    
 
-  <ul>
-    <li><a href="#运行期断言">运行期断言</a></li>
-    <li><a href="#让错误尽早发现fail-fast1">让错误尽早发现(Fail Fast[1])</a></li>
-    <li><a href="#assert-优点">assert 优点</a></li>
-    <li><a href="#缺点">缺点</a></li>
-    <li><a href="#编译期断言">编译期断言</a></li>
-  </ul>
 
-  <ul>
-    <li>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#宏参数">宏参数</a></li>
-    <li><a href="#-和--操作符-预处理器"># 和 ## 操作符 (预处理器)</a></li>
-    <li><a href="#其他注意">其他注意</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#线程安全">线程安全</a></li>
-    <li><a href="#double-check">Double-Check</a></li>
-    <li><a href="#meyers-singleton-in-c">Meyers' Singleton in C++</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#类型-sfinae">类型 SFINAE</a></li>
-    <li><a href="#subtitition-failure">Subtitition Failure</a></li>
-    <li><a href="#a-simple-and-explicit-example">A simple and explicit Example</a></li>
-    <li><a href="#typedef-detector">Typedef detector</a></li>
-    <li><a href="#member-functor-detector">member functor detector</a></li>
-    <li><a href="#表达式-sfinae-略">表达式 SFINAE （略）</a></li>
-  </ul>
-</nav>
+    
+    
   </div>
 </div>
 
-    
-    <div class="post-content">
-      <p>现在是 9102 年了，再来总结 C++ 的惯用法似乎有点落伍，但是 C++ 的强大依然毋庸置疑。最近我也把目光投向 rust，C++ 不管怎么演进，历史包袱还是太沉重了。而且，rust 的设计其实也参考了很多C++的思想（如 RAII）所以在 C++ 中继续深入也是有价值的</p>
+        </header>
+
+        
+        <div class="post-content">
+          <p>现在是 9102 年了，再来总结 C++ 的惯用法似乎有点落伍，但是 C++ 的强大依然毋庸置疑。最近我也把目光投向 rust，C++ 不管怎么演进，历史包袱还是太沉重了。而且，rust 的设计其实也参考了很多C++的思想（如 RAII）所以在 C++ 中继续深入也是有价值的</p>
 <h2 id="内容大纲">内容大纲</h2>
 <ol start="0">
 <li>Assertion</li>
@@ -402,12 +380,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#ifdef NDEBUG
-</span><span class="cp">#define assert(condition) ((void)0)
-</span><span class="cp">#else
-</span><span class="cp">#define assert(condition) </span><span class="cm">/*implementation defined*/</span><span class="cp">
-</span><span class="cp">#endif
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#ifdef NDEBUG
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define assert(condition) ((void)0)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#else
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define assert(condition) </span><span class="cm">/*implementation defined*/</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>assert 其实是在来源于C语言的头文件<cassert> 中定义的宏</p>
 <p>一般来说，如果condition 是false，那么assert 首先向stderr 打印错误信息，然后调用 abort (触发一个SIGABRT中断信号)来非正常结束程序</p>
@@ -429,17 +407,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">foo1</span><span class="p">(</span><span class="kt">int</span> <span class="n">score</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">score</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="err">）</span><span class="p">{</span>
-        <span class="c1">// internal logics
-</span><span class="c1"></span>    <span class="p">}</span>    
-<span class="p">}</span>
-       
-<span class="kt">void</span> <span class="nf">foo2</span><span class="p">(</span><span class="kt">int</span> <span class="n">score</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// require bar between 1 and 100
-</span><span class="c1"></span>    <span class="n">assert</span><span class="p">(</span><span class="n">score</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="mi">100</span> <span class="o">&amp;&amp;</span> <span class="s">&#34;score must between 1 and  100！&#34;</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">foo1</span><span class="p">(</span><span class="kt">int</span> <span class="n">score</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">score</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="err">）</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// internal logics
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>    
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">       
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">foo2</span><span class="p">(</span><span class="kt">int</span> <span class="n">score</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// require bar between 1 and 100
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">assert</span><span class="p">(</span><span class="n">score</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="mi">100</span> <span class="o">&amp;&amp;</span> <span class="s">&#34;score must between 1 and  100！&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -482,15 +460,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">ElemType</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="o">&gt;</span>
-<span class="k">class</span> <span class="nc">Vector</span> <span class="p">{</span>
-    <span class="k">static_assert</span><span class="p">(</span><span class="n">N</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#34;1D Vector is not allowed, use scalar types&#34;</span><span class="p">);</span>
-    <span class="n">ElemType</span> <span class="n">elem_</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-<span class="p">};</span>
-
-<span class="n">Vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;</span> <span class="n">vec1</span><span class="p">;</span><span class="c1">// compilation error
-</span><span class="c1"></span><span class="n">Vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">vec2</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">ElemType</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Vector</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static_assert</span><span class="p">(</span><span class="n">N</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#34;1D Vector is not allowed, use scalar types&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ElemType</span> <span class="n">elem_</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;</span> <span class="n">vec1</span><span class="p">;</span><span class="c1">// compilation error
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">vec2</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>另外，利用 static_assert + type_traits 也能实现语义约束，比如我们想写一个检查无符号加法溢出的函数，并希望调用方不传递有符号类型，那么我们可以：</p>
 <div class="highlight"><div class="chroma">
@@ -503,13 +481,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="kt">bool</span> <span class="n">check_overflow_add_unsigned</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">static_assert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_unsigned</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">,</span> <span class="s">&#34;T must be unsigned types!&#34;</span><span class="p">);</span>
-    <span class="p">...</span>
-    <span class="p">...</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">check_overflow_add_unsigned</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static_assert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_unsigned</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">,</span> <span class="s">&#34;T must be unsigned types!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>由于自 C++ 11 开始，鼓励大家多用编译期计算，把一些 constant 的数据和代码段尽量挪到编译期，因此可能很多类型成为 literal type （比如上面的 Vector ）。这些类既能在运行期运行，又能在编译期预计算，因此，只要是涉及 literal type 的函数/类/对象  就应尽可能的用 static_assert</p>
 <h1 id="1-marcos">1. Marcos</h1>
@@ -525,10 +503,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define a 1
-</span><span class="cp">#define b (a + 1)
-</span><span class="cp">#define c a * b
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#define a 1
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define b (a + 1)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define c a * b
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="多行宏">多行宏</h4>
 <div class="highlight"><div class="chroma">
@@ -538,10 +516,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define Vec \
-</span><span class="cp">static int x; \
-</span><span class="cp">static int y;
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#define Vec \
+</span></span></span><span class="line"><span class="cl"><span class="cp">static int x; \
+</span></span></span><span class="line"><span class="cl"><span class="cp">static int y;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>多行宏会在在使用处被替换为多行内容</p>
 <h2 id="宏参数">宏参数</h2>
@@ -558,22 +536,20 @@
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
-</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp">#define DUPLICATE(index, times) for(int index = 0; index &lt; times; ++index)
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> 
-<span class="p">{</span> 
-    <span class="n">DUPLICATE</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> 
-    <span class="p">{</span>
-     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>   
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> 
-<span class="p">}</span> 
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define DUPLICATE(index, times) for(int index = 0; index &lt; times; ++index)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">DUPLICATE</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>   
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="-和--操作符-预处理器"># 和 ## 操作符 (预处理器)</h2>
 <p><strong>Stringizing operator (#)</strong></p>
@@ -592,16 +568,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define DEFINE_AND_PRINT(type, varname) \
-</span><span class="cp">type varname; \
-</span><span class="cp">std::cout &lt;&lt; &#34;declare &#34; &lt;&lt; #type &lt;&lt; &#34; &#34; &lt;&lt; #varname &lt;&lt; std::endl;
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-    <span class="n">DEFINE_AND_PRINT</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="n">bar</span><span class="p">);</span> <span class="c1">// declare int bar
-</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#define DEFINE_AND_PRINT(type, varname) \
+</span></span></span><span class="line"><span class="cl"><span class="cp">type varname; \
+</span></span></span><span class="line"><span class="cl"><span class="cp">std::cout &lt;&lt; &#34;declare &#34; &lt;&lt; #type &lt;&lt; &#34; &#34; &lt;&lt; #varname &lt;&lt; std::endl;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DEFINE_AND_PRINT</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="n">bar</span><span class="p">);</span> <span class="c1">// declare int bar
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>Token-Pasting Operator（##）</strong></p>
 <p>## 直接把前后的字符合并成一个token，可以用来自动生成出一些新的token（类名，函数名，变量名等）</p>
@@ -614,12 +590,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define CREATE_3_VARS(name) name##1, name##2, name##3
-</span><span class="cp"></span><span class="kt">int</span> <span class="nf">CREATE_3_VARS</span><span class="p">(</span><span class="n">myInts</span><span class="p">);</span>
-<span class="n">myInts1</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
-<span class="n">myInts2</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
-<span class="n">myInts3</span> <span class="o">=</span> <span class="mi">77</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#define CREATE_3_VARS(name) name##1, name##2, name##3
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">CREATE_3_VARS</span><span class="p">(</span><span class="n">myInts</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">myInts1</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">myInts2</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">myInts3</span> <span class="o">=</span> <span class="mi">77</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="其他注意">其他注意</h2>
 <ul>
@@ -656,31 +632,31 @@
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
-    <span class="p">{</span>
-        <span class="k">static</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
- 
-        <span class="k">public</span> <span class="k">void</span> <span class="n">Show</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span>  <span class="s">&#34;instance function&#34;</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">private</span> <span class="n">Singleton</span><span class="p">()</span>
-        <span class="p">{</span>
-        <span class="p">}</span>
- 
-        <span class="k">public</span> <span class="k">static</span> <span class="n">Singleton</span> <span class="n">Instance</span>
-        <span class="p">{</span>
-            <span class="k">get</span>
-            <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">instance</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="n">instance</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="p">();</span>
-                <span class="p">}</span>
-                <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">static</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="p">=</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="k">void</span> <span class="n">Show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span>  <span class="s">&#34;instance function&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="n">Singleton</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="n">Instance</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">get</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">instance</span> <span class="p">==</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">instance</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="线程安全">线程安全</h2>
 <div class="highlight"><div class="chroma">
@@ -712,32 +688,32 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
-    <span class="p">{</span>
-        <span class="k">static</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
-        <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="kt">object</span> <span class="n">padlock</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>
- 
-        <span class="k">private</span> <span class="n">Singleton</span><span class="p">()</span>
-        <span class="p">{</span>
-        <span class="p">}</span>
- 
-        <span class="k">public</span> <span class="k">static</span> <span class="n">Singleton</span> <span class="n">Instance</span>
-        <span class="p">{</span>
-            <span class="k">get</span>
-            <span class="p">{</span>
-                <span class="k">lock</span> <span class="p">(</span><span class="n">padlock</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">instance</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
-                    <span class="p">{</span>
-                        <span class="n">instance</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="p">();</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
- 
-                <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">static</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="p">=</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="kd">static</span> <span class="k">readonly</span> <span class="kt">object</span> <span class="n">padlock</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="n">Singleton</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="n">Instance</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">get</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">lock</span> <span class="p">(</span><span class="n">padlock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="p">(</span><span class="n">instance</span> <span class="p">==</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">instance</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="double-check">Double-Check</h2>
 <div class="highlight"><div class="chroma">
@@ -771,36 +747,36 @@
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"> <span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
-    <span class="p">{</span>
-        <span class="k">static</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
-        <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="kt">object</span> <span class="n">padlock</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>
- 
-        <span class="k">private</span> <span class="n">Singleton</span><span class="p">()</span>
-        <span class="p">{</span>
-        <span class="p">}</span>
- 
-        <span class="k">public</span> <span class="k">static</span> <span class="n">Singleton</span> <span class="n">Instance</span>
-        <span class="p">{</span>
-            <span class="k">get</span>
-            <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">instance</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="k">lock</span> <span class="p">(</span><span class="n">padlock</span><span class="p">)</span>
-                    <span class="p">{</span>
-                        <span class="k">if</span> <span class="p">(</span><span class="n">instance</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
-                        <span class="p">{</span>
-                            <span class="n">instance</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="p">();</span>
-                        <span class="p">}</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-                <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"> <span class="kd">public</span> <span class="kd">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">static</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="p">=</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="kd">static</span> <span class="k">readonly</span> <span class="kt">object</span> <span class="n">padlock</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="n">Singleton</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kd">static</span> <span class="n">Singleton</span> <span class="n">Instance</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">get</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">instance</span> <span class="p">==</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">lock</span> <span class="p">(</span><span class="n">padlock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">if</span> <span class="p">(</span><span class="n">instance</span> <span class="p">==</span> <span class="kc">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">instance</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Singleton</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="meyers-singleton-in-c">Meyers' Singleton in C++</h2>
+</div><h2 id="meyers-singleton-in-c">Meyers&rsquo; Singleton in C++</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -810,12 +786,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">static</span> <span class="n">Singleton</span><span class="o">&amp;</span> <span class="n">instance</span><span class="p">()</span>
-<span class="p">{</span>
-     <span class="k">static</span> <span class="n">Singleton</span> <span class="n">s</span><span class="p">;</span>
-     <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">static</span> <span class="n">Singleton</span><span class="o">&amp;</span> <span class="n">instance</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="k">static</span> <span class="n">Singleton</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>（Scott Meyers 是Effective C++系列的作者）</p>
 <p>相对于C#的单例实现，Meyers提供了一种相当简洁的书写方式</p>
@@ -867,49 +843,49 @@
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Singleton::instance():               # @Singleton::instance()
-        push    rbp
-        mov     rbp, rsp
-        sub     rsp, 16
-        cmp     byte ptr [guard variable for Singleton::instance()::singleton], 0
-        jne     .LBB1_4
-        movabs  rdi, offset guard variable for Singleton::instance()::singleton
-        call    __cxa_guard_acquire
-        cmp     eax, 0
-        je      .LBB1_4
-        mov     eax, offset Singleton::instance()::singleton
-        mov     edi, eax
-        call    Singleton::Singleton() [base object constructor]
-        jmp     .LBB1_3
-.LBB1_3:
-        movabs  rdi, offset guard variable for Singleton::instance()::singleton
-        call    __cxa_guard_release
-.LBB1_4:
-        movabs  rax, offset Singleton::instance()::singleton
-        add     rsp, 16
-        pop     rbp
-        ret
-        mov     ecx, edx
-        mov     qword ptr [rbp - 8], rax
-        mov     dword ptr [rbp - 12], ecx
-        movabs  rdi, offset guard variable for Singleton::instance()::singleton
-        call    __cxa_guard_abort
-        mov     rdi, qword ptr [rbp - 8]
-        call    _Unwind_Resume
-Singleton::Singleton() [base object constructor]:                      # @Singleton::Singleton() [base object constructor]
-        push    rbp
-        mov     rbp, rsp
-        mov     qword ptr [rbp - 8], rdi
-        mov     rdi, qword ptr [rbp - 8]
-        mov     dword ptr [rdi], 0
-        pop     rbp
-        ret
-Singleton::instance()::singleton:
-        .zero   4
-
-guard variable for Singleton::instance()::singleton:
-        .quad   0                       # 0x0
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">Singleton</span><span class="p">::</span><span class="n">instance</span><span class="p">():</span>               <span class="c1"># @Singleton::instance()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">push</span>    <span class="n">rbp</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">rbp</span><span class="p">,</span> <span class="n">rsp</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sub</span>     <span class="n">rsp</span><span class="p">,</span> <span class="mi">16</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cmp</span>     <span class="n">byte</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">guard</span> <span class="n">variable</span> <span class="k">for</span> <span class="n">Singleton</span><span class="p">::</span><span class="n">instance</span><span class="p">()::</span><span class="n">singleton</span><span class="p">],</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="n">jne</span>     <span class="o">.</span><span class="n">LBB1_4</span>
+</span></span><span class="line"><span class="cl">        <span class="n">movabs</span>  <span class="n">rdi</span><span class="p">,</span> <span class="n">offset</span> <span class="n">guard</span> <span class="n">variable</span> <span class="k">for</span> <span class="n">Singleton</span><span class="p">::</span><span class="n">instance</span><span class="p">()::</span><span class="n">singleton</span>
+</span></span><span class="line"><span class="cl">        <span class="n">call</span>    <span class="n">__cxa_guard_acquire</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cmp</span>     <span class="n">eax</span><span class="p">,</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="n">je</span>      <span class="o">.</span><span class="n">LBB1_4</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">eax</span><span class="p">,</span> <span class="n">offset</span> <span class="n">Singleton</span><span class="p">::</span><span class="n">instance</span><span class="p">()::</span><span class="n">singleton</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">edi</span><span class="p">,</span> <span class="n">eax</span>
+</span></span><span class="line"><span class="cl">        <span class="n">call</span>    <span class="n">Singleton</span><span class="p">::</span><span class="n">Singleton</span><span class="p">()</span> <span class="p">[</span><span class="n">base</span> <span class="n">object</span> <span class="n">constructor</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">jmp</span>     <span class="o">.</span><span class="n">LBB1_3</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">LBB1_3</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">movabs</span>  <span class="n">rdi</span><span class="p">,</span> <span class="n">offset</span> <span class="n">guard</span> <span class="n">variable</span> <span class="k">for</span> <span class="n">Singleton</span><span class="p">::</span><span class="n">instance</span><span class="p">()::</span><span class="n">singleton</span>
+</span></span><span class="line"><span class="cl">        <span class="n">call</span>    <span class="n">__cxa_guard_release</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">LBB1_4</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">movabs</span>  <span class="n">rax</span><span class="p">,</span> <span class="n">offset</span> <span class="n">Singleton</span><span class="p">::</span><span class="n">instance</span><span class="p">()::</span><span class="n">singleton</span>
+</span></span><span class="line"><span class="cl">        <span class="n">add</span>     <span class="n">rsp</span><span class="p">,</span> <span class="mi">16</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pop</span>     <span class="n">rbp</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ret</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">ecx</span><span class="p">,</span> <span class="n">edx</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">qword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">rbp</span> <span class="o">-</span> <span class="mi">8</span><span class="p">],</span> <span class="n">rax</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">dword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">rbp</span> <span class="o">-</span> <span class="mi">12</span><span class="p">],</span> <span class="n">ecx</span>
+</span></span><span class="line"><span class="cl">        <span class="n">movabs</span>  <span class="n">rdi</span><span class="p">,</span> <span class="n">offset</span> <span class="n">guard</span> <span class="n">variable</span> <span class="k">for</span> <span class="n">Singleton</span><span class="p">::</span><span class="n">instance</span><span class="p">()::</span><span class="n">singleton</span>
+</span></span><span class="line"><span class="cl">        <span class="n">call</span>    <span class="n">__cxa_guard_abort</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">rdi</span><span class="p">,</span> <span class="n">qword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">rbp</span> <span class="o">-</span> <span class="mi">8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">call</span>    <span class="n">_Unwind_Resume</span>
+</span></span><span class="line"><span class="cl"><span class="n">Singleton</span><span class="p">::</span><span class="n">Singleton</span><span class="p">()</span> <span class="p">[</span><span class="n">base</span> <span class="n">object</span> <span class="n">constructor</span><span class="p">]:</span>                      <span class="c1"># @Singleton::Singleton() [base object constructor]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">push</span>    <span class="n">rbp</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">rbp</span><span class="p">,</span> <span class="n">rsp</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">qword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">rbp</span> <span class="o">-</span> <span class="mi">8</span><span class="p">],</span> <span class="n">rdi</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">rdi</span><span class="p">,</span> <span class="n">qword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">rbp</span> <span class="o">-</span> <span class="mi">8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">dword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">rdi</span><span class="p">],</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pop</span>     <span class="n">rbp</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ret</span>
+</span></span><span class="line"><span class="cl"><span class="n">Singleton</span><span class="p">::</span><span class="n">instance</span><span class="p">()::</span><span class="n">singleton</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">zero</span>   <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">guard</span> <span class="n">variable</span> <span class="k">for</span> <span class="n">Singleton</span><span class="p">::</span><span class="n">instance</span><span class="p">()::</span><span class="n">singleton</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">quad</span>   <span class="mi">0</span>                       <span class="c1"># 0x0</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="3sfinaesubtitition-failure-is-not-an-error-3">3.SFINAE(<em>subtitition failure is not an error</em>) [3]</h1>
 <h2 id="类型-sfinae">类型 SFINAE</h2>
@@ -928,8 +904,8 @@ guard variable for Singleton::instance()::singleton:
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span> <span class="o">=</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="c1">// int is the default template parameter for argument U
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span> <span class="o">=</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="c1">// int is the default template parameter for argument U
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>当不指定 U 时，U默认为int</p>
 <p>由于替换的次序不同，在替换默认模板参数的时候，实际上可以利用已经替换过的参数来替换默认参数</p>
@@ -938,8 +914,8 @@ guard variable for Singleton::instance()::singleton:
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">internal_type</span><span class="o">&gt;</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">internal_type</span><span class="o">&gt;</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>而替换失败(subtitition failure) 指的是上述的替换产生了问题，比如传递给类型参数A的类型可能没有一个叫internal_type的嵌套类型，</p>
 <p>然而，要使编译器产生compilation error，还需要尝试有没有别的函数模板能替换成功，这个过程可能发生多次subtitition failure。</p>
@@ -967,32 +943,30 @@ guard variable for Singleton::instance()::singleton:
 </span><span class="lnt">19
 </span><span class="lnt">20
 </span><span class="lnt">21
-</span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="k">struct</span> <span class="nc">A</span> <span class="p">{</span>
-  <span class="k">using</span> <span class="n">internal_type</span> <span class="o">=</span> <span class="kt">int</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">struct</span> <span class="nc">B</span> <span class="p">{};</span>
-
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">internal_type</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">foo</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;T has internal_type&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">foo</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;T has no internal_typ&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-  <span class="n">foo</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span><span class="p">();</span> <span class="c1">// call to &#39;foo&#39; is ambiguous
-</span><span class="c1"></span>  <span class="n">foo</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;</span><span class="p">();</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">A</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">using</span> <span class="n">internal_type</span> <span class="o">=</span> <span class="kt">int</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">B</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">internal_type</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">foo</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;T has internal_type&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">foo</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;T has no internal_typ&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">foo</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span><span class="p">();</span> <span class="c1">// call to &#39;foo&#39; is ambiguous
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">foo</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>那么到底如何产生 subtitition failure is not an error呢？</p>
 <h2 id="a-simple-and-explicit-example">A simple and explicit Example</h2>
@@ -1015,21 +989,21 @@ guard variable for Singleton::instance()::singleton:
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">Test</span> <span class="p">{</span>
-    <span class="k">typedef</span> <span class="kt">int</span> <span class="n">foo</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> 
-<span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">foo</span><span class="p">)</span> <span class="p">{}</span> <span class="c1">// Definition #1
-</span><span class="c1"></span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> 
-<span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="p">{}</span>               <span class="c1">// Definition #2
-</span><span class="c1"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">f</span><span class="o">&lt;</span><span class="n">Test</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// Call #1.
-</span><span class="c1"></span>    <span class="n">f</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>  <span class="c1">// Call #2. Without error (even though there is no int::foo) thanks to SFINAE.
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Test</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">typedef</span> <span class="kt">int</span> <span class="n">foo</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">foo</span><span class="p">)</span> <span class="p">{}</span> <span class="c1">// Definition #1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="p">{}</span>               <span class="c1">// Definition #2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">&lt;</span><span class="n">Test</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// Call #1.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">f</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>  <span class="c1">// Call #2. Without error (even though there is no int::foo) thanks to SFINAE.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="typedef-detector">Typedef detector</h2>
 <p>这是 SFINAE 的一个应用，用来检查类参数有没有 T 有在类内部 typedef internal_type 类型</p>
@@ -1059,29 +1033,29 @@ guard variable for Singleton::instance()::singleton:
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="k">struct</span> <span class="nc">A</span> <span class="p">{</span>
-  <span class="k">using</span> <span class="n">internal_type</span> <span class="o">=</span> <span class="kt">int</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">decltype</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">internal_type</span><span class="o">&gt;</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="p">())</span>
-<span class="n">foo</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// compare to the varadic version below, this one is more specifc
-</span><span class="c1"></span>  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;T has internal_type&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">foo</span><span class="p">(...)</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;T has no internal_type&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
-
-<span class="c1">// template &lt;typename T&gt; void foo() { foo(int()); }
-</span><span class="c1"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-  <span class="n">A</span> <span class="n">a</span><span class="p">;</span>
-  <span class="n">foo</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>      <span class="c1">//   subtitition suceeded for the first time
-</span><span class="c1"></span>  <span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>      <span class="c1">//   subtitition failed, but succeeded for the second time
-</span><span class="c1"></span>  <span class="n">foo</span><span class="p">(</span><span class="s">&#34;test&#34;</span><span class="p">);</span> <span class="c1">//   subtitition failed, but succeeded for the second time
-</span><span class="c1"></span>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">struct</span> <span class="nc">A</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">using</span> <span class="n">internal_type</span> <span class="o">=</span> <span class="kt">int</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">decltype</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">internal_type</span><span class="o">&gt;</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">foo</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// compare to the varadic version below, this one is more specifc
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;T has internal_type&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">foo</span><span class="p">(...)</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;T has no internal_type&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// template &lt;typename T&gt; void foo() { foo(int()); }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">A</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">foo</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>      <span class="c1">//   subtitition suceeded for the first time
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>      <span class="c1">//   subtitition failed, but succeeded for the second time
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">foo</span><span class="p">(</span><span class="s">&#34;test&#34;</span><span class="p">);</span> <span class="c1">//   subtitition failed, but succeeded for the second time
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>我们看到foo有两个重载版本，为了告诉编译器我期望 T 有嵌套 internal_type 类型，我们使用了 decltype + 逗号表达式 + declval。decltype(std::declval<typename T::internal_type>(), std::declval<void>()) 的真正类型是 void，但对T::internal_type进行了求值，因此编译器知道这里 T 是 more specific 的</p>
 <h2 id="member-functor-detector">member functor detector</h2>
@@ -1133,50 +1107,50 @@ guard variable for Singleton::instance()::singleton:
 </span><span class="lnt">43
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;type_traits&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">Stringlizable</span>
-<span class="p">{</span>
-    <span class="c1">// We test if the type has serialize using decltype and declval.
-</span><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">C</span><span class="o">&gt;</span>
-    <span class="k">static</span> <span class="k">constexpr</span> <span class="k">decltype</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="n">C</span><span class="o">&gt;</span><span class="p">().</span><span class="n">serielize</span><span class="p">(),</span> <span class="kt">bool</span><span class="p">())</span>
-    <span class="n">test</span><span class="p">(</span><span class="kt">int</span> <span class="cm">/* unused */</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="c1">// We can return values, thanks to constexpr instead of playing with sizeof.
-</span><span class="c1"></span>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">C</span><span class="o">&gt;</span>
-    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">test</span><span class="p">(...)</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="p">}</span>
-
-    <span class="c1">// int is used to give the precedence!
-</span><span class="c1"></span>    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">value</span> <span class="o">=</span> <span class="n">test</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">int</span><span class="p">());</span>
-<span class="p">};</span>
-
-<span class="k">struct</span> <span class="nc">A</span>
-<span class="p">{</span>
-    <span class="kt">int</span> <span class="n">data</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">to_string</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="p">};</span>
-<span class="p">};</span>
-
-<span class="k">struct</span> <span class="nc">B</span>
-<span class="p">{</span>
-<span class="p">};</span>
-
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">Serielize</span><span class="p">(</span><span class="n">T</span> <span class="n">obj</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">obj</span><span class="p">.</span><span class="n">to_string</span><span class="p">();</span> <span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-    <span class="n">A</span> <span class="n">a</span><span class="p">;</span>
-    <span class="n">B</span> <span class="n">b</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">Serielize</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;type_traits&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Stringlizable</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// We test if the type has serialize using decltype and declval.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">C</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="k">constexpr</span> <span class="k">decltype</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="n">C</span><span class="o">&gt;</span><span class="p">().</span><span class="n">serielize</span><span class="p">(),</span> <span class="kt">bool</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">test</span><span class="p">(</span><span class="kt">int</span> <span class="cm">/* unused */</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// We can return values, thanks to constexpr instead of playing with sizeof.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">C</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">test</span><span class="p">(...)</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// int is used to give the precedence!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">value</span> <span class="o">=</span> <span class="n">test</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">int</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">A</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">to_string</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">data</span><span class="p">);</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">B</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">Serielize</span><span class="p">(</span><span class="n">T</span> <span class="n">obj</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">obj</span><span class="p">.</span><span class="n">to_string</span><span class="p">();</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">A</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">B</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">Serielize</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="表达式-sfinae-略">表达式 SFINAE （略）</h2>
 <h1 id="4-type-traits">4. Type Traits</h1>
@@ -1197,13 +1171,13 @@ guard variable for Singleton::instance()::singleton:
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="kt">bool</span> <span class="n">check_overflow_add_unsigned</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">static_assert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_unsigned</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">,</span> <span class="s">&#34;T must be unsigned types!&#34;</span><span class="p">);</span>
-    <span class="p">...</span>
-    <span class="p">...</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">check_overflow_add_unsigned</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static_assert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_unsigned</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">,</span> <span class="s">&#34;T must be unsigned types!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>现在我们终于可以尝试解释一下这个 std::is_unsigned<T>::value 是个什么东西了</p>
 <p>cppreference 中给出的可能实现如下：</p>
@@ -1221,17 +1195,17 @@ guard variable for Singleton::instance()::singleton:
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">namespace</span> <span class="n">detail</span> <span class="p">{</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span><span class="kt">bool</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">is_arithmetic</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">is_unsigned</span> <span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">integral_constant</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="n">T</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span> <span class="p">{};</span>
-
-<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">is_unsigned</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="nb">false</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">false_type</span> <span class="p">{};</span>
-<span class="p">}</span> <span class="c1">// namespace detail
-</span><span class="c1"></span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">is_unsigned</span> <span class="o">:</span> <span class="n">detail</span><span class="o">::</span><span class="n">is_unsigned</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span> <span class="p">{};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">namespace</span> <span class="n">detail</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span><span class="kt">bool</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">is_arithmetic</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">is_unsigned</span> <span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">integral_constant</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="n">T</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">is_unsigned</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="nb">false</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">false_type</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="c1">// namespace detail
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">is_unsigned</span> <span class="o">:</span> <span class="n">detail</span><span class="o">::</span><span class="n">is_unsigned</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span> <span class="p">{};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>首先，is_unsigned 是一个struct，其有一个static constexpr bool member 叫 value，value 继承自 std::integral_constant&lt;bool, T(0) &lt; T(-1)&gt;  或者 false_type，是一个编译期计算的量。</p>
 <p>我们从上面的代码中可以再次发现了 SFNIAE 的存在，编译器首先替换继承自 std::integral_constant 的版本，如果这个替换是invalid 的（可能是无法显式 从 -1 构造，或者编译期构造出来的 -1 &gt; 0），那么将考虑更加generic 的版本，这个版本 的 is_unsigned 继承自 false_type ，这样value 就继承到了constexpr false</p>
@@ -1273,39 +1247,39 @@ guard variable for Singleton::instance()::singleton:
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp">
-<span class="cp">#include</span> <span class="cpf">&lt;mutex&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt; </span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;stdexcept&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">write_to_file</span> <span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// mutex to protect file access (shared across threads)
-</span><span class="c1"></span>    <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">mutex</span> <span class="n">mutex</span><span class="p">;</span>
-
-    <span class="c1">// lock mutex before accessing file
-</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span> <span class="n">lock</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
-
-    <span class="c1">// try to open file
-</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="n">file</span><span class="p">(</span><span class="s">&#34;example.txt&#34;</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">file</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span>
-        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">&#34;unable to open file&#34;</span><span class="p">);</span>
-    
-    <span class="c1">// write message to file
-</span><span class="c1"></span>    <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">message</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-    
-    <span class="c1">// file will be closed 1st when leaving scope (regardless of exception)
-</span><span class="c1"></span>    <span class="c1">// mutex will be unlocked 2nd (from lock destructor) when leaving
-</span><span class="c1"></span>    <span class="c1">// scope (regardless of exception)
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;mutex&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"> 
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdexcept&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">write_to_file</span> <span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// mutex to protect file access (shared across threads)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">mutex</span> <span class="n">mutex</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// lock mutex before accessing file
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span> <span class="n">lock</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// try to open file
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="n">file</span><span class="p">(</span><span class="s">&#34;example.txt&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">file</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">&#34;unable to open file&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// write message to file
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">message</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// file will be closed 1st when leaving scope (regardless of exception)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// mutex will be unlocked 2nd (from lock destructor) when leaving
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// scope (regardless of exception)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
-    </div>
+        </div>
 
-    
-    
+        
+        
 <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
@@ -1326,8 +1300,9 @@ guard variable for Singleton::instance()::singleton:
 </div>
 
 
-    
-    
+
+        
+        
 <div class="post-reward">
   <input type="checkbox" name="reward" id="reward" hidden />
   <label class="reward-button" for="reward">赞赏支持</label>
@@ -1346,54 +1321,58 @@ guard variable for Singleton::instance()::singleton:
   </div>
 </div>
 
-    <footer class="post-footer">
-      
 
-      
-      <nav class="post-nav">
-        
-          <a class="prev" href="/post/%E6%BB%91%E9%9B%AA%E6%94%BB%E7%95%A5/">
+        <footer class="post-footer">
+          
+
+
+          
+          <nav class="post-nav">
             
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+              <a class="prev" href="/post/%E6%BB%91%E9%9B%AA%E6%94%BB%E7%95%A5/">
+                
+                <i class="iconfont">
+                  <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="18" height="18">
   <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
 </svg>
 
-            </i>
-            <span class="prev-text nav-default">写给朋友们看的（大冰箱）新手滑雪攻略</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        
-          <a class="next" href="/post/%E9%81%93%E9%95%BF%E7%9A%842018/">
-            <span class="next-text nav-default">道长的2018</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+                </i>
+                <span class="prev-text nav-default">写给朋友们看的（大冰箱）新手滑雪攻略</span>
+                <span class="prev-text nav-mobile">上一篇</span>
+              </a>
             
-            <i class="iconfont">
-              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+              <a class="next" href="/post/%E9%81%93%E9%95%BF%E7%9A%842018/">
+                <span class="next-text nav-default">道长的2018</span>
+                <span class="prev-text nav-mobile">下一篇</span>
+                
+                <i class="iconfont">
+                  <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="18" height="18">
   <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
 </svg>
 
-            </i>
-          </a>
-      </nav>
-    </footer>
-  </article>
+                </i>
+              </a>
+          </nav>
+        </footer>
+      </article>
+
+      
+      
+
+
+      
+      
+
+  
 
   
   
 
   
-  
-
-  
-
-  
-  
-
   
 
   
@@ -1420,22 +1399,76 @@ guard variable for Singleton::instance()::singleton:
       $('#load_disqus').remove();
     };
   </script>
-  <noscript>Please enable JavaScript to view the
+  <noscript
+    >Please enable JavaScript to view the
     <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
   </noscript>
   
-  </div>
+</div>
+
 
     
 
   
 
-        </div>
-      </div>
-    </main>
+  
 
-    <footer id="footer" class="footer">
-      <div class="icon-links">
+
+    </div>
+
+    
+    <nav class="toc" id="toc">
+    <div class="toc-title">文章目录</div>
+    <div class="toc-content custom-scrollbar">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#内容大纲">内容大纲</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#运行期断言">运行期断言</a></li>
+    <li><a href="#让错误尽早发现fail-fast1">让错误尽早发现(Fail Fast[1])</a></li>
+    <li><a href="#assert-优点">assert 优点</a></li>
+    <li><a href="#缺点">缺点</a></li>
+    <li><a href="#编译期断言">编译期断言</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#宏参数">宏参数</a></li>
+    <li><a href="#-和--操作符-预处理器"># 和 ## 操作符 (预处理器)</a></li>
+    <li><a href="#其他注意">其他注意</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#线程安全">线程安全</a></li>
+    <li><a href="#double-check">Double-Check</a></li>
+    <li><a href="#meyers-singleton-in-c">Meyers&rsquo; Singleton in C++</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#类型-sfinae">类型 SFINAE</a></li>
+    <li><a href="#subtitition-failure">Subtitition Failure</a></li>
+    <li><a href="#a-simple-and-explicit-example">A simple and explicit Example</a></li>
+    <li><a href="#typedef-detector">Typedef detector</a></li>
+    <li><a href="#member-functor-detector">member functor detector</a></li>
+    <li><a href="#表达式-sfinae-略">表达式 SFINAE （略）</a></li>
+  </ul>
+</nav>
+    </div>
+  </nav>
+
+
+  </div>
+
+      </main>
+
+      <footer id="footer" class="footer">
+        <div class="icon-links">
   
   
     <a href="mailto:yimingdz@gmail.com" rel="me noopener" class="iconfont"
@@ -1481,7 +1514,7 @@ guard variable for Singleton::instance()::singleton:
 </svg>
 
   </a>
-   
+  
 </div>
 
 <div class="copyright">
@@ -1497,7 +1530,7 @@ guard variable for Singleton::instance()::singleton:
     &copy;
     
       2015 -
-    2022
+    2024
     <span class="heart">
       
       <i class="iconfont">
@@ -1524,38 +1557,36 @@ guard variable for Singleton::instance()::singleton:
   
 </div>
 
-    </footer>
+      </footer>
 
-    <div class="back-to-top" id="back-to-top">
-      <i class="iconfont">
-        
-        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+      <div class="button__back-to-top">
+        <a href="#back-to-top">
+          <i class="iconfont">
+            
+            <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="35" height="35">
   <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
 </svg>
 
-      </i>
+          </i>
+        </a>
+      </div>
     </div>
-  </div>
-  
-<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+    
+<script type="text/javascript" src="/lib/jquery/jquery-3.7.1.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
 
 
 
 
-<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/main.ac668441725ce78d5a66b345db43a6b3a1d1b905e38b57ac90f7a6606605a3dc.js" integrity="sha256-rGaEQXJc541aZrNF20Oms6HRuQXji1eskPemYGYFo9w=" crossorigin="anonymous"></script>
 
 
 
-  <script type="text/javascript">
-    window.MathJax = {
-      showProcessingMessages: false,
-      messageStyle: 'none'
-    };
-  </script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 
 
@@ -1566,7 +1597,6 @@ guard variable for Singleton::instance()::singleton:
 
 
   
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
   
@@ -1589,5 +1619,7 @@ guard variable for Singleton::instance()::singleton:
 
 
 
-</body>
+
+
+  </body>
 </html>

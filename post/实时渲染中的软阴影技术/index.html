@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>实时渲染中的软阴影技术 - Daniel&#39;s mind paradise</title>
-  
+<html
+  lang="zh-cn"
+  itemscope
+  itemtype="http://schema.org/WebPage"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+          实时渲染中的软阴影技术 - Daniel&#39;s mind paradise
+        </title>
+    
 
 <meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
 
 <meta name="MobileOptimized" content="width"/>
 <meta name="HandheldFriendly" content="true"/>
@@ -31,7 +37,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2" />
+<meta name="generator" content="Hugo 0.124.1" />
 
 
 <link rel="canonical" href="https://hustdanielhu.com/post/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E4%B8%AD%E7%9A%84%E8%BD%AF%E9%98%B4%E5%BD%B1%E6%8A%80%E6%9C%AF/" />
@@ -52,7 +58,9 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.444f741ba7b684e63dff9a3b61ec1fb750c9b563b5a0b64153f1af8025c5fac1.css" integrity="sha256-RE90G6e2hOY9/5o7Yewft1DJtWO1oLZBU/GvgCXF&#43;sE=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.e826e860368147e5a6685e686355e4d7789023c18c9ea2e78b35f6786ce92736.css" integrity="sha256-6CboYDaBR&#43;WmaF5oY1Xk13iQI8GMnqLnizX2eGzpJzY=" media="screen" crossorigin="anonymous">
+
+
 
 
 
@@ -66,13 +74,11 @@
 <meta property="og:url" content="https://hustdanielhu.com/post/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E4%B8%AD%E7%9A%84%E8%BD%AF%E9%98%B4%E5%BD%B1%E6%8A%80%E6%9C%AF/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2017-05-11T00:00:00+00:00" />
 <meta property="article:modified_time" content="2017-05-11T00:00:00+00:00" />
-
 <meta itemprop="name" content="实时渲染中的软阴影技术">
 <meta itemprop="description" content="本文描述的是基于Shadow Mapping的软阴影技术，读者应该对Shadow Mapping 有基本的理解。 关于阴影走样 Shadow Mapping 有一个严重的问题就是阴影走样（"><meta itemprop="datePublished" content="2017-05-11T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2017-05-11T00:00:00+00:00" />
 <meta itemprop="wordCount" content="4350">
-<meta itemprop="keywords" content="计算机图形学," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="实时渲染中的软阴影技术"/>
+<meta itemprop="keywords" content="计算机图形学," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="实时渲染中的软阴影技术"/>
 <meta name="twitter:description" content="本文描述的是基于Shadow Mapping的软阴影技术，读者应该对Shadow Mapping 有基本的理解。 关于阴影走样 Shadow Mapping 有一个严重的问题就是阴影走样（"/>
 
 <!--[if lte IE 9]>
@@ -87,9 +93,11 @@
 
 
 
-</head>
-<body>
-  <div id="mobile-navbar" class="mobile-navbar">
+  </head>
+  <body>
+    <div id="back-to-top"></div>
+
+    <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
     <a href="/" class="logo">Daniel's mind paradise</a>
   </div>
@@ -151,8 +159,8 @@
 </nav>
 
 
-  
     
+      
 
 
 
@@ -209,14 +217,12 @@
     </div>
 </div>
 
-  
+    
 
-  
+    
 
-  
-
-  <header id="header" class="header container">
-    <div class="logo-wrapper">
+    <header id="header" class="header">
+      <div class="logo-wrapper">
   <a href="/" class="logo">
     
       Daniel's mind paradise
@@ -302,66 +308,61 @@
   </ul>
 </nav>
 
-  </header>
-
-  <div id="mobile-panel">
-    <main id="main" class="main bg-llight">
-      <div class="content-wrapper">
-        <div id="content" class="content container">
-          <article class="post bg-white">
-    
-    <header class="post-header">
-      <h1 class="post-title">实时渲染中的软阴影技术</h1>
-      
-      <div class="post-meta">
-        <time datetime="2017-05-11" class="post-time">
-          2017-05-11
-        </time>
-        
-        
-
-        
-        
-          <span id="busuanzi_container_page_pv">
-            | 阅读 <span id="busuanzi_value_page_pv"></span>
-          </span>
-        
-
-        
-        
-      </div>
     </header>
 
+    <div id="mobile-panel">
+      <main id="main" class="main bg-llight wallpaper">
+        <div class="content-wrapper">
+    <div id="content" class="content">
+      <article class="post">
+        
+        <header class="post-header">
+          <h1 class="post-title">实时渲染中的软阴影技术</h1>
+          
+
+          <div class="post-meta">
+  <div class="post-meta-author">
+    by
+      Daniel
+    
+  </div>
+
+  <div class="post-meta-time">
+    <time datetime="2017-05-11">
+      2017-05-11
+    </time>
+  </div>
+
+  
+
+
+  <div class="post-meta__right">
+    
+
+    
+
+
     
     
-<div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
-  <div class="post-toc-content">
-    <nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#关于阴影走样">关于阴影走样</a></li>
-        <li><a href="#软阴影算法概览">软阴影算法概览</a></li>
-        <li><a href="#pcf滤波">PCF滤波</a></li>
-        <li><a href="#convolution-shadow-maps卷积阴影">Convolution Shadow Maps：卷积阴影</a></li>
-        <li><a href="#variance-shadow-mapping-深度概率分布和切比雪夫不等式">Variance Shadow Mapping: 深度概率分布和切比雪夫不等式</a></li>
-        <li><a href="#exponential-shadow-mapping">Exponential Shadow Mapping</a></li>
-        <li><a href="#pcss">PCSS</a></li>
-        <li><a href="#参考文献">参考文献</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+      <span id="busuanzi_container_page_pv">
+        | 阅读 <span id="busuanzi_value_page_pv"></span>
+      </span>
+    
+
+
+    
+    
   </div>
 </div>
 
-    
-    <div class="post-content">
-      <p>本文描述的是基于Shadow Mapping的软阴影技术，读者应该对Shadow Mapping 有基本的理解。</p>
+        </header>
+
+        
+        <div class="post-content">
+          <p>本文描述的是基于Shadow Mapping的软阴影技术，读者应该对Shadow Mapping 有基本的理解。</p>
 <h3 id="关于阴影走样">关于阴影走样</h3>
 <p>Shadow Mapping 有一个严重的问题就是阴影走样（Aliasing），这一点在我的渲染器CanvasToy上也非常明显
-<img src="/images/yyfzy/1.png" alt=""></p>
+<img src="/images/yyfzy/1.png"></p>
 <p>图中阴影边缘明显的锯齿就是阴影走样</p>
 <p>阴影走样为什么会产生？以聚光灯为例，如果光源和遮挡物离场景很远，假设阴影纹理大小为1024*1024。当我们对场景中的一点找到对应shadow map中的深度，我们会在很大的矩形范围内得到同样的z(p)值，这样就形成了锯齿。</p>
 <p>除了锯齿的问题，我们发现无论遮挡物有多远，阴影的边界依然很明显，这就是所谓的硬阴影。</p>
@@ -440,18 +441,18 @@ $$
 c_k = \pi(2k-1)
 $$</p>
 <p>当M取不同的值的时候，\(f(d, z)\)的曲线如下：
-<img src="/images/yyfzy/3.png" alt=""></p>
+<img src="/images/yyfzy/3.png"></p>
 <p>考虑到效率和实现效果，M应该取大于4的值，</p>
 <p>当d=z的时候，\(f(d, z)\)取值0.5，这显然是不对的，因为当d=z，我们应该得到一个完全无遮挡的表面，所以应对原始的函数取一点偏移, 使d=z时\(f(d, z)\)取值1，得到的函数图像如下：</p>
-<p><img src="/images/yyfzy/4.png" alt=""></p>
+<p><img src="/images/yyfzy/4.png"></p>
 <p>我们也可以对\(f(d, z)\)做一下变形，通过简单的\(f(d, z) \rightarrow 2f(d, z)\)，并裁剪超过1的部分，
 这样也能得到可以接受的图像</p>
-<p><img src="/images/yyfzy/5.png" alt=""></p>
+<p><img src="/images/yyfzy/5.png"></p>
 <h4 id="csm存在的问题">CSM存在的问题</h4>
 <p>观察CSM的图像，在d=z的两边曲线都出现了抖动，反应在渲染结果上就是物体在和光源连线上的忽明忽暗
-<img src="/images/yyfzy/6.png" alt=""></p>
+<img src="/images/yyfzy/6.png"></p>
 <p>抖动和漏光对CSM来说就像双刃剑的两面，要么抖动多一点，要么漏光多一点，
-<img src="/images/yyfzy/7.png" alt=""></p>
+<img src="/images/yyfzy/7.png"></p>
 <h4 id="效率和存储-1">效率和存储</h4>
 <p>M*(R8G8B8A8) (M \geq 4)
 CSM支持pre-filtering，M越大，效率越低，但比起PCF来说要好很多</p>
@@ -495,7 +496,7 @@ s(x) = f(d, z) = e^{-c(d-z)} = e^{-cd}e^z
 $$</p>
 <p>显然这个表达式是单边有效的，对于d&lt;z的情况，$$ e^{-cd}e^z $$ 将会爆炸式增长，我们暂时先假定\(d&lt;z\)时\(f(d, z)=1\)
 得到ESM的图像表示：
-<img src="/images/yyfzy/esmcurve.png" alt=""></p>
+<img src="/images/yyfzy/esmcurve.png"></p>
 <p>有了这个表达式，我们就有可能实现pre-filtering，从而提高性能。
 下面的式子证明了经过ESM处理之后filtering和pre-filtering是等价的</p>
 <p>$$</p>
@@ -509,9 +510,9 @@ s_f(x) &amp;= <a href="p">w\ast f(d(x), z)</a> \
 C的上限受到浮点数精度的影响。32位float对应的c的经验最佳值大概在80左右，这个值生成的阴影比\(M=16\)的CSM更好</p>
 <h4 id="esm存在的问题">ESM存在的问题</h4>
 <p>下面这个图很好的反应了由shadow map精度带来的问题</p>
-<p><img src="/images/yyfzy/8.png" alt=""></p>
+<p><img src="/images/yyfzy/8.png"></p>
 <p>观察图中的边缘，发现有过亮的现象产生，我们用一张图可以清晰明了的解释</p>
-<p><img src="/images/yyfzy/esm.png" alt=""></p>
+<p><img src="/images/yyfzy/esm.png"></p>
 <p>对于阴影纹理，存储和采样点都在纹素中心，当我们计算d(x)-z(p)时就会出现小于0的情况。于是我们得到一个全白的结果，而正确结果应该是有50%的阴影</p>
 <p>这种情况出现在多重阴影的边缘，原论文中有两种解决方案，一种是增加一个</p>
 <p>$$
@@ -536,7 +537,7 @@ ESM比之前提到的几乎所有方法都要好，不需要MRT，支持pre-filt
 <p>PCSS是Percentage-Closer Soft Shadows的简称。PCSS和上面的算法解决的是不同的问题。
 PCSS解决了前述算法软阴影的一致性问题。原本的滤波算法不管遮挡物和阴影接收物体相距多远，都生成一致的“软”的阴影。</p>
 <p>PCSS 通过一个和光源位置相关的相似三角形来控制软阴影的<strong>采样搜索范围</strong>。下面这个图展示了PCSS如何根据光源，遮挡物，和阴影投射目标三者确定搜索范围</p>
-<p><img src="/images/yyfzy/2.png" alt=""></p>
+<p><img src="/images/yyfzy/2.png"></p>
 <p>PCSS首先假定光源是一个区域光(area light)，这看起来好像很不可思议，但其实这才是我们最常见的光源。
 传统的点光源，聚光灯和平行光，其实都不过是某种模拟，比如点光源模拟小灯泡，聚光灯模拟手电筒，平行光模拟太阳，其实严格来说这些都是区域光，软阴影形成的很大一个原因就是区域光的存在。
 为了在旧的光源体系中加入区域的概念，我们假定光源是一个始终平行于接收面的圆形，并用uniform变量控制这个圆形的半径
@@ -555,10 +556,10 @@ PCSS解决了前述算法软阴影的一致性问题。原本的滤波算法不�
 <p>Bavoil, Louis. &ldquo;Advanced soft shadow mapping techniques.&rdquo; Presentation at the game developers conference. Vol. 2008. 2008.</p>
 <p>Shen, Li, Jieqing Feng, and Baoguang Yang. &ldquo;Exponential soft shadow mapping.&rdquo; Computer graphics forum. Vol. 32. No. 4. Blackwell Publishing Ltd, 2013.</p>
 
-    </div>
+        </div>
 
-    
-    
+        
+        
 <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
@@ -579,8 +580,9 @@ PCSS解决了前述算法软阴影的一致性问题。原本的滤波算法不�
 </div>
 
 
-    
-    
+
+        
+        
 <div class="post-reward">
   <input type="checkbox" name="reward" id="reward" hidden />
   <label class="reward-button" for="reward">赞赏支持</label>
@@ -599,57 +601,61 @@ PCSS解决了前述算法软阴影的一致性问题。原本的滤波算法不�
   </div>
 </div>
 
-    <footer class="post-footer">
-      <div class="post-tags">
-          <a href="https://hustdanielhu.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">计算机图形学</a>
-          
-        </div>
 
-      
-      <nav class="post-nav">
-        
-          <a class="prev" href="/post/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/">
+        <footer class="post-footer">
+          <div class="post-tags">
+              <a href="https://hustdanielhu.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">计算机图形学</a>
+                
+            </div>
+
+
+          
+          <nav class="post-nav">
             
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+              <a class="prev" href="/post/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/">
+                
+                <i class="iconfont">
+                  <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="18" height="18">
   <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
 </svg>
 
-            </i>
-            <span class="prev-text nav-default">KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        
-          <a class="next" href="/post/webgl%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E6%80%BB%E7%BB%93/">
-            <span class="next-text nav-default">WebGL渲染引擎技术选型总结</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+                </i>
+                <span class="prev-text nav-default">KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读</span>
+                <span class="prev-text nav-mobile">上一篇</span>
+              </a>
             
-            <i class="iconfont">
-              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+              <a class="next" href="/post/webgl%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E6%80%BB%E7%BB%93/">
+                <span class="next-text nav-default">WebGL渲染引擎技术选型总结</span>
+                <span class="prev-text nav-mobile">下一篇</span>
+                
+                <i class="iconfont">
+                  <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="18" height="18">
   <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
 </svg>
 
-            </i>
-          </a>
-      </nav>
-    </footer>
-  </article>
+                </i>
+              </a>
+          </nav>
+        </footer>
+      </article>
+
+      
+      
+
+
+      
+      
+
+  
 
   
   
 
   
-  
-
-  
-
-  
-  
-
   
 
   
@@ -676,22 +682,53 @@ PCSS解决了前述算法软阴影的一致性问题。原本的滤波算法不�
       $('#load_disqus').remove();
     };
   </script>
-  <noscript>Please enable JavaScript to view the
+  <noscript
+    >Please enable JavaScript to view the
     <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
   </noscript>
   
-  </div>
+</div>
+
 
     
 
   
 
-        </div>
-      </div>
-    </main>
+  
 
-    <footer id="footer" class="footer">
-      <div class="icon-links">
+
+    </div>
+
+    
+    <nav class="toc" id="toc">
+    <div class="toc-title">文章目录</div>
+    <div class="toc-content custom-scrollbar">
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#关于阴影走样">关于阴影走样</a></li>
+        <li><a href="#软阴影算法概览">软阴影算法概览</a></li>
+        <li><a href="#pcf滤波">PCF滤波</a></li>
+        <li><a href="#convolution-shadow-maps卷积阴影">Convolution Shadow Maps：卷积阴影</a></li>
+        <li><a href="#variance-shadow-mapping-深度概率分布和切比雪夫不等式">Variance Shadow Mapping: 深度概率分布和切比雪夫不等式</a></li>
+        <li><a href="#exponential-shadow-mapping">Exponential Shadow Mapping</a></li>
+        <li><a href="#pcss">PCSS</a></li>
+        <li><a href="#参考文献">参考文献</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </nav>
+
+
+  </div>
+
+      </main>
+
+      <footer id="footer" class="footer">
+        <div class="icon-links">
   
   
     <a href="mailto:yimingdz@gmail.com" rel="me noopener" class="iconfont"
@@ -737,7 +774,7 @@ PCSS解决了前述算法软阴影的一致性问题。原本的滤波算法不�
 </svg>
 
   </a>
-   
+  
 </div>
 
 <div class="copyright">
@@ -753,7 +790,7 @@ PCSS解决了前述算法软阴影的一致性问题。原本的滤波算法不�
     &copy;
     
       2015 -
-    2022
+    2024
     <span class="heart">
       
       <i class="iconfont">
@@ -780,38 +817,36 @@ PCSS解决了前述算法软阴影的一致性问题。原本的滤波算法不�
   
 </div>
 
-    </footer>
+      </footer>
 
-    <div class="back-to-top" id="back-to-top">
-      <i class="iconfont">
-        
-        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+      <div class="button__back-to-top">
+        <a href="#back-to-top">
+          <i class="iconfont">
+            
+            <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="35" height="35">
   <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
 </svg>
 
-      </i>
+          </i>
+        </a>
+      </div>
     </div>
-  </div>
-  
-<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+    
+<script type="text/javascript" src="/lib/jquery/jquery-3.7.1.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
 
 
 
 
-<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/main.ac668441725ce78d5a66b345db43a6b3a1d1b905e38b57ac90f7a6606605a3dc.js" integrity="sha256-rGaEQXJc541aZrNF20Oms6HRuQXji1eskPemYGYFo9w=" crossorigin="anonymous"></script>
 
 
 
-  <script type="text/javascript">
-    window.MathJax = {
-      showProcessingMessages: false,
-      messageStyle: 'none'
-    };
-  </script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 
 
@@ -822,7 +857,6 @@ PCSS解决了前述算法软阴影的一致性问题。原本的滤波算法不�
 
 
   
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
   
@@ -845,5 +879,7 @@ PCSS解决了前述算法软阴影的一致性问题。原本的滤波算法不�
 
 
 
-</body>
+
+
+  </body>
 </html>

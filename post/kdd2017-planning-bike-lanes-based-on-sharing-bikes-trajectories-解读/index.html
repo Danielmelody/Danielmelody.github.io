@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读 - Daniel&#39;s mind paradise</title>
-  
+<html
+  lang="zh-cn"
+  itemscope
+  itemtype="http://schema.org/WebPage"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+          KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读 - Daniel&#39;s mind paradise
+        </title>
+    
 
 <meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
 
 <meta name="MobileOptimized" content="width"/>
 <meta name="HandheldFriendly" content="true"/>
@@ -31,7 +37,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2" />
+<meta name="generator" content="Hugo 0.124.1" />
 
 
 <link rel="canonical" href="https://hustdanielhu.com/post/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/" />
@@ -52,7 +58,9 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.444f741ba7b684e63dff9a3b61ec1fb750c9b563b5a0b64153f1af8025c5fac1.css" integrity="sha256-RE90G6e2hOY9/5o7Yewft1DJtWO1oLZBU/GvgCXF&#43;sE=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.e826e860368147e5a6685e686355e4d7789023c18c9ea2e78b35f6786ce92736.css" integrity="sha256-6CboYDaBR&#43;WmaF5oY1Xk13iQI8GMnqLnizX2eGzpJzY=" media="screen" crossorigin="anonymous">
+
+
 
 
 
@@ -66,13 +74,11 @@
 <meta property="og:url" content="https://hustdanielhu.com/post/kdd2017-planning-bike-lanes-based-on-sharing-bikes-trajectories-%E8%A7%A3%E8%AF%BB/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2017-10-28T00:00:00+00:00" />
 <meta property="article:modified_time" content="2017-10-28T00:00:00+00:00" />
-
 <meta itemprop="name" content="KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读">
 <meta itemprop="description" content="最近学校智能数据处理的作业要求阅读KDD2017，正好可以了解一点机器学习/数据挖掘的东西，简单选了一篇比较有社会影响的文章，发现读起来居然"><meta itemprop="datePublished" content="2017-10-28T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2017-10-28T00:00:00+00:00" />
 <meta itemprop="wordCount" content="3024">
-<meta itemprop="keywords" content="数据挖掘," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读"/>
+<meta itemprop="keywords" content="数据挖掘," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读"/>
 <meta name="twitter:description" content="最近学校智能数据处理的作业要求阅读KDD2017，正好可以了解一点机器学习/数据挖掘的东西，简单选了一篇比较有社会影响的文章，发现读起来居然"/>
 
 <!--[if lte IE 9]>
@@ -87,9 +93,11 @@
 
 
 
-</head>
-<body>
-  <div id="mobile-navbar" class="mobile-navbar">
+  </head>
+  <body>
+    <div id="back-to-top"></div>
+
+    <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
     <a href="/" class="logo">Daniel's mind paradise</a>
   </div>
@@ -151,8 +159,8 @@
 </nav>
 
 
-  
     
+      
 
 
 
@@ -209,14 +217,12 @@
     </div>
 </div>
 
-  
+    
 
-  
+    
 
-  
-
-  <header id="header" class="header container">
-    <div class="logo-wrapper">
+    <header id="header" class="header">
+      <div class="logo-wrapper">
   <a href="/" class="logo">
     
       Daniel's mind paradise
@@ -302,63 +308,58 @@
   </ul>
 </nav>
 
-  </header>
-
-  <div id="mobile-panel">
-    <main id="main" class="main bg-llight">
-      <div class="content-wrapper">
-        <div id="content" class="content container">
-          <article class="post bg-white">
-    
-    <header class="post-header">
-      <h1 class="post-title">KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读</h1>
-      
-      <div class="post-meta">
-        <time datetime="2017-10-28" class="post-time">
-          2017-10-28
-        </time>
-        
-        
-
-        
-        
-          <span id="busuanzi_container_page_pv">
-            | 阅读 <span id="busuanzi_value_page_pv"></span>
-          </span>
-        
-
-        
-        
-      </div>
     </header>
 
+    <div id="mobile-panel">
+      <main id="main" class="main bg-llight wallpaper">
+        <div class="content-wrapper">
+    <div id="content" class="content">
+      <article class="post">
+        
+        <header class="post-header">
+          <h1 class="post-title">KDD2017: Planning Bike Lanes based on Sharing-Bikes’ Trajectories 解读</h1>
+          
+
+          <div class="post-meta">
+  <div class="post-meta-author">
+    by
+      Daniel
+    
+  </div>
+
+  <div class="post-meta-time">
+    <time datetime="2017-10-28">
+      2017-10-28
+    </time>
+  </div>
+
+  
+
+
+  <div class="post-meta__right">
+    
+
+    
+
+
     
     
-<div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
-  <div class="post-toc-content">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#问题定义和抽象">问题定义和抽象</a>
-      <ul>
-        <li><a href="#这个问题被证明是一个np-hard问题证明过程如下">这个问题被证明是一个NP-hard问题，证明过程如下：</a></li>
-      </ul>
-    </li>
-    <li><a href="#算法的系统框架">算法的系统框架</a></li>
-    <li><a href="#实验和评估">实验和评估</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#总结">总结</a></li>
-  </ul>
-</nav>
+      <span id="busuanzi_container_page_pv">
+        | 阅读 <span id="busuanzi_value_page_pv"></span>
+      </span>
+    
+
+
+    
+    
   </div>
 </div>
 
-    
-    <div class="post-content">
-      <p>最近学校智能数据处理的作业要求阅读KDD2017，正好可以了解一点机器学习/数据挖掘的东西，简单选了一篇比较有社会影响的文章，发现读起来居然比图形学的paper好懂多了23333。大体来看数据挖掘所涉及到的知识可能还是更偏向于从基础算法出发，数学没有图形学多。不过这篇没有涉及deep learning，如果有哪方面的东西或许情况会有所不同。</p>
+        </header>
+
+        
+        <div class="post-content">
+          <p>最近学校智能数据处理的作业要求阅读KDD2017，正好可以了解一点机器学习/数据挖掘的东西，简单选了一篇比较有社会影响的文章，发现读起来居然比图形学的paper好懂多了23333。大体来看数据挖掘所涉及到的知识可能还是更偏向于从基础算法出发，数学没有图形学多。不过这篇没有涉及deep learning，如果有哪方面的东西或许情况会有所不同。</p>
 <p>言归正传，这是微软亚洲研究院联合摩拜单车发表的一篇用数据驱动解决<strong>城市单车道路规划问题</strong>的一篇paper。这篇paper背靠摩拜的大量单车数据，提出一种类似于贪心算法的解法。</p>
 <h2 id="问题定义和抽象">问题定义和抽象</h2>
 <p>政府需要对自行车道做出恰当的规划，而自行车道的规划需要综合考虑多方面的因素：</p>
@@ -394,11 +395,11 @@ $$
 </li>
 </ul>
 <p>$$
-C(E') \leq k
+C(E&rsquo;) \leq k
 $$</p>
 <p>​	其中
 $$
-C(E')
+C(E&rsquo;)
 $$
 ​	代表集合中聚类的个数</p>
 <p>​	<strong>这是限制条件二</strong></p>
@@ -443,7 +444,7 @@ $$
 <p>设计一个指数因子的目的是为了突出连续性的作用，否则这个函数将是线性的，经过最终求和之后（下面将会提到）道路连续性的影响将消除</p>
 <p>整个网络的估价函数是每条自行车轨道的估价函数之和
 $$
-E'.g = \sum_{tr_i \in Tr, tr_i \cap E' \ne \emptyset}tr_i.g
+E&rsquo;.g = \sum_{tr_i \in Tr, tr_i \cap E&rsquo; \ne \emptyset}tr_i.g
 $$
 <strong>这就是我们的目标函数</strong></p>
 </li>
@@ -490,13 +491,13 @@ $$
 <p>为了有效的评估和验证上述算法，MSRA的研究人员利用摩拜单车在中国上海整整一个月的骑行数据来深度分析自行车轨迹。</p>
 <p>上海的城市网络拥有333,766个路口和440,922个路段。而摩拜单车在这个一个月内共有13,063个独立用户使用了3971辆共享单车，骑行了230,303次。</p>
 <p>下面两张图图给出了骑行长度和骑行时间的大致分布状况，显然，大部分骑行距离集中在相对较近的路程附近（70%的骑行短于2km），骑行时间也集中于短时。</p>
-<p><img src="/images/kdd17mobike/1.png" alt=""></p>
+<p><img src="/images/kdd17mobike/1.png"></p>
 <p>下图给出了开始骑行的时间在一天之间的分布，可以看到在早/晚上下班的“冲刺阶段”是最多人选择使用共享单车的时候</p>
-<p><img src="/images/kdd17mobike/2.png" alt=""></p>
+<p><img src="/images/kdd17mobike/2.png"></p>
 <p>下图反应的则是路段的轨迹数量的分布，这是一个半对数坐标(semi-log)图，其中纵坐标为轨迹数量的对数。大部分路段的骑行轨迹数量小于100，而小部分的路段超过2000，这就证明合理的自行车道规划非常重要</p>
-<p><img src="/images/kdd17mobike/3.png" alt=""></p>
+<p><img src="/images/kdd17mobike/3.png"></p>
 <p>最后是骑行轨迹的空间热点分布图，结合地图来看，大多数骑行从住宅区开始，但在早上8-10点，更多的骑行起点在地铁站</p>
-<p><img src="/images/kdd17mobike/4.png" alt=""></p>
+<p><img src="/images/kdd17mobike/4.png"></p>
 <h4 id="根据实验进行效益评估">根据实验进行效益评估</h4>
 <p>在我们的算法中，主要有三个输入参数会明显影响总效益：聚类的个数k，预算B，以及表示对道路连续的重视程度的因子alpha。</p>
 <p>对于聚类个数
@@ -504,7 +505,7 @@ $$
 k
 $$
 下图给出了这个实验中对不同的k使用hierarchical spatial clustering 和 top-k 对总体效益的比较。</p>
-<p><img src="/images/kdd17mobike/5.png" alt=""></p>
+<p><img src="/images/kdd17mobike/5.png"></p>
 <p>图中显示在
 $$
 1 \leq k \leq 9
@@ -515,22 +516,22 @@ $$
 B
 $$
 下图也给出了不同预算在top-k和hierarchical spatial clustering两种策略下对效益的影响。</p>
-<p><img src="/images/kdd17mobike/6.png" alt=""></p>
+<p><img src="/images/kdd17mobike/6.png"></p>
 <p>观察发现大的预算下后者更优，当预算较小时反而前者更优，这则是因为当预算较小时把非常有限的轨道铺设在自行车骑行最为频繁的路段可能是更好的策略</p>
 <p>对于因子
 $$
 \alpha
 $$
 以下图为例，这个值越大，选择的路段集合就越纵深，越小集合就越分散越短小。</p>
-<p><img src="/images/kdd17mobike/7.png" alt=""></p>
+<p><img src="/images/kdd17mobike/7.png"></p>
 <h2 id="总结">总结</h2>
 <p>MSRA通过数据驱动的方法为自行车道的设计提供了更科学的参考，不仅如此，他们对实际路段进行了观察，发现在一些算法高度推荐修建自行车道而没有自行车道的地区常常出现自行车混杂在机动车道以及不得不在较多的停车区穿梭的现象，这无疑是危险且不符合好的城市交通建设的。实验和观察证明数据驱动的方法能在有限的预算下寻找到更好的规划方法，并得到了政府的高度评价</p>
 <p><em>声明：本文系个人对原paper的部分翻译和解释，仅作个人学习用途</em></p>
 
-    </div>
+        </div>
 
-    
-    
+        
+        
 <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
@@ -551,8 +552,9 @@ $$
 </div>
 
 
-    
-    
+
+        
+        
 <div class="post-reward">
   <input type="checkbox" name="reward" id="reward" hidden />
   <label class="reward-button" for="reward">赞赏支持</label>
@@ -571,57 +573,61 @@ $$
   </div>
 </div>
 
-    <footer class="post-footer">
-      <div class="post-tags">
-          <a href="https://hustdanielhu.com/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-          
-        </div>
 
-      
-      <nav class="post-nav">
-        
-          <a class="prev" href="/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/">
+        <footer class="post-footer">
+          <div class="post-tags">
+              <a href="https://hustdanielhu.com/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
+                
+            </div>
+
+
+          
+          <nav class="post-nav">
             
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+              <a class="prev" href="/post/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AEbug%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95/">
+                
+                <i class="iconfont">
+                  <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="18" height="18">
   <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
 </svg>
 
-            </i>
-            <span class="prev-text nav-default">一次内存越界访问bug追踪记录</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        
-          <a class="next" href="/post/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E4%B8%AD%E7%9A%84%E8%BD%AF%E9%98%B4%E5%BD%B1%E6%8A%80%E6%9C%AF/">
-            <span class="next-text nav-default">实时渲染中的软阴影技术</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+                </i>
+                <span class="prev-text nav-default">一次内存越界访问bug追踪记录</span>
+                <span class="prev-text nav-mobile">上一篇</span>
+              </a>
             
-            <i class="iconfont">
-              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+              <a class="next" href="/post/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E4%B8%AD%E7%9A%84%E8%BD%AF%E9%98%B4%E5%BD%B1%E6%8A%80%E6%9C%AF/">
+                <span class="next-text nav-default">实时渲染中的软阴影技术</span>
+                <span class="prev-text nav-mobile">下一篇</span>
+                
+                <i class="iconfont">
+                  <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="18" height="18">
   <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
 </svg>
 
-            </i>
-          </a>
-      </nav>
-    </footer>
-  </article>
+                </i>
+              </a>
+          </nav>
+        </footer>
+      </article>
+
+      
+      
+
+
+      
+      
+
+  
 
   
   
 
   
-  
-
-  
-
-  
-  
-
   
 
   
@@ -648,22 +654,53 @@ $$
       $('#load_disqus').remove();
     };
   </script>
-  <noscript>Please enable JavaScript to view the
+  <noscript
+    >Please enable JavaScript to view the
     <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
   </noscript>
   
-  </div>
+</div>
+
 
     
 
   
 
-        </div>
-      </div>
-    </main>
+  
 
-    <footer id="footer" class="footer">
-      <div class="icon-links">
+
+    </div>
+
+    
+    <nav class="toc" id="toc">
+    <div class="toc-title">文章目录</div>
+    <div class="toc-content custom-scrollbar">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#问题定义和抽象">问题定义和抽象</a>
+      <ul>
+        <li><a href="#这个问题被证明是一个np-hard问题证明过程如下">这个问题被证明是一个NP-hard问题，证明过程如下：</a></li>
+      </ul>
+    </li>
+    <li><a href="#算法的系统框架">算法的系统框架</a></li>
+    <li><a href="#实验和评估">实验和评估</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+    </div>
+  </nav>
+
+
+  </div>
+
+      </main>
+
+      <footer id="footer" class="footer">
+        <div class="icon-links">
   
   
     <a href="mailto:yimingdz@gmail.com" rel="me noopener" class="iconfont"
@@ -709,7 +746,7 @@ $$
 </svg>
 
   </a>
-   
+  
 </div>
 
 <div class="copyright">
@@ -725,7 +762,7 @@ $$
     &copy;
     
       2015 -
-    2022
+    2024
     <span class="heart">
       
       <i class="iconfont">
@@ -752,38 +789,36 @@ $$
   
 </div>
 
-    </footer>
+      </footer>
 
-    <div class="back-to-top" id="back-to-top">
-      <i class="iconfont">
-        
-        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+      <div class="button__back-to-top">
+        <a href="#back-to-top">
+          <i class="iconfont">
+            
+            <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="35" height="35">
   <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
 </svg>
 
-      </i>
+          </i>
+        </a>
+      </div>
     </div>
-  </div>
-  
-<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+    
+<script type="text/javascript" src="/lib/jquery/jquery-3.7.1.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
 
 
 
 
-<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/main.ac668441725ce78d5a66b345db43a6b3a1d1b905e38b57ac90f7a6606605a3dc.js" integrity="sha256-rGaEQXJc541aZrNF20Oms6HRuQXji1eskPemYGYFo9w=" crossorigin="anonymous"></script>
 
 
 
-  <script type="text/javascript">
-    window.MathJax = {
-      showProcessingMessages: false,
-      messageStyle: 'none'
-    };
-  </script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 
 
@@ -794,7 +829,6 @@ $$
 
 
   
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
   
@@ -817,5 +851,7 @@ $$
 
 
 
-</body>
+
+
+  </body>
 </html>

@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>在 Scheme 语言上构建静态类型系统 - Daniel&#39;s mind paradise</title>
-  
+<html
+  lang="zh-cn"
+  itemscope
+  itemtype="http://schema.org/WebPage"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+          在 Scheme 语言上构建静态类型系统 - Daniel&#39;s mind paradise
+        </title>
+    
 
 <meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
 
 <meta name="MobileOptimized" content="width"/>
 <meta name="HandheldFriendly" content="true"/>
@@ -31,7 +37,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2" />
+<meta name="generator" content="Hugo 0.124.1" />
 
 
 <link rel="canonical" href="https://hustdanielhu.com/post/static_scheme/" />
@@ -52,7 +58,9 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.444f741ba7b684e63dff9a3b61ec1fb750c9b563b5a0b64153f1af8025c5fac1.css" integrity="sha256-RE90G6e2hOY9/5o7Yewft1DJtWO1oLZBU/GvgCXF&#43;sE=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.e826e860368147e5a6685e686355e4d7789023c18c9ea2e78b35f6786ce92736.css" integrity="sha256-6CboYDaBR&#43;WmaF5oY1Xk13iQI8GMnqLnizX2eGzpJzY=" media="screen" crossorigin="anonymous">
+
+
 
 
 
@@ -66,13 +74,11 @@
 <meta property="og:url" content="https://hustdanielhu.com/post/static_scheme/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-04-18T01:31:59+08:00" />
 <meta property="article:modified_time" content="2021-04-18T01:31:59+08:00" />
-
 <meta itemprop="name" content="在 Scheme 语言上构建静态类型系统">
 <meta itemprop="description" content="因为工作的关系，需要在古老的 Scheme 上实现一个编译到某种 Vectorized statically typed IR 的编译器，其编译过程需要支持 on-demand parameterized polymorphic ，比如 &#43; 这个函数，需要按需实例化为支持向量&#43;常量"><meta itemprop="datePublished" content="2021-04-18T01:31:59+08:00" />
 <meta itemprop="dateModified" content="2021-04-18T01:31:59+08:00" />
 <meta itemprop="wordCount" content="4618">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="在 Scheme 语言上构建静态类型系统"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="在 Scheme 语言上构建静态类型系统"/>
 <meta name="twitter:description" content="因为工作的关系，需要在古老的 Scheme 上实现一个编译到某种 Vectorized statically typed IR 的编译器，其编译过程需要支持 on-demand parameterized polymorphic ，比如 &#43; 这个函数，需要按需实例化为支持向量&#43;常量"/>
 
 <!--[if lte IE 9]>
@@ -87,9 +93,11 @@
 
 
 
-</head>
-<body>
-  <div id="mobile-navbar" class="mobile-navbar">
+  </head>
+  <body>
+    <div id="back-to-top"></div>
+
+    <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
     <a href="/" class="logo">Daniel's mind paradise</a>
   </div>
@@ -151,8 +159,8 @@
 </nav>
 
 
-  
     
+      
 
 
 
@@ -209,14 +217,12 @@
     </div>
 </div>
 
-  
+    
 
-  
+    
 
-  
-
-  <header id="header" class="header container">
-    <div class="logo-wrapper">
+    <header id="header" class="header">
+      <div class="logo-wrapper">
   <a href="/" class="logo">
     
       Daniel's mind paradise
@@ -302,131 +308,115 @@
   </ul>
 </nav>
 
-  </header>
-
-  <div id="mobile-panel">
-    <main id="main" class="main bg-llight">
-      <div class="content-wrapper">
-        <div id="content" class="content container">
-          <article class="post bg-white">
-    
-    <header class="post-header">
-      <h1 class="post-title">在 Scheme 语言上构建静态类型系统</h1>
-      
-      <div class="post-meta">
-        <time datetime="2021-04-18" class="post-time">
-          2021-04-18
-        </time>
-        
-        
-
-        
-        
-          <span id="busuanzi_container_page_pv">
-            | 阅读 <span id="busuanzi_value_page_pv"></span>
-          </span>
-        
-
-        
-        
-      </div>
     </header>
 
+    <div id="mobile-panel">
+      <main id="main" class="main bg-llight wallpaper">
+        <div class="content-wrapper">
+    <div id="content" class="content">
+      <article class="post">
+        
+        <header class="post-header">
+          <h1 class="post-title">在 Scheme 语言上构建静态类型系统</h1>
+          
+
+          <div class="post-meta">
+  <div class="post-meta-author">
+    by
+      Daniel
+    
+  </div>
+
+  <div class="post-meta-time">
+    <time datetime="2021-04-18">
+      2021-04-18
+    </time>
+  </div>
+
+  
+
+
+  <div class="post-meta__right">
+    
+
+    
+
+
     
     
-<div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
-  <div class="post-toc-content">
+      <span id="busuanzi_container_page_pv">
+        | 阅读 <span id="busuanzi_value_page_pv"></span>
+      </span>
+    
+
+
+    
     
   </div>
 </div>
 
-    
-    <div class="post-content">
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.js" integrity="sha512-O7WTu9pghLBfbQSGAf2xOFoRxDrHKS3kjRuuiCWttAf76q6h8Qj+KYPBF5EdZsE24LvXiFUshVNWaAxBOij8VA==" crossorigin="anonymous"></script>
+        </header>
 
-<p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css" integrity="sha512-el2z+rjIj40JeIlKyqcoRjGNjvwHVlyahNQ1PhSs4PCztr6jJ4GgpjgN+1a++L9HZxhLXpa4eLG3ry976z0O2Q==" crossorigin="anonymous" /></p>
-
-<p>因为工作的关系，需要在古老的 Scheme 上实现一个编译到某种 Vectorized statically typed IR 的编译器，其编译过程需要支持 on-demand parameterized polymorphic ，比如 <code>+</code> 这个函数，需要按需实例化为支持向量+常量， 向量+向量， 常量+常量的对应逻辑。这就需要 类型系统支持到 <span  class="math">\( \lambda 2 \)</span>  , 也就是 System F, 在不引入类型标注的情况下，Hindley-Milner 类型系统是最好的选择</p>
-
+        
+        <div class="post-content">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.js" integrity="sha512-O7WTu9pghLBfbQSGAf2xOFoRxDrHKS3kjRuuiCWttAf76q6h8Qj+KYPBF5EdZsE24LvXiFUshVNWaAxBOij8VA==" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css" integrity="sha512-el2z+rjIj40JeIlKyqcoRjGNjvwHVlyahNQ1PhSs4PCztr6jJ4GgpjgN+1a++L9HZxhLXpa4eLG3ry976z0O2Q==" crossorigin="anonymous" />
+<p>因为工作的关系，需要在古老的 Scheme 上实现一个编译到某种 Vectorized statically typed IR 的编译器，其编译过程需要支持 on-demand parameterized polymorphic ，比如 <code>+</code> 这个函数，需要按需实例化为支持向量+常量， 向量+向量， 常量+常量的对应逻辑。这就需要 类型系统支持到 $$ \lambda 2 $$  , 也就是 System F, 在不引入类型标注的情况下，Hindley-Milner 类型系统是最好的选择</p>
 <p>在现代语言 Haskell, Rust, TypeScript 中我们均能看到 Hindley-Milner 类型系统 的身影。HM 系统同样可以兼容类型标注作为类型推断的辅助，已经成为大多数有类型函数式语言的类型系统的基础。</p>
-
 <h3 id="scheme-as-a-static-typed-language">Scheme as A static typed language</h3>
-
 <p>完全静态是不可能的，因为 Scheme 中的 List 的类型是动态的，List 中的元素可以是任意合法的 Scheme 值</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-scheme" data-lang="scheme"><span class="o">&#39;</span><span class="p">(</span><span class="ss">&#39;bar</span> <span class="mi">1</span> <span class="o">&#39;</span><span class="p">()</span> <span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="no">#f</span><span class="p">)</span> <span class="s">&#34;foo&#34;</span><span class="p">)</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-scheme" data-lang="scheme"><span class="line"><span class="cl"><span class="o">&#39;</span><span class="p">(</span><span class="ss">&#39;bar</span> <span class="mi">1</span> <span class="o">&#39;</span><span class="p">()</span> <span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="no">#f</span><span class="p">)</span> <span class="s">&#34;foo&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<p>这样的话 List 的元素类型就必须是一个动态类型</p>
-
+</div><p>这样的话 List 的元素类型就必须是一个动态类型</p>
 <p>但是如果我们只考虑一个 Scheme 的子集，我们就可以在享受 Scheme 的一些优越特性的同时 （如 hygenic macros）, 利用类型系统更容易的写出正确的程序，并且打通和其他静态类型语言的桥梁。</p>
-
 <p>我们做一个很简单的限制： List 和 Vector 的元素类型必须一致。这样 List/Vector 的类型就变成静态的了。我们获得了一个 Scheme 的语义上的子集。</p>
-
 <p>我们目前有了静态类型系统的语义基础，现在我们可以在这个无类型标注的语言上构建一个真正的类型系统了</p>
-
 <h3 id="scheme-as-second-typed-lambda-calculus">Scheme as second typed lambda calculus</h3>
-
 <p>众所周知，Scheme 可以认为是 lambda 演算用程序语言表达的结果，加上多参数函数，更多的基本类型（数字，字符串，bool 等），REPL 等等feature，</p>
-
-<p>如上节提到， Scheme 实际上和无类型 lambda 演算一样是动态类型，我们考虑给 Scheme 加上一个最简单的静态类型系统，使得 Scheme 的每一个项都有一个确定的类型，根据我们开头提到的，这实际上要求类型系统至少是一个 支持多态的有类型 lambda 演算，也就是 System F (<span  class="math">\(\lambda 2\)</span>)</p>
-
-<p>为了从一个简单的地方开始，我们先来看看简单类型 Lambda 演算，他是 <span  class="math">\(\lambda 2\)</span> 的基础</p>
-
+<p>如上节提到， Scheme 实际上和无类型 lambda 演算一样是动态类型，我们考虑给 Scheme 加上一个最简单的静态类型系统，使得 Scheme 的每一个项都有一个确定的类型，根据我们开头提到的，这实际上要求类型系统至少是一个 支持多态的有类型 lambda 演算，也就是 System F ($$\lambda 2$$)</p>
+<p>为了从一个简单的地方开始，我们先来看看简单类型 Lambda 演算，他是 $$\lambda 2$$ 的基础</p>
 <p>lambda 演算 只有三个简单的语法：</p>
-
 <ul>
-<li>Variable <span  class="math">\(x\)</span></li>
-<li>Abstraction <span  class="math">\((\lambda x.M)\)</span></li>
-<li>Application <span  class="math">\((M N)\)</span></li>
+<li>Variable $$x$$</li>
+<li>Abstraction $$(\lambda x.M)$$</li>
+<li>Application $$(M N)$$</li>
 </ul>
-
 <p>分别代表变量, 常数，抽象（也就是函数），和应用（函数应用）</p>
-
 <p>如果给 LC 加上类型约束，那么自然地，我们会如何规定值的类型呢？</p>
-
 <ul>
-<li><p>假设变量 <span  class="math">\(x\)</span> 拥有类型  <span  class="math">\(\sigma\)</span>, 那么 变量 <span  class="math">\(x\)</span> 拥有类型  <span  class="math">\(\sigma\)</span></p></li>
-
-<li><p>如果在某个环境中，已知  <span  class="math">\(x\)</span> 有类型 <span  class="math">\(\sigma\)</span> 可以推导出 <span  class="math">\(t\)</span> 有类型 <span  class="math">\(\tau\)</span></p></li>
+<li>
+<p>假设变量 $$x$$ 拥有类型  $$\sigma$$, 那么 变量 $$x$$ 拥有类型  $$\sigma$$</p>
+</li>
+<li>
+<p>如果在某个环境中，已知  $$x$$ 有类型 $$\sigma$$ 可以推导出 $$t$$ 有类型 $$\tau$$</p>
+<p>那么：可以在该环境中构造 lambda 抽象 $$\lambda x.t$$ ，其类型是 $$\sigma \rightarrow \tau$$</p>
+</li>
+<li>
+<p>如果在特定上下文中，可以推导出 t 有类型  $$\sigma \rightarrow \tau$$ 和 u 有类型 $$\tau$$ 则在同一个上下文中，</p>
+<p>那么：可以推导出表达式 $$t u$$ 有类型 $$\tau$$。这捕获了函数应用的概念。</p>
+</li>
 </ul>
-
-<p>那么：可以在该环境中构造 lambda 抽象 <span  class="math">\(\lambda x.t\)</span> ，其类型是 <span  class="math">\(\sigma \rightarrow \tau\)</span></p>
-
-<ul>
-<li>如果在特定上下文中，可以推导出 t 有类型  <span  class="math">\(\sigma \rightarrow \tau\)</span> 和 u 有类型 <span  class="math">\(\tau\)</span> 则在同一个上下文中，</li>
-</ul>
-
-<p>那么：可以推导出表达式 <span  class="math">\(t u\)</span> 有类型 <span  class="math">\(\tau\)</span>。这捕获了函数应用的概念。</p>
-
 <p>这三条规则也可以用自然推演（Natural Deduction）的形式定义，即：</p>
-
-<p><span  class="math">\[\frac {x{\mathbin {:}}\sigma \in \Gamma }{\Gamma \vdash x{\mathbin {:}}\sigma }Var\]</span></p>
-
-<p><span  class="math">\[{\frac {\Gamma ,x{\mathbin {:}}\sigma \vdash e{\mathbin {:}}\tau }{\Gamma \vdash (\lambda x{\mathbin {:}}\sigma .~e){\mathbin {:}}(\sigma \to \tau )}}Abs\]</span></p>
-
-<p><span  class="math">\[{\frac {\Gamma \vdash e_{1}{\mathbin {:}}\sigma \to \tau \quad \Gamma \vdash e_{2}{\mathbin {:}}\sigma }{\Gamma \vdash e_{1}~e_{2}{\mathbin {:}}\tau }}App\]</span></p>
-
+<p>$$\frac {x{\mathbin {:}}\sigma \in \Gamma }{\Gamma \vdash x{\mathbin {:}}\sigma }Var$$</p>
+<p>$${\frac {\Gamma ,x{\mathbin {:}}\sigma \vdash e{\mathbin {:}}\tau }{\Gamma \vdash (\lambda x{\mathbin {:}}\sigma .~e){\mathbin {:}}(\sigma \to \tau )}}Abs$$</p>
+<p>$${\frac {\Gamma \vdash e_{1}{\mathbin {:}}\sigma \to \tau \quad \Gamma \vdash e_{2}{\mathbin {:}}\sigma }{\Gamma \vdash e_{1}~e_{2}{\mathbin {:}}\tau }}App$$</p>
 <p>在 Scheme 上实现的话，实际要做的工作就是搞清楚 Scheme 版本的 typing rules。</p>
-
 <ul>
 <li>常数，这个很简单，我们可以直接从 syntax 得到类型</li>
-<li>变量绑定，对于语句 <code>(define x y)</code> where <span  class="math">\(y:\sigma\)</span> , 我们得到  <span  class="math">\(x: \sigma\)</span></li>
-<li>Function Application, 对于表达式 (foo arg2 ...), 如果 foo 的类型为 <span  class="math">\(A1 A2 ... An \rightarrow Ret\)</span>, 那么表达式的类型为 <span  class="math">\(Ret\)</span></li>
+<li>变量绑定，对于语句 <code>(define x y)</code> where $$y:\sigma$$ , 我们得到  $$x: \sigma$$</li>
+<li>Function Application, 对于表达式 (foo arg2 &hellip;), 如果 foo 的类型为 $$A1 A2 &hellip; An \rightarrow Ret$$, 那么表达式的类型为 $$Ret$$</li>
 </ul>
-
 <p>到现在为止，好像都没什么问题，直到我们遇到函数定义：</p>
-
 <ul>
-<li>Native function，看起来也还好办，只需要库函数自己声明自己的类型就行，但是由于没有多态，目前我们只能指定 如 <code>+</code> 这样的函数类型为 <span  class="math">\(Int... \rightarrow Int\)</span> ，一旦这样声明， <code>+</code> 就不能接受 <span  class="math">\(Float\)</span> 类型的数据了</li>
+<li>Native function，看起来也还好办，只需要库函数自己声明自己的类型就行，但是由于没有多态，目前我们只能指定 如 <code>+</code> 这样的函数类型为 $$Int&hellip; \rightarrow Int$$ ，一旦这样声明， <code>+</code> 就不能接受 $$Float$$ 类型的数据了</li>
 <li>User Defined Function, 对于形如 <code>(lambda (arg1...) ...last)</code> 这样的函数，我们没有足够的信息来确定 <code>arg1</code> <code>arg2</code> 等参数的类型，因为我们没有引入显式类型标注。但是引入类型标注无疑会导致语言成倍的复杂</li>
 </ul>
-
 <p>怎么办呢？一个自然的想法是，从函数的应用处来反推函数的类型，我们可以假定在函数应用处，所有参数的类型已经确定，那么把参数的类型作为代换，就能推出整个函数体的类型。比如</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -434,161 +424,108 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="nv">identity</span> <span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">identity</span> <span class="mi">1</span><span class="p">)</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-scheme" data-lang="scheme"><span class="line"><span class="cl"><span class="p">(</span><span class="k">define </span><span class="nv">identity</span> <span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">identity</span> <span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<p>把 x 用常量 1 代换，而常量 1 具有类型 <span  class="math">\(Int\)</span>, 函数体为 x，因此这个函数的应用结果 <code>(identity 1)</code> 的类型也是 <span  class="math">\(Int\)</span>，函数 identity 的类型为 <span  class="math">\(Int \rightarrow Int\)</span></p>
-
-<p>很快我们就会发现问题，identity 可能不只有一种类型，他可能是 <span  class="math">\(Float \rightarrow Float\)</span>, <span  class="math">\(Symbol \rightarrow Symbol\)</span> ... 等等，一个值怎么会有多种类型？然而从 Scheme 的语义看，这完全没有问题，站在解释器的角度，我只不过把参数代换进函数体，得到一个结果而已。</p>
-
+</div><p>把 x 用常量 1 代换，而常量 1 具有类型 $$Int$$, 函数体为 x，因此这个函数的应用结果 <code>(identity 1)</code> 的类型也是 $$Int$$，函数 identity 的类型为 $$Int \rightarrow Int$$</p>
+<p>很快我们就会发现问题，identity 可能不只有一种类型，他可能是 $$Float \rightarrow Float$$, $$Symbol \rightarrow Symbol$$ &hellip; 等等，一个值怎么会有多种类型？然而从 Scheme 的语义看，这完全没有问题，站在解释器的角度，我只不过把参数代换进函数体，得到一个结果而已。</p>
 <p>可是到类型系统这里就遇到了灾难，我们发现简单类型 Lambda 演算已经不够用了，我们需要一种描述机制可以描述 id 这样的函数。</p>
-
-<p>在值的世界里，函数参数是一个 <span  class="math">\(Variable\)</span> ，它会在应用的时候被替换成具体值，那么自然的，在在类型世界里，函数参数的类型也可以是一个  <span  class="math">\(Variable\)</span>，称为类型变量，在应用的时候，类型变量的值被替换为了具体类型</p>
-
-<p>对于 <span  class="math">\(id = \lambda x.x\)</span> 这样的函数，如果引入类型变量，我们可以这样表示其类型：<span  class="math">\(id: \Lambda X.X \rightarrow X \)</span>，这个 大写的 <span  class="math">\(\Lambda\)</span> 就相当于类型世界的 <span  class="math">\(\lambda\)</span></p>
-
-<p><span  class="math">\(id\)</span> 函数的类型的产生是自然的，不需要依赖别的信息，仅靠函数体就能得到，可以很简单的证明，对于任意 lambda 抽象，我们都能产生这么一个带有类型变量的类型</p>
-
+<p>在值的世界里，函数参数是一个 $$Variable$$ ，它会在应用的时候被替换成具体值，那么自然的，在在类型世界里，函数参数的类型也可以是一个  $$Variable$$，称为类型变量，在应用的时候，类型变量的值被替换为了具体类型</p>
+<p>对于 $$id = \lambda x.x$$ 这样的函数，如果引入类型变量，我们可以这样表示其类型：$$id: \Lambda X.X \rightarrow X $$，这个 大写的 $$\Lambda$$ 就相当于类型世界的 $$\lambda$$</p>
+<p>$$id$$ 函数的类型的产生是自然的，不需要依赖别的信息，仅靠函数体就能得到，可以很简单的证明，对于任意 lambda 抽象，我们都能产生这么一个带有类型变量的类型</p>
 <p>现在，我们得到了一个带有类型变量的类型，如果这时候没有额外的信息，这个类型实际上就无法”求解“了，也就是无法代换为不含类型变量的具体类型，这些类型变量被称作是 “自由的”</p>
-
 <p>显而易见，我们可以从函数调用处获得这些”额外信息“</p>
-
 <p>值得注意的是，调用处有多个，在每个 id 的 occurrence， id 都是不同的类型，就 符号 id 而言其本身是多态的（Polymorphism）, 但是这种多态是有限的，其范围就是所有的 occurrence。这种有限的多态，正是 Hindley Milner 系统中的核心： <strong>Let-Polymorphism</strong></p>
-
 <p>Hindley Milner(以下简称 HM) 在 Lambda Calculus 的语法基础上增加了一条 let 语句</p>
-
-<p><span  class="math">\[
- {\begin{array}{lrll}\\e&=&x&{\textrm {variable}}\\&\vert &e_{1}\ e_{2}&{\textrm {application}}\\&\vert &\lambda \ x\ .\ e&{\textrm {abstraction}}\\&\vert &{\mathtt {let}}\ x=e_{1}\ {\mathtt {in}}\ e_{2}&\\\\\end{array}}
-\]</span></p>
-
+<p>$$
+{\begin{array}{lrll}\e&amp;=&amp;x&amp;{\textrm {variable}}\&amp;\vert &amp;e_{1}\ e_{2}&amp;{\textrm {application}}\&amp;\vert &amp;\lambda \ x\ .\ e&amp;{\textrm {abstraction}}\&amp;\vert &amp;{\mathtt {let}}\ x=e_{1}\ {\mathtt {in}}\ e_{2}&amp;\\\end{array}}
+$$</p>
 <p>上面这个公式里的 let 语句就是实现 <strong>Let-Polymorphism</strong> 的基础，举例来说：</p>
-
-<p><span  class="math">\[\mathtt{let} \ id = \lambda x.x \ \mathtt{in} \ (id\ 3) \ (id \ \mathtt{"text"}) ...\]</span></p>
-
-<p>实际上表达了一个代换过程，这里两个 id 在各自的表达式里分别代换为 <span  class="math">\(Int \rightarrow Int\)</span> 和 <span  class="math">\(String \rightarrow String\)</span>。这种 let 形式实质上绕开了多态的问题，也就是说在 HM 系统里，除了 Let 语句，其他地方任然不允许一个identifier有多个类型</p>
-
-<p>这样缺点也很明显：表达起来很繁琐，所有函数的应用点都需要写在 let 语句里。实际上如果一个函数所有可能的调用都是已知的，那么所有调用点的类型都能够确定，我们也不需要拘泥于写出 let ... 这样的形式。我们只需要在函数定义的环境里的所有应用都当做是 let 语句的 <span  class="math">\(e_2\)</span> 部分就可以了。</p>
-
+<p>$$\mathtt{let} \ id = \lambda x.x \ \mathtt{in} \ (id\ 3) \ (id \ \mathtt{&ldquo;text&rdquo;}) &hellip;$$</p>
+<p>实际上表达了一个代换过程，这里两个 id 在各自的表达式里分别代换为 $$Int \rightarrow Int$$ 和 $$String \rightarrow String$$。这种 let 形式实质上绕开了多态的问题，也就是说在 HM 系统里，除了 Let 语句，其他地方任然不允许一个identifier有多个类型</p>
+<p>这样缺点也很明显：表达起来很繁琐，所有函数的应用点都需要写在 let 语句里。实际上如果一个函数所有可能的调用都是已知的，那么所有调用点的类型都能够确定，我们也不需要拘泥于写出 let &hellip; 这样的形式。我们只需要在函数定义的环境里的所有应用都当做是 let 语句的 $$e_2$$ 部分就可以了。</p>
 <p>基于 let 语句，我们可以在简单类型 Lambda 演算上增加一条 Rules：LET</p>
-
-<p><span  class="math">\[\frac{\Gamma \vdash e_{0}:\sigma \ \ \ \ \ \  \Gamma,x:\sigma \vdash
-e_{1}:\tau}{\Gamma \vdash \mathbf{let}\ x= e_{0}\ \mathbf{in}\ e_{1}:\tau}{Let}\]</span></p>
-
+<p>$$\frac{\Gamma \vdash e_{0}:\sigma \ \ \ \ \ \  \Gamma,x:\sigma \vdash
+e_{1}:\tau}{\Gamma \vdash \mathbf{let}\ x= e_{0}\ \mathbf{in}\ e_{1}:\tau}{Let}$$</p>
 <p>到了这里，我们已经可以利用静态类型系统来为 无类型 Lambda 演算，或者是 Scheme 来做一些静态类型检查了，举例来说：</p>
-
-<p>假设我们已经知道函数 <code>+</code> 的类型为 <span  class="math">\(\Lambda X \rightarrow X \rightarrow X\)</span> , 对于下面的 scheme 程序：</p>
-
+<p>假设我们已经知道函数 <code>+</code> 的类型为 $$\Lambda X \rightarrow X \rightarrow X$$ , 对于下面的 scheme 程序：</p>
 <p><code>(define (id (x) x)</code></p>
-
 <p><code>(+ 1 (id &quot;a&quot;))</code> ，</p>
-
 <p>我们在全局环境里定义了 id 和 +，因此我们剩下的约束都是在一个全局的 Let 语句里产生的：</p>
-
-<p><span  class="math">\[Let  \space \texttt{id} : \Lambda X. X \rightarrow X \\ \space\texttt{+} : \Lambda X. X \rightarrow X \rightarrow X \]</span></p>
-
+<p>$$Let  \space \texttt{id} : \Lambda X. X \rightarrow X \ \space\texttt{+} : \Lambda X. X \rightarrow X \rightarrow X $$</p>
 <p>我们可以在 parse 的过程中根据语法产生五个显而易见的约束：</p>
-
-<p><span  class="math">\[
-Int = X \\
-typeof \space  \texttt {(id "a")} = X \\
-typeof \space \texttt{(+ 1 (id "a")) } = X \\
-String = Y \\
-typeof \space \texttt {(id "a")} = Y
-\]</span></p>
-
+<p>$$
+Int = X \
+typeof \space  \texttt {(id &ldquo;a&rdquo;)} = X \
+typeof \space \texttt{(+ 1 (id &ldquo;a&rdquo;)) } = X \
+String = Y \
+typeof \space \texttt {(id &ldquo;a&rdquo;)} = Y
+$$</p>
 <p>这个过程叫做 syntax-direct rules。这些约束都是以等价形式出现的，即等号左边和右边是没有次序的等价关系。</p>
-
 <p><strong>注意，这里出现的所有类型和类型变量都是 mono type，所有重复出现的函数引用都有单独的类型</strong></p>
-
-<p>求解这些约束，我们能得到一个类型错误：表达式 <span  class="math">\(\texttt{(id "a")}\)</span>  的类型为 <span  class="math">\(String\)</span>，而我们又期望表达式 <span  class="math">\(\texttt{(id "a")}\)</span> 的类型为 <span  class="math">\(Int\)</span>。</p>
-
+<p>求解这些约束，我们能得到一个类型错误：表达式 $$\texttt{(id &ldquo;a&rdquo;)}$$  的类型为 $$String$$，而我们又期望表达式 $$\texttt{(id &ldquo;a&rdquo;)}$$ 的类型为 $$Int$$。</p>
 <p>这些约束的求解过程 (unification) 实际上是一个类型空间上的高斯消元，具体算法有 Algorithm J 和 Algorithm W， 由于相较而言比较好实现，工业上 Algorithm W 用的比较多。</p>
-
 <p>你可以在 wikipedia 上找到关于 Algorithm W 的说明，以及<a href="https://github.com/wh5a/Algorithm-W-Step-By-Step/blob/master/AlgorithmW.pdf">使用 Haskell 实现 algorithm W</a> 的 paper。尽管如此，我还是给出一个简单的算法帮助理解：</p>
-
 <ol>
-<li>给定一个约束集合 <span  class="math">\(S\)</span>, 记其中所有出现的自由变量集合为 <span  class="math">\(F = free(S)\)</span></li>
-<li>根据 <span  class="math">\(F\)</span> 构造一个初始化变量表 <span  class="math">\(\textbf{Table} = \{ var: var | var \in F  \}\)</span></li>
-<li>从 <span  class="math">\(S\)</span> 中取一个约束 <span  class="math">\(C_i\)</span>, 令 <span  class="math">\(S^{\prime} = S - \{ c_i \}\)</span></li>
-<li><span  class="math">\([VAR]\)</span> 如果 <span  class="math">\(c_i\)</span> 符合形式 <span  class="math">\(x_i = \tau\)</span> 或者 <span  class="math">\(\tau = x_i\)</span>,（即约束的任意一边是一个类型变量） 那么
-
-<ul>
-<li>对于剩下的约束，做一个“替换“操作，<span  class="math">\(\forall C \in S^{\prime}, subsitude(C,x_i = \tau\)</span>)</li>
-<li>对于   <span  class="math">\(\textbf{Table}\)</span> 中对应的变量同样做这个替换操作 <span  class="math">\(x_i = \tau\)</span></li>
-</ul></li>
-<li><span  class="math">\([VAR]\)</span> 如果 <span  class="math">\(c_i\)</span>  符合形式 <span  class="math">\(X_l \rightarrow Y_l =  X_r \rightarrow Y_r\)</span>,  那么就产生两个新的约束 <span  class="math">\(X_l = X_r\)</span> 和  <span  class="math">\(Y_l = Y_r\)</span> 加入到 <span  class="math">\(S\)</span> 中 （这里代表了函数的等价约束）</li>
+<li>给定一个约束集合 $$S$$, 记其中所有出现的自由变量集合为 $$F = free(S)$$</li>
+<li>根据 $$F$$ 构造一个初始化变量表 $$\textbf{Table} = { var: var | var \in F  }$$</li>
+<li>从 $$S$$ 中取一个约束 $$C_i$$, 令 $$S^{\prime} = S - { c_i }$$</li>
 </ol>
-
-<p><span  class="math">\[ S := S \cup \{ X_l = X_r, Y_l = Y_r\}\]</span></p>
-
+<ul>
+<li>$$[VAR]$$ 如果 $$c_i$$ 符合形式 $$x_i = \tau$$ 或者 $$\tau = x_i$$,（即约束的任意一边是一个类型变量） 那么
+<ul>
+<li>对于剩下的约束，做一个“替换“操作，$$\forall C \in S^{\prime}, subsitude(C,x_i = \tau$$)</li>
+<li>对于   $$\textbf{Table}$$ 中对应的变量同样做这个替换操作 $$x_i = \tau$$</li>
+</ul>
+</li>
+<li>$$[VAR]$$ 如果 $$c_i$$  符合形式 $$X_l \rightarrow Y_l =  X_r \rightarrow Y_r$$,  那么就产生两个新的约束 $$X_l = X_r$$ 和  $$Y_l = Y_r$$ 加入到 $$S$$ 中 （这里代表了函数的等价约束）</li>
+</ul>
+<p>$$ S := S \cup { X_l = X_r, Y_l = Y_r}$$</p>
 <ul>
 <li>\( [APP] \) 如果 \( c_i \)  符合形式 \( (F \space X) = Y \), 那么该约束转换为 \( F = X \rightarrow Y \),   \( S := S \cup { F = X \rightarrow Y } \)</li>
 <li>\( [ABS|LET] \) 如果 \( c_i \)  符合形式 \( F = \Lambda X. Y \), 这里右边 F 是一个let-polytype， 需要类型参数来确定具体的 monotype 类型。 产生这种形式的约束一般是遇到了函数定义 \( ABS \) 。我们根据上文的 Let-polymorphism知道，所有函数的类型在不同的 occurrence 处是不一样的，因此这条规则接下来的动作是，找到 F 的所有 occurrence ，然后产生恰当的类型参数，得到一个 monotype，这里我们可以直接产生最 general 的类型，即对所有的类型参数都直接生成一个类型变量</li>
 </ul>
-
-<p><span  class="math">\[ \forall Fi \in S^{\prime}, Fi = (F Xi) \]</span></p>
-
-<p>这是最基本的 Algorithm W 的描述，我们可以增加一些自定义 syntax-directive rule 和 type operator 来补充完整 scheme 的类型系统。比如，为了描述 <a href="https://small.r7rs.org/">r7rs</a> 的 vector 类型，我们需要一个类型构造器 <span  class="math">\(Vec: \Lambda X_1 X_2... X_n . Vec \space \texttt{of} \space X_1 X_2... X_n\)</span> , 以及一条生成规则：</p>
-
-<p><span  class="math">\[typeof \texttt{ \#(x1 x2 ... xn)} = Vec \space \texttt{of} \space X_1 X_2... X_n\]</span></p>
-
+<p>$$ \forall Fi \in S^{\prime}, Fi = (F Xi) $$</p>
+<p>这是最基本的 Algorithm W 的描述，我们可以增加一些自定义 syntax-directive rule 和 type operator 来补充完整 scheme 的类型系统。比如，为了描述 <a href="https://small.r7rs.org/">r7rs</a> 的 vector 类型，我们需要一个类型构造器 $$Vec: \Lambda X_1 X_2&hellip; X_n . Vec \space \texttt{of} \space X_1 X_2&hellip; X_n$$ , 以及一条生成规则：</p>
+<p>$$typeof \texttt{ #(x1 x2 &hellip; xn)} = Vec \space \texttt{of} \space X_1 X_2&hellip; X_n$$</p>
 <p>当然，根据我们的目标， vec 的元素类型需要限定为一致　</p>
-
-<p><span  class="math">\(X_1 = X_2, X_2=X_3, ...X_n = X\)</span>　</p>
-
-<p>而 vec 的类型也可以简化为 <span  class="math">\(Vec \space \texttt{of} \space X\)</span></p>
-
+<p>$$X_1 = X_2, X_2=X_3, &hellip;X_n = X$$　</p>
+<p>而 vec 的类型也可以简化为 $$Vec \space \texttt{of} \space X$$</p>
 <p>在 unify 的时候，也需要增加一条</p>
-
 <ul>
-<li>\( [VAR] \) 如果 <span  class="math">\(c_i\)</span>  符合形式 <span  class="math">\(Vec \space \texttt{of} \space X =  Vec \space \texttt{of} \space Y\)</span>,  那么就产生n个新的约束加入到 <span  class="math">\(S\)</span> 中 （这里代表了数组的等价约束）</li>
+<li>\( [VAR] \) 如果 $$c_i$$  符合形式 $$Vec \space \texttt{of} \space X =  Vec \space \texttt{of} \space Y$$,  那么就产生n个新的约束加入到 $$S$$ 中 （这里代表了数组的等价约束）</li>
 </ul>
-
-<p><span  class="math">\[S := S \cup \{ X = Y\}\]</span></p>
-
+<p>$$S := S \cup { X = Y}$$</p>
 <p>题外话：如果在 unification 的时候带上类型约束产生的位置并在求解的时候传递下去，就可以在报类型错误的时候给出正确的定位信息了</p>
-
-<p>Hindley-Milner 的另外两个 Rules，<span  class="math">\(GEN\)</span> 和 <span  class="math">\(INST\)</span>，实际上已经隐式包含在 <span  class="math">\(ABS\)</span> 和 <span  class="math">\(APP\)</span> 中了，在 syntax-directive 的过程里不会显式的出现，这里也给出两个 rules 的形式化描述：</p>
-
-<p><span  class="math">\[
+<p>Hindley-Milner 的另外两个 Rules，$$GEN$$ 和 $$INST$$，实际上已经隐式包含在 $$ABS$$ 和 $$APP$$ 中了，在 syntax-directive 的过程里不会显式的出现，这里也给出两个 rules 的形式化描述：</p>
+<p>$$
 \frac{\Gamma \vdash e:\sigma \ \ \ \ \alpha \notin
-free(\Gamma)}{\Gamma \vdash e:\forall \alpha.\sigma}{GEN} \\
-\frac{\Gamma \vdash e:\sigma \ \ \ \ \ \sigma \succeq \sigma'}{\Gamma
-\vdash e:\sigma'}{INST}
-\]</span></p>
-
+free(\Gamma)}{\Gamma \vdash e:\forall \alpha.\sigma}{GEN} \
+\frac{\Gamma \vdash e:\sigma \ \ \ \ \ \sigma \succeq \sigma&rsquo;}{\Gamma
+\vdash e:\sigma&rsquo;}{INST}
+$$</p>
 <p>　</p>
-
 <p>至此，可以说基本完成了一个静态类型 scheme 的框架，基于此我们也实现了 scheme 的一个子集的编译器</p>
-
 <h2 id="后记">后记</h2>
-
 <p>我依旧庆幸自己有这么一个机会能在腾讯做这么 Geek 的事情，本文完成时，已经距离我提交离职申请过去5天了。</p>
-
 <p>我相信任何一个熟悉腾讯这家公司的人，都不太相信我能在腾讯写编译器。我曾经也以为，我能干出点不同的事情。然而我忽略了最重要的两点：</p>
-
 <ul>
 <li>作为一家游戏工作室，如何能投入资源帮你做这个编译器项目？</li>
 <li>作为一个只有两个人的研发小组，为什么要去负责推广？我们究竟是做一个 Seller 还是 Developer？</li>
 </ul>
-
 <p>Google 的前辈 <a href="https://laike9m.com/blog/jin-ji-nian-wo-zai-zhi-chang-cai-guo-de-keng,143/">laike9m 的 blog 有一段话</a>，我很认同</p>
-
 <ul>
 <li>这里仅讨论内部工具项目，不适用于面向外部用户的产品。几年下来我有一个很直接的观察，成功的内部工具基本都是 2c，很少有 2b 的。可能有人会好奇，内部工具也有 2b2c 之说吗？有个很简单判断方法：一个工具或系统，如果工程师能自己用起来，那就是 2c；如果需要部门里 &gt;1 人讨论并决定，那就是 2b。举两个例子：一个开箱即用的任务监控面板是 2c 的，而一个需要修改 release 流程才能使用的工具就是 2b 的。当然，我观察到的样本很少，所以结论未必对。但我真心感觉 2b 的东西想推动，要花费几倍于 2c 工具的时间，效果还未必好。总之如果你有的选，请尽量把时间花在 2c 项目上。</li>
 </ul>
-
 <p>很不幸，Leader 认为我们应该按照 2b 模式去做。 于是我得自己负责宣传，绞尽脑汁想落地，不断推销我们的东西。逐渐的我开始觉得不对劲，这不是就是发生在阿里达摩院的相似的故事吗？我并不否认销售的作用，甚至我很认同，在有朝一日，如果我去创业，或者成为某个大产品/业务的负责人，这些都是我应该考虑的事情，可是无论如何，都不是我现在这个位置和现在拥有的资源所能够考虑的事情</p>
-
 <p>另外还有一点是，也许腾讯做中间件产品太习惯 2b 了，工程师几乎遇不到 ”开箱即用“ 的产品，做什么都习惯拉个群做”客服“，软件质量上的缺陷用这种方式弥补，而不是靠单元测试和issue tracker，久而久之，可能就忘记了外面的世界是什么样</p>
-
 <p>总而言之，在腾讯做技术没有前途，本人待业中，希望有好坑可以联系我~</p>
 
-    </div>
+        </div>
 
-    
-    
+        
+        
 <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
@@ -609,8 +546,9 @@ free(\Gamma)}{\Gamma \vdash e:\forall \alpha.\sigma}{GEN} \\
 </div>
 
 
-    
-    
+
+        
+        
 <div class="post-reward">
   <input type="checkbox" name="reward" id="reward" hidden />
   <label class="reward-button" for="reward">赞赏支持</label>
@@ -629,54 +567,58 @@ free(\Gamma)}{\Gamma \vdash e:\forall \alpha.\sigma}{GEN} \\
   </div>
 </div>
 
-    <footer class="post-footer">
-      
 
-      
-      <nav class="post-nav">
-        
-          <a class="prev" href="/post/commercial-thoughts/">
+        <footer class="post-footer">
+          
+
+
+          
+          <nav class="post-nav">
             
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+              <a class="prev" href="/post/commercial-thoughts/">
+                
+                <i class="iconfont">
+                  <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="18" height="18">
   <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
 </svg>
 
-            </i>
-            <span class="prev-text nav-default">我的商业思维的变迁</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        
-          <a class="next" href="/post/summary2020/">
-            <span class="next-text nav-default">Summary 2020</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+                </i>
+                <span class="prev-text nav-default">我的商业思维的变迁</span>
+                <span class="prev-text nav-mobile">上一篇</span>
+              </a>
             
-            <i class="iconfont">
-              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+              <a class="next" href="/post/summary2020/">
+                <span class="next-text nav-default">Summary 2020</span>
+                <span class="prev-text nav-mobile">下一篇</span>
+                
+                <i class="iconfont">
+                  <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="18" height="18">
   <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
 </svg>
 
-            </i>
-          </a>
-      </nav>
-    </footer>
-  </article>
+                </i>
+              </a>
+          </nav>
+        </footer>
+      </article>
+
+      
+      
+
+
+      
+      
+
+  
 
   
   
 
   
-  
-
-  
-
-  
-  
-
   
 
   
@@ -703,22 +645,48 @@ free(\Gamma)}{\Gamma \vdash e:\forall \alpha.\sigma}{GEN} \\
       $('#load_disqus').remove();
     };
   </script>
-  <noscript>Please enable JavaScript to view the
+  <noscript
+    >Please enable JavaScript to view the
     <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
   </noscript>
   
-  </div>
+</div>
+
 
     
 
   
 
-        </div>
-      </div>
-    </main>
+  
 
-    <footer id="footer" class="footer">
-      <div class="icon-links">
+
+    </div>
+
+    
+    <nav class="toc" id="toc">
+    <div class="toc-title">文章目录</div>
+    <div class="toc-content custom-scrollbar">
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#scheme-as-a-static-typed-language">Scheme as A static typed language</a></li>
+        <li><a href="#scheme-as-second-typed-lambda-calculus">Scheme as second typed lambda calculus</a></li>
+      </ul>
+    </li>
+    <li><a href="#后记">后记</a></li>
+  </ul>
+</nav>
+    </div>
+  </nav>
+
+
+  </div>
+
+      </main>
+
+      <footer id="footer" class="footer">
+        <div class="icon-links">
   
   
     <a href="mailto:yimingdz@gmail.com" rel="me noopener" class="iconfont"
@@ -764,7 +732,7 @@ free(\Gamma)}{\Gamma \vdash e:\forall \alpha.\sigma}{GEN} \\
 </svg>
 
   </a>
-   
+  
 </div>
 
 <div class="copyright">
@@ -780,7 +748,7 @@ free(\Gamma)}{\Gamma \vdash e:\forall \alpha.\sigma}{GEN} \\
     &copy;
     
       2015 -
-    2022
+    2024
     <span class="heart">
       
       <i class="iconfont">
@@ -807,38 +775,36 @@ free(\Gamma)}{\Gamma \vdash e:\forall \alpha.\sigma}{GEN} \\
   
 </div>
 
-    </footer>
+      </footer>
 
-    <div class="back-to-top" id="back-to-top">
-      <i class="iconfont">
-        
-        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+      <div class="button__back-to-top">
+        <a href="#back-to-top">
+          <i class="iconfont">
+            
+            <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="35" height="35">
   <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
 </svg>
 
-      </i>
+          </i>
+        </a>
+      </div>
     </div>
-  </div>
-  
-<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+    
+<script type="text/javascript" src="/lib/jquery/jquery-3.7.1.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
 
 
 
 
-<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/main.ac668441725ce78d5a66b345db43a6b3a1d1b905e38b57ac90f7a6606605a3dc.js" integrity="sha256-rGaEQXJc541aZrNF20Oms6HRuQXji1eskPemYGYFo9w=" crossorigin="anonymous"></script>
 
 
 
-  <script type="text/javascript">
-    window.MathJax = {
-      showProcessingMessages: false,
-      messageStyle: 'none'
-    };
-  </script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 
 
@@ -873,7 +839,6 @@ free(\Gamma)}{\Gamma \vdash e:\forall \alpha.\sigma}{GEN} \\
 
 
   
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
   
@@ -896,5 +861,7 @@ free(\Gamma)}{\Gamma \vdash e:\forall \alpha.\sigma}{GEN} \\
 
 
 
-</body>
+
+
+  </body>
 </html>
