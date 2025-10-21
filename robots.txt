@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://hustdanielhu.com/sitemap.xml
+Sitemap: /sitemap.xml
